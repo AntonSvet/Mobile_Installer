@@ -1,0 +1,33 @@
+.modal-content-new-device{
+  display: flex;
+  flex-direction: column;
+      width: 200px;
+    height: 100%;
+    align-items: center;
+}
+
+.close-button-new-device {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 35px;
+  cursor: pointer;
+  color: #333;
+}
+
+.close-button-new-device:hover {
+  color: #000;
+}
+
+.device-list-new-device   {
+  width: 100%;
+  padding: 10px;
+  background-color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 10px;
+ 
+}

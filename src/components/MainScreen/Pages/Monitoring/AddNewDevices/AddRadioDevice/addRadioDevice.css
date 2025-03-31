@@ -1,0 +1,79 @@
+.new-radio-card{
+   
+  display: flex;
+  flex-direction: column;
+  
+  width: 100%;
+}
+
+.new-radio-card header{
+  display: flex;
+    flex-direction: column;
+  background: var( --background-header);
+  margin-bottom: 50px;
+   position: relative;
+   
+}
+
+.new-radio-back-arrow{
+    position: absolute;
+    top: 0;
+    left: 10px;
+    font-size: 26px;
+    font-weight: bold;
+    cursor: pointer;
+}
+ 
+ .new-radio-font-size  {
+    display: flex;
+    justify-content: center;
+       margin-bottom: 20px;
+}
+.new-radio-font-size span {
+ 
+    font-size:  clamp(25px, 4vw, 24px);
+    color:  var(--header-text-color) 
+}
+
+ .new-radio-instruction{
+  
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    margin-bottom: 20px;
+ }
+ .new-radio-instruction span {
+padding: 10px;
+ }
+.new-radio-content{
+      padding: 0 4px 0 4px;
+}
+
+
+
+.new-radio-one{
+   background: var(--background-device-card);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow); /* Тень */
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  width: 100%; /* Занимает всю доступную ширину */
+  max-height: 74px;
+  min-height: 74px;
+ border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 29px;
+ justify-content: center;
+ cursor: pointer;
+   
+}
+.new-radio-inside{
+ display: flex;
+   flex-direction: column;
+ 
+   align-items: center;
+   
+}
+ 

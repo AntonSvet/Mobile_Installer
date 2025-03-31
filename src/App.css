@@ -1,0 +1,24 @@
+.App {
+  text-align: center;
+  
+}
+
+.App-logo {
+  height: 30vmin;
+  pointer-events: none;
+  transform-style: preserve-3d; /* Сохраняет 3D-преобразования */  
+   
+  
+}
+
+  @media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 10s linear;
+    
+  }
+   .parallax  {
+    animation: App-logo-spin infinite 10s linear;
+    
+  }
+} 
+ 

@@ -1,0 +1,97 @@
+.setting-device-card{
+   
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+ .setting-device-card-main-header{
+ display: flex;
+ justify-content: space-evenly;
+ width: 100%;
+ margin-left: 10px;
+
+}
+
+.setting-device-card-main-header-inside{
+  
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+    padding-top: 10px;
+
+}
+.setting-device-card-header-position{
+  display: flex;
+  flex-direction: column;
+}
+.setting-device-card header{
+  display: flex;
+justify-content: flex-start;
+align-items: center;
+position: sticky;
+  flex-direction: column;
+  background: var( --background-header);
+  margin-bottom: 10px;
+     top: 0;
+    z-index: 10;
+    border-bottom: 1px solid black;
+   height: 140px;
+}
+.setting-device-card-content{
+      padding: 0 5px 0 5px;
+}
+.setting-device-card-font-size span {
+   font-size:  clamp(24px, 4vw, 24px);
+}
+.setting-device-card-back-arrow{
+  position: absolute;
+  top:0;
+  left:  10px ;
+  font-size: 26px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.setting-device-card-one{
+   background: var(--background-device-card);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow); /* Тень */
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  width: 100%; /* Занимает всю доступную ширину */
+  max-height: 200px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  max-width: 400px;
+}
+.setting-device-card-inside{
+ display: flex;
+   flex-direction: column;
+   padding: 10px 3px 10px 3px;
+}
+ .setting-device-card-block{
+display: flex;
+ margin: 6px 0px;
+ 
+ }
+ .setting-device-card-block-row{
+  display: flex;
+  margin-right: 15px;
+ }
+ .setting-device-card-block-row input{
+  width: 50px;
+  border-radius:  6px;
+ }
+ .setting-device-card-block-row span{
+   margin-right: 8px;
+ }
+ .setting-device-card-block select{
+  font-size: 17px;
+    max-width: 400px;
+    min-width: 307px;
+    width: 100%;
+    border-radius:   6px;
+ }

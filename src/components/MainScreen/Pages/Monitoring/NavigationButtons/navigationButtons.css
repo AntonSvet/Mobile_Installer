@@ -1,0 +1,25 @@
+.navigation-buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 14px 8px 2px 8px;
+  gap: 1vw;
+}
+
+.nav-button {
+  border: none;
+  background: none;
+  padding: 0.5vw 0.8vw;
+  flex: 1;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: var(--text-size)
+}
+
+.nav-button.selected {
+  background-color: #b1b1b1;
+  color: white;
+  border-radius: 8px;
+
+}

@@ -1,0 +1,63 @@
+.cube {
+   width: 100px;  
+  height: 100px;  
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(45deg) rotateY(45deg);
+  animation: spinCube 7s infinite ease-in-out, levitate 3s infinite ease-in-out;
+  
+}
+
+.face {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+   border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--box-shadow);
+   background-image: url('./../../img//elestaLogo.png');
+ 
+   background-repeat:no-repeat;
+   background-position: center center;  
+   background-color: var(--background-header);
+}
+
+ 
+
+ 
+@keyframes spinCube {
+  0%, 16.67% { /* 0% - 1 секунда (вращение) */
+    transform: rotateY(0);
+  }
+  100% { /* 1 секунда - 6 секунд (задержка) */
+    transform: rotateY(360deg);
+  }
+}
+.front {
+  
+  transform: translateZ(50px);
+}
+
+.back {
+ 
+  transform: translateZ(-50px);
+}
+
+.left {
+ 
+  transform: rotateY(-90deg) translateZ(50px);
+}
+
+.right {
+  
+  transform: rotateY(90deg) translateZ(50px);
+}
+
+.top {
+  
+  transform: rotateX(90deg) translateZ(50px);
+}
+
+.bottom {
+ 
+  transform: rotateX(-90deg) translateZ(50px);  
+}

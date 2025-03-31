@@ -1,0 +1,86 @@
+.new-device-card{
+   
+  display: flex;
+  flex-direction: column;
+  
+  width: 100%;
+}
+
+.new-device-card header{
+  display: flex;
+   flex-direction: column;
+  background: var( --background-header);
+  margin-bottom: 50px;
+   
+   height: 100px;
+}
+
+.new-device-back-arrow{
+  display: flex;
+  justify-content: flex-start;
+  font-size: 26px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 15px;
+}
+ 
+ .new-device-font-size   {
+    display: flex;
+justify-content: center;
+    margin-top: 20px;
+}
+.new-device-font-size span {
+ 
+    font-size:  clamp(25px, 4vw, 24px);
+    color:  var(--header-text-color) 
+}
+
+ 
+
+.new-device-content{
+      padding: 0 4px 0 4px;
+}
+
+
+
+.new-device-one{
+   background: var(--background-device-card);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow); /* Тень */
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  width: 100%; /* Занимает всю доступную ширину */
+  max-height: 74px;
+  min-height: 74px;
+ border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 29px;
+ justify-content: center;
+ cursor: pointer;
+   
+}
+.new-device-inside{
+ display: flex;
+   flex-direction: column;
+ 
+   align-items: center;
+   
+}
+ .new-device-block{
+display: flex;
+ margin: 6px 0px;
+ 
+ }
+ .new-device-block-row{
+  display: flex;
+  margin-right: 15px;
+ }
+ .new-device-block-rowinput{
+  width: 50px;
+  border-radius:  6px;
+ }
+ .new-device-block-row span{
+   margin-right: 8px;
+ }

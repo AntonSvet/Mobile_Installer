@@ -1,0 +1,182 @@
+.app-header {
+   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ justify-content: space-evenly;
+  font-size: calc(10px + 2vmin);
+  gap: 1rem;
+  padding: 1rem;
+}
+
+ .qr-scan-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  font-size: 18px;
+  color: #fff;
+  background: linear-gradient(135deg, #c0c0c5, #5e5c5b); /* Градиентный фон */
+  border: none;
+  border-radius: 12px; /* Закруглённые углы */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Тень для объёма */
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: absolute;
+  bottom: 15%;
+   max-width: 300px;
+}
+
+.qr-scan-button:hover {
+  transform: scale(1.05); /* Увеличение при наведении */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* Увеличенная тень */
+}
+
+.qr-scan-button:active {
+  transform: scale(0.95); /* Эффект нажатия */
+   background: linear-gradient(135deg, #c0c0c5, #444242);
+}
+
+.qr-icon {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.qr-text {
+  font-weight: bold;
+}
+
+.input-value {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 30px;
+  font-size: 18px;
+  border-radius: 12px; /* Закруглённые углы */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Тень для объёма */
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+}
+
+.submit-button:hover {
+  transform: scale(1.05); /* Увеличение при наведении */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* Увеличенная тень */
+}
+
+.submit-button:active {
+  transform: scale(0.95); /* Эффект нажатия */
+}
+
+
+.login-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 30px;
+  font-size: 18px;
+  color: #fff;
+  background: linear-gradient(135deg, #4caf50, #81c784); /* Градиентный фон */
+  border: none;
+  border-radius: 12px; /* Закруглённые углы */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Тень для объёма */
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-button:hover {
+  transform: scale(1.05); /* Увеличение при наведении */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* Увеличенная тень */
+}
+
+.login-button:active {
+  transform: scale(0.95); /* Эффект нажатия */
+}
+
+.login-icon {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.login-text {
+  font-weight: bold;
+}
+
+.input-with-button {
+  display: flex;
+  align-items: center;
+  background: #fff;
+   
+  border-radius: 12px; /* Закруглённые углы */
+  overflow: hidden; /* Чтобы кнопка не выходила за границы */
+    max-width: 500px; /* Ограничение ширины на ПК */
+   width: 100%; /* Занимает всю доступную ширину */
+  gap: 8px; /* Расстояние между input и кнопкой */
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.input-field {
+  flex: 1; /* Занимает всё доступное пространство */
+   flex-shrink: 1; /* Поле ввода может сжиматься */
+  min-width: 50px; /* Минимальная ширина поля ввода */
+  padding: 0px 7px;
+  font-size: 16px;
+  border: none;
+  outline: none; /* Убираем обводку при фокусе */
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+  font-size: clamp(25px, 5vw, 28px);
+}
+
+.submit-button {
+  padding: 2% 2%;
+ font-size: clamp(16px, 5vw, 20px);
+  flex-shrink: 0; /* Кнопка не сжимается */
+  color: #fff;
+  background:  linear-gradient(135deg, #c0c0c5, #5e5c5b);/* Градиентный фон */
+  white-space: nowrap;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-weight: bold;
+   
+}
+
+.submit-button:hover {
+  background: linear-gradient(135deg, #c0c0c5, #444242);/* Инвертируем градиент при наведении */
+}
+
+.submit-button:active {
+  transform: scale(0.95); /* Эффект нажатия */
+  background: linear-gradient(135deg, #c0c0c5, #444242);
+}
+
+.camera-view {
+  display: flex;
+  flex-direction: column;
+   align-items: center;
+    position: relative;
+}
+
+.logo-elesta {
+    display: flex;
+    justify-content: center;
+     position: absolute;
+     top:10%;
+     align-items: center;
+    
+    
+}
+.qr-scan-view{
+      display: flex
+;    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+     
+    width: 100%;
+}
