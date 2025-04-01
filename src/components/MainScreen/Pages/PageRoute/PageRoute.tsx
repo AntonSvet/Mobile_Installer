@@ -4,13 +4,13 @@ import MonitoringPage from "../Monitoring/MonitoringPage";
 import ZonesPage from "../Zones/ZonesPage";
 import GeneralSettingsPage from "../GeneralSettings/GeneralSettingsPage";
 import ParametersPage from "../Parameters/ParametersPage";
-import UserCodes from "../UserCodes/UserCodes";
+import UserCodesPage from "../UserCodes/UserCodesPage";
 
 const GeneralSettingsPageWithErrorBoundary = WithErrorBoundary(GeneralSettingsPage);
 const MonitoringPageWithErrorBoundary = WithErrorBoundary(MonitoringPage);
 const ZonesPageWithErrorBoundary = WithErrorBoundary(ZonesPage);
 const ParametersPageWithErrorBoundary = WithErrorBoundary(ParametersPage);
-const UserCodesWithErrorBoundary = WithErrorBoundary(UserCodes);
+const UserCodesPageWithErrorBoundary = WithErrorBoundary(UserCodesPage);
 
 const PageRoute = ({ route }: { route: string }) => {
   switch (route) {
@@ -23,7 +23,7 @@ const PageRoute = ({ route }: { route: string }) => {
     case "Параметры связи":
       return <ParametersPageWithErrorBoundary />;
     case "Коды пользователя":
-      return <UserCodesWithErrorBoundary />;
+      return <UserCodesPageWithErrorBoundary />;
     default:
       return <MonitoringPageWithErrorBoundary />;
   }

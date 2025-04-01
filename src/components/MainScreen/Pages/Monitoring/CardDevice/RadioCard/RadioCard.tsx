@@ -85,8 +85,7 @@ const RadioCard = ({ handleCloseModal, currentDevice }: RadioCardProps) => {
         </div>
       </header>
       <div className="radio-card-content">
-        {currentDevice.zone.map((zoneId, i) => {
-          if (zoneId === null) return null;
+        {currentDevice.zone.map((item: number | null, i: number) => {
           return (
             <div key={i} className="radio-card-one">
               <div className="radio-card-inside">
@@ -110,16 +109,18 @@ const RadioCard = ({ handleCloseModal, currentDevice }: RadioCardProps) => {
                     <option value="Охранная">Охранная</option>
                   </select>
                 </div>
-                <div className="radio-card-block">
-                  <div className="radio-card-block-row">
-                    <span>Задержка вход</span>
-                    <input width="30px" />
+                {item && (
+                  <div className="radio-card-block">
+                    <div className="radio-card-block-row">
+                      <span>Задержка вход</span>
+                      <input width="30px" />
+                    </div>
+                    <div className="radio-card-block-row">
+                      <span>Задержка выход</span>
+                      <input width="30px" />
+                    </div>
                   </div>
-                  <div className="radio-card-block-row" >
-                    <span>Задержка выход</span>
-                    <input width="30px" />
-                  </div>
-                </div>
+                )}
               </div>
             </div>
           );

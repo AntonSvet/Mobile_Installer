@@ -1,4 +1,4 @@
- import { Provider } from "react-redux";
+import { Provider } from "react-redux";
 import "./App.css";
 import AuthPage from "./components/AuthPage/AuthPage";
 import store from "./redux/store";

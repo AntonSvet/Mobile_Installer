@@ -1,0 +1,98 @@
+input {
+  height: 26px;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 0px;
+}
+
+select {
+  height: 26px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+.navigation-header {
+  background: var(--background-header);
+  display: flex;
+  width: 100%;
+  max-width: 500px;
+  height: 60px;
+  margin-bottom: 5px;
+  box-shadow: var(--card-shadow);
+}
+
+.navigation-buttons {
+  display: flex;
+  padding: 10px 5px 2px 5px;
+  width: 100%;
+}
+
+.user-codes-page-nav-button {
+  border: none;
+  background: none;
+  padding: 0.2vw;
+  min-height: 25px;
+  flex: 1;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: clamp(17px, 4.5vw, 23px);
+  max-width: 250px;
+}
+
+.user-codes-page-nav-button.selected {
+  background-color: #b1b1b1;
+  color: white;
+  border-radius: 8px;
+}
+
+.user-code-page-one {
+  background: var(--background-device-card);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  /* Тень */
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  max-width: 500px;
+}
+
+
+.user-code-page-inside {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 3px 10px 3px;
+}
+
+.user-code-page-block {
+  display: flex;
+  white-space: nowrap;
+  margin: 6px 11px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-code-page-block-row {
+
+  margin-right: 1%;
+
+}
+
+.vertical-text {
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  letter-spacing: 5px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.user-code-delete-button {
+  width: 120px;
+  height: 26px;
+  border-radius: 5px;
+  border: 1px solid black;
+  background: white;
+}

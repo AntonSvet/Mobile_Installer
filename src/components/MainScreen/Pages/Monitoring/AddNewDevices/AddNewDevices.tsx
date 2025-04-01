@@ -1,10 +1,9 @@
- import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./addNewDevices.css";
 import ModalNewDevices from "./ModalNewDevices";
 import { devicesList } from "../../../../../const/const";
 import { BrowserMultiFormatReader } from "@zxing/library";
 import AddRadioDevice from "./AddRadioDevice/AddRadioDevice";
- 
 
 const AddNewDevice = ({ handleCloseModal }: any) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -44,7 +43,7 @@ const AddNewDevice = ({ handleCloseModal }: any) => {
         await codeReader.decodeFromVideoDevice(null, videoRef.current, (result, err) => {
           if (result) {
             setScannedData(result.getText());
-console.log("scannedData",scannedData)
+            console.log("scannedData", scannedData);
             stopScanning();
           }
           if (err && !(err instanceof Error)) {
@@ -123,6 +122,5 @@ console.log("scannedData",scannedData)
     </div>
   );
 };
- 
- export default AddNewDevice;
- 
+
+export default AddNewDevice;

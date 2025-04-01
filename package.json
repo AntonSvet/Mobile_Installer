@@ -1,6 +1,6 @@
 {
   "name": "mobile_installer_vite",
-  "homepage": "https://AntonSvet.github.io/mobileInstaller",
+  "homepage": "https://AntonSvet.github.io/Mobile_Installer",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -44,5 +44,16 @@
     "typescript-eslint": "^8.24.1",
     "vite": "^6.2.0",
     "vite-plugin-pwa": "^1.0.0"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "printWidth": 120,
+    "useTabs": false,
+    "bracketSpacing": true,
+    "jsxBracketSameLine": false,
+    "jsxSingleQuote": false,
+    "semi": true,
+    "singleQuote": false
   }
 }

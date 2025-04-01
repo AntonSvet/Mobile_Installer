@@ -1,0 +1,96 @@
+.ethernet-tab-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+}
+
+.ethernet-tab-card-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ethernet-tab-card header {
+  display: flex;
+  flex-direction: column;
+  background: var(--background-header);
+  margin-bottom: 50px;
+
+
+}
+
+.mac-ethernet-tab {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 8px 0px 8px;
+}
+
+.mac-ethernet-tab span {
+  color: #948F8F;
+}
+
+.navigation-header-ethernet-tab {
+  background: var(--background-header);
+}
+
+.navigation-select-ethernet-tab {
+  background: var(--background-header);
+  display: flex;
+  width: 100%;
+  max-width: 500px;
+  height: 60px;
+  margin-bottom: 5px;
+  height: 85px;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.navigation-select-ethernet-tab select {
+  margin: 5px;
+}
+
+.ethernet-tab-back-arrow {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 26px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+.ethernet-tab-font-size {
+  display: flex;
+  justify-content: center;
+
+}
+
+.ethernet-tab-font-size span {
+
+  font-size: clamp(25px, 4vw, 24px);
+  color: var(--header-text-color)
+}
+
+.ethernet-tab-one {
+  background: var(--background-device-card);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  border: none;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+  max-width: 500px;
+  padding: 10px 0px;
+}
+
+.ethernet-tab-block {
+  display: flex;
+  margin: 10px 0px;
+  justify-content: space-around;
+  width: 100%;
+}

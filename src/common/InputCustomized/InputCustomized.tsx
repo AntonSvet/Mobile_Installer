@@ -1,26 +1,19 @@
 import { Box, IconButton, TextField } from "@mui/material";
-import React, { FunctionComponent, useState, useRef,   } from "react";
- 
- 
- 
+import React, { FunctionComponent, useState, useRef } from "react";
+
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
- 
+
 import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
 import { IKeyboard } from "./InputCustomized.types";
 import { classes } from "./InputCustomized.style";
 
- 
- 
- 
- 
 const InputCustomized: FunctionComponent<IKeyboard> = ({
   label,
   id,
   flag,
   type,
   value,
-  
   numeric = false,
   isDisabled,
   inputProps,
@@ -30,8 +23,6 @@ const InputCustomized: FunctionComponent<IKeyboard> = ({
   const [typePassword, setTypePassword] = useState<string>(type || "");
   const inputRef = useRef<HTMLInputElement>(null);
 
-  
- 
   const cursorFocus = function (elem: EventTarget & HTMLInputElement) {
     elem.parentElement?.parentElement?.parentElement?.parentElement?.scrollIntoView({
       behavior: "smooth",
@@ -40,10 +31,6 @@ const InputCustomized: FunctionComponent<IKeyboard> = ({
   };
 
   const onChangeInput: React.ChangeEventHandler<HTMLInputElement> = (evt) => {
-  
-    
-   
-
     evt.target.scrollLeft = evt.target.scrollWidth;
   };
 
@@ -115,5 +102,4 @@ const InputCustomized: FunctionComponent<IKeyboard> = ({
   );
 };
 
- 
-export default InputCustomized
+export default InputCustomized;

@@ -57,9 +57,6 @@ const GeneralSettingsPage = () => {
   const handleSuccessChange = (event: SelectChangeEvent) => {
     const item = event.target.value;
     setSuccess(item);
-
-    
-   
   };
   return (
     <div className="setting-device-card">
@@ -107,10 +104,10 @@ const GeneralSettingsPage = () => {
               <Grid>
                 <VolumeUp />
               </Grid>
-              <Grid >
+              <Grid>
                 <Slider aria-labelledby="input-slider" />
               </Grid>
-              <Grid >
+              <Grid>
                 <Input
                   size="medium"
                   inputProps={{

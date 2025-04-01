@@ -5,11 +5,11 @@ import "./zonesPage.css";
 
 const Zones = () => {
   const [selectedButton, setSelectedButton] = useState<string>("по зонам");
- // const { radio, rs485 } = useTypedSelector(state => state.devices);
+  // const { radio, rs485 } = useTypedSelector(state => state.devices);
   const handleButtonClick = (buttonName: string) => {
     setSelectedButton(buttonName);
   };
-  return (  
+  return (
     <>
       <div className="navigation-header">
         <div className="navigation-buttons">
@@ -29,8 +29,8 @@ const Zones = () => {
       </div>
       {Array(192)
         .fill(1)
-        .map((_,i) => (
-          <div className="zone-page-one" style={{ marginLeft: "7px", marginRight: "7px" }}>
+        .map((_, i) => (
+          <div key={i} className="zone-page-one" style={{ marginLeft: "7px", marginRight: "7px" }}>
             <div className="zone-page-inside">
               <div
                 style={{

@@ -3,7 +3,6 @@ import Footer from "./Footer/Footer";
 import HeaderBar from "./NavigationBar/HeaderBar";
 import MainPage from "./Pages/MainPage";
 
-
 const MainScreen = () => {
   const [selectedMenu, setSelectedMenu] = useState("Мониторинг");
   const handleMenu = (el: string) => setSelectedMenu(el);
@@ -11,7 +10,7 @@ const MainScreen = () => {
   return (
     <div className="main_screen">
       <HeaderBar selectedMenu={selectedMenu} callback={handleMenu} />
-      <MainPage selectedMenu={selectedMenu}   />
+      <MainPage selectedMenu={selectedMenu} />
       <Footer />
     </div>
   );

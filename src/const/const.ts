@@ -7,9 +7,14 @@ export const dialogTitlesDevice = {
   RADIO_5830: "АК Ю-5830",
   RADIO_5230: "ИК Ю-5230",
 };
+export const dialogTitlesParametrs = {
+  Ethernet: "Ethernet/Wi-Fi",
+  Sim_1: "GPRS Sim 1",
+  Sim_2: "GPRS Sim 2",
+  SMS: "SMS",
+};
 
 export const devicesList = {
   radio: ["МК Ю-5130", "ИК Ю-5230", "АК Ю-5830", "ИК Ю-5231", "Кл Ю-6270"],
   rs485: ["РШ Ю-3811", "РШ Ю-3812", "РР Ю-3214"],
 };
- 
