@@ -88,18 +88,6 @@
   overflow: visible;
 }
 
-.setting-rs-card header {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  position: sticky;
-  flex-direction: column;
-  background: var(--background-header);
-  margin-bottom: 10px;
-  top: 0;
-  z-index: 10;
-}
-
 .setting-rs-card-top-header {
   display: flex;
   justify-content: space-between;
