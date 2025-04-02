@@ -1,7 +1,6 @@
 import { Divider, List, ListItem, ListItemText, ListSubheader, Paper } from "@mui/material";
 import CustomizedSwitches from "../../../../common/CustomizedSwitches/CustomizedSwitches";
 import InputCustomized from "../../../../common/InputCustomized/InputCustomized";
- 
 
 const classes = {
   positionSettings: {
@@ -22,7 +21,7 @@ const classes = {
     padding: "5px 0px",
     margin: "0px",
     lineHeight: "26px",
-    
+
     fontSize: "1rem",
     zIndex: 2,
   },
@@ -33,7 +32,8 @@ const classes = {
     height: 37,
   },
 };
-function handleSettingsChange() {console.log("Click");
+function handleSettingsChange() {
+  console.log("Click");
 }
 const GprsPage = () => {
   return (
@@ -275,5 +275,3 @@ const GprsPage = () => {
 };
 
 export default GprsPage;
-
-

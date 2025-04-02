@@ -24,6 +24,10 @@
   align-items: center;
 }
 
+.drawer-menu svg {
+  padding-left: 4px;
+}
+
 .logo {
   font-size: clamp(23px, 5vw, 28px);
   color: var(--header-text-color);

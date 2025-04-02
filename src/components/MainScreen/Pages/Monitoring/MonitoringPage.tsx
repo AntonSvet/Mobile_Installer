@@ -1,8 +1,6 @@
 import device2084 from "../../../../img/device/s_fonom_2084.png";
 import { useEffect, useRef, useState } from "react";
 import NavigationButtons from "./NavigationButtons/NavigationButtons";
-// import Battery20SharpIcon from "@mui/icons-material/Battery20Sharp";
-// import SignalCellular2BarIcon from "@mui/icons-material/SignalCellular2Bar";
 import FloatingButton from "./FloatingButton/FloatingButton";
 import ImageLoader from "../../../../common/ImageLoader/ImageLoader";
 import useImageLoader from "../../../../hooks/useImageLoader";
@@ -21,7 +19,11 @@ import { FaSignal } from "react-icons/fa6";
 const MonitoringPage = () => {
   const devicesStore = useTypedSelector((state) => state.devices);
   const addedDevice = useTypedSelector((state) => state.devices.addedDevice);
-  const [openModalSetting, setOpenModalSetting] = useState({ open: false, name: "", currentDevice: {} as IRadioDevices });
+  const [openModalSetting, setOpenModalSetting] = useState({
+    open: false,
+    name: "",
+    currentDevice: {} as IRadioDevices,
+  });
   const [isModalNewDevice, setIsModalNewDevice] = useState(false);
   const dispatch = useTypedDispatch();
   const headerRef = useRef<HTMLDivElement>(null);
@@ -43,48 +45,33 @@ const MonitoringPage = () => {
           <ImageLoader progress={progress} title={"Загрузка"} />;
         </div>
       )}
-      <div className="container"
+      <div
+        className="container"
         ref={headerRef}
         style={{
           visibility: isLoading ? "hidden" : "visible",
         }}
       >
         <div className="device-grid-container">
-          <div className="device-grid-container-device-info">
-            <div><span>Sim 1</span> </div>
+          <div className="device-grid-container-info">
             <div>
-              <FaSignal className="icons" />
+              <span>Sim 1</span>
             </div>
-            <div>
-              <GiBattery50 className="icons" />
-            </div>
+            <FaSignal className="icons" />
+            <GiBattery50 className="icons" />
           </div>
-          <div className="device-grid-container-device-image">
+          <div className="device-grid-container-image">
             <img width={"40%"} src={device2084} alt="logo" />
-            <div>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <span style={{ color: "var( --text-color)" }}>Провод. Зона 1, рзд. 1</span>
-                <div
-                  style={{
-                    width: "clamp(14px,3vw,18px)",
-                    height: "clamp(14px,3vw,18px)",
-                    background: "green",
-                    borderRadius: "20px",
-                    marginLeft: "10px",
-                  }}
-                ></div>
+            <div className="device-grid-container-zones-block">
+              <div className="device-grid-container-zones">
+                <div>
+                  <span style={{ color: "var( --text-color)" }}>Зона 1, рзд. 1</span>
+                </div>
+                <div className="device-grid-container-zones-indicators" style={{ background: "green" }}></div>
               </div>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <span style={{ color: "var( --text-color)" }}>Провод. Зона 2, рзд. 1</span>
-                <div
-                  style={{
-                    width: "clamp(14px,3vw,18px)",
-                    height: "clamp(14px,3vw,18px)",
-                    background: "red",
-                    borderRadius: "20px",
-                    marginLeft: "10px",
-                  }}
-                ></div>
+              <div className="device-grid-container-zones">
+                <span style={{ color: "var( --text-color)" }}>Зона 2, рзд. 1</span>
+                <div className="device-grid-container-zones-indicators" style={{ background: "red" }}></div>
               </div>
             </div>
           </div>
@@ -113,7 +100,7 @@ const MonitoringPage = () => {
           visibility: isLoading ? "hidden" : "visible",
           minWidth: "260px",
           maxWidth: "500px",
-          width: "100%",
+          width: "98%",
           marginLeft: "6px",
           marginRight: "6px",
         }}

@@ -1,136 +1,308 @@
-.setting-rs-card{
-   
+.setting-rs-card {
+  max-width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   position: relative;
-}
-.setting-rs-card header{
-  display: flex;
-justify-content: flex-start;
-align-items: center;
-position: sticky;
-  flex-direction: column;
-  background: var( --background-header);
-  margin-bottom: 10px;
-     top: 0;
-    z-index: 10;
-   padding-bottom: 10px;
-}
-.setting-rs-card-top-header{
-  display: flex;
-      display: flex;
-    justify-content: space-between;
-   width: 100%;
-    padding: 0px 5px;
-}
-.setting-rs-back-arrow{
-  
-  font-size: 26px;
-    font-weight: bold;
-    cursor: pointer;
-    padding-left: 5px;
+  min-height: -webkit-fill-available;
+  min-height: 100vh;
+  overflow: visible;
 }
 
-.setting-rs-header-card-position{
+
+.setting-rs-card header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: sticky;
+  flex-direction: column;
+  background: var(--background-header);
+  margin-bottom: 10px;
+  top: 0;
+  z-index: 11;
+}
+
+
+
+.setting-rs-card-top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 10px 13px;
+}
+
+.setting-rs-card-top-header-icons {
+  color: var(--header-text-color);
+  width: clamp(28px, 6vw, 35px);
+  height: clamp(28px, 6vw, 35px);
+  margin: 0
+}
+
+
+.setting-rs-card-back-arrow {
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+
+.setting-rs-header-position {
   display: flex;
   flex-direction: column;
-  
   text-align: center;
+  font-weight: bold;
+
 }
-.setting-rs-card-middle-header{
+
+.setting-rs-card-save {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-right: 10px;
+}
+
+
+.setting-rs-header-position span {
+  font-size: clamp(20px, 4vw, 25px);
+  color: var(--header-text-color);
+}
+
+.setting-rs-card-middle-header {
   display: flex;
   justify-content: space-between;
   padding: 10px 0px;
- 
+  width: 100%;
 }
-.setting-rs-card-info{
+
+.setting-rs-card {
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  min-height: -webkit-fill-available;
+  min-height: 100vh;
+  overflow: visible;
+}
+
+.setting-rs-card header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: sticky;
+  flex-direction: column;
+  background: var(--background-header);
+  margin-bottom: 10px;
+  top: 0;
+  z-index: 10;
+}
+
+.setting-rs-card-top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 10px 13px;
+}
+
+.setting-rs-card-top-header-icons {
+  color: var(--header-text-color);
+  width: clamp(28px, 6vw, 35px);
+  height: clamp(28px, 6vw, 35px);
+  margin: 0
+}
+
+.setting-rs-card-bottom-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-left: 13px;
+}
+
+.setting-rs-card-bottom-header div {
+  display: flex;
+  align-items: center;
+}
+
+
+.setting-rs-card-indicators {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+
+.setting-rs-card-back-arrow {
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.setting-rs-header-position {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-weight: bold;
+
+}
+
+.setting-rs-card-save {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-right: 10px;
+}
+
+.setting-rs-header-position span {
+  font-size: clamp(20px, 4vw, 25px);
+  color: var(--header-text-color);
+}
+
+.setting-rs-card-middle-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0px;
+  width: 100%;
+}
+
+.setting-rs-card-info {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 50%;
   align-items: flex-end;
- 
+  margin-right: 13px;
 }
- .setting-rs-card-bottom-header{
- display: flex;
- flex-direction: column;
-   align-items: flex-start;
- 
- margin-right: 149px;
 
+.setting-rs-card-info div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
- 
 
- 
- 
 
-.setting-rs-card-content{
-      padding: 0 5px 0 5px;
+.setting-rs-card-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: sticky;
+  flex-direction: column;
+  background: var(--background-header);
+  margin: 0px 6px 6px 6px;
+  top: 0;
+  z-index: 10;
+  padding-bottom: 10px;
+  flex: 1;
 }
-.setting-rs-card-font-size span {
-   font-size:  clamp(24px, 4vw, 24px);
-}
-.setting-rs-card-back-arrow{
-  position: absolute;
- top:0;
-  left:  10px ;
-  font-size: 26px;
-    font-weight: bold;
-    cursor: pointer;
-}
-.setting-rs-card-one{
-   background: var(--background-device-card);
+
+.setting-rs-card-one {
+  background: var(--background-device-card);
   border-radius: 8px;
-  box-shadow: var(--card-shadow); /* Тень */
+  box-shadow: var(--card-shadow);
+  /* Тень */
   transition: box-shadow 0.3s ease, transform 0.3s ease;
   cursor: pointer;
-  width: 100%; /* Занимает всю доступную ширину */
- 
+  width: 100%;
+  /* Занимает всю доступную ширину */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin-bottom: 5px;
-  max-width: 500px;
-  
 }
-.setting-rs-card-inside{
- display: flex;
-   flex-direction: column;
-   padding: 10px 3px 10px 3px;
+
+.setting-rs-card-inside {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 98%;
 }
- .setting-rs-card-block{
-display: flex;
- margin: 6px 0px;
- 
- }
- .setting-rs-card-block-row{
+
+.setting-rs-card-block {
   display: flex;
-  margin-right: 15px;
- }
- .setting-rs-card-block-row input{
-  width: 35px;
-  border-radius:  6px;
- }
- .setting-rs-card-block-row span{
-   margin-right: 8px;
- }
- .setting-rs-card-block select{
-  font-size: 17px;
-    max-width: 400px;
-    min-width: 307px;
-    width: 100%;
-    border-radius:   6px;
- }
-  .setting-rs-card-delete   {
- padding: 30px;
+  margin: 6px 0px;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.setting-rs-card-block-row {
   display: flex;
- justify-content: center;
- border: none;
- width: 100%;
- background: inherit;
- cursor: pointer;
- }
-  .setting-rs-card-delete span {
-  font-size: 24px;
-     color: red;
- }
+  align-items: center;
+  /* margin-right: 10px; */
+}
+
+.setting-rs-card-block-row input {
+  max-width: 26px;
+  border-radius: 6px;
+  /* overflow: hidden; */
+  text-overflow: ellipsis;
+}
+
+.setting-rs-card-block-custom-input {
+  /* text-align: center; */
+  text-align: center;
+  max-width: 120px;
+  border-radius: 6px;
+}
+
+
+.setting-rs-card-block-row span {
+  margin-right: 6px;
+}
+
+.setting-rs-card-block select {
+  min-width: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: var(--text-size);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.setting-rs-card-checkbox-block {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.setting-rs-card-checkbox-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.setting-rs-card-checkbox-row input {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  margin: 0;
+}
+
+.setting-rs-card-checkbox-row span {
+  margin-right: 8px;
+}
+
+.setting-rs-card-delete {
+  padding-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  border: none;
+  width: 100%;
+  background: inherit;
+  cursor: pointer;
+}
+
+.setting-rs-card-delete span {
+  font-size: clamp(19px, 5vw, 28px);
+  color: red;
+}

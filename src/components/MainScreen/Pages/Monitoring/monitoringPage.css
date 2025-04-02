@@ -17,24 +17,39 @@
 
 }
 
-.device-grid-container-device-info {
+.device-grid-container-info {
   display: flex;
   align-items: center;
   background: var(--background-header);
-  margin-left: 9px;
+  margin-left: 8px;
+
 }
 
-.device-grid-container-device-image {
+.device-grid-container-image {
   display: flex;
   align-items: center;
-  width: 100%;
   background: var(--background-header);
-  margin-left: 5px;
+  margin-left: 8px;
 }
 
-.device-grid-container-device-image img {
-  width: clamp(100px, 20vw, 110px);
+
+.device-grid-container-image img {
+  width: clamp(120px, 25vw, 140px);
   padding-right: 20px;
+}
+
+.device-grid-container-zones {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.device-grid-container-zones-indicators {
+  width: clamp(14px, 3vw, 18px);
+  height: clamp(14px, 3vw, 18px);
+  border-radius: 20px;
+  margin-left: 10px;
+
 }
 
 .device-grid-container-device-info div {
@@ -64,6 +79,7 @@
 
 .native-select option {
   text-align: center;
+
 }
 
 .native-select:focus {

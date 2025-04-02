@@ -1,10 +1,17 @@
 import { useState } from "react";
 import "./cardDevice.css"; // Подключаем CSS-стили
-import SignalCellular2BarIcon from "@mui/icons-material/SignalCellular2Bar";
-import Battery20SharpIcon from "@mui/icons-material/Battery20Sharp";
+import { IRadioDevices } from "../../../../../redux/reducers/devices/devices.types";
+import { GiBattery50 } from "react-icons/gi";
+import { FaSignal } from "react-icons/fa6";
 
-const CardDevice = ({ openSettingModal, el, index }: any) => {
-  const [selectedCard, setSelectedCard] = useState(null);
+interface CardDeviceProps {
+  openSettingModal: () => void;
+  el: IRadioDevices;
+  index: number;
+}
+
+const CardDevice = ({ openSettingModal, el, index }: CardDeviceProps) => {
+  const [selectedCard, setSelectedCard] = useState<number | null>(null);
 
   const handleClick = () => {
     setSelectedCard(index);
@@ -27,7 +34,7 @@ const CardDevice = ({ openSettingModal, el, index }: any) => {
 
             <div className="device-content">
               <div className="text">
-                <span style={{ fontWeight: "700", fontSize: "17px" }}>{el.fullName}</span>
+                <span className="text-fullName">{el.fullName}</span>
               </div>
               <div>
                 <div className="row">
@@ -42,7 +49,7 @@ const CardDevice = ({ openSettingModal, el, index }: any) => {
                       </span>
                     )}
                   </div>
-                  <div className="status-indicator" style={{ background: el.statusZone[0] }}></div>
+                  <div className="status-indicator" style={{ background: el.statusZone[0] || "" }}></div>
                 </div>
                 <div className="row">
                   <div className="text">
@@ -66,16 +73,16 @@ const CardDevice = ({ openSettingModal, el, index }: any) => {
 
           <div className="footer" style={{ marginLeft: "5px" }}>
             <div className="text">
-              <span style={{ fontSize: "17px" }}>
+              <span>
                 {el.name} №{el.number}
               </span>
             </div>
             <div className="signal-icon">
-              <SignalCellular2BarIcon />
+              <FaSignal className="icons" />
             </div>
             <div className="battery-icon">
-              <Battery20SharpIcon />
-              {el.name === "Кл Ю-6270" && <Battery20SharpIcon />}
+              <GiBattery50 className="icons" />
+              {el.name === "Кл Ю-6270" && <GiBattery50 className="icons" />}
             </div>
           </div>
         </div>

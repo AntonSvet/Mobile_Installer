@@ -1,4 +1,4 @@
- import { useState } from "react";
+import { useState } from "react";
 import ImageLoader from "../../../../../../common/ImageLoader/ImageLoader";
 import "./addRadioDevice.css";
 import { useTypedDispatch } from "../../../../../../hooks/useTypedDispatch";
@@ -7,7 +7,7 @@ import { radioDevice } from "../../../../../../utils/mock";
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  openDeviceCard: (el: string) => void;
+  openDeviceCard: () => void;
   deviceName: string;
 }
 
@@ -18,7 +18,7 @@ const AddRadioDevice: React.FC<ModalProps> = ({ isOpen, onClose, deviceName, ope
     setIsNewDevice(true);
     setTimeout(() => {
       setIsNewDevice(false);
-      openDeviceCard(deviceName);
+      openDeviceCard();
       const randomId = Math.floor(Math.random() * 100);
       const selectedDevice = radioDevice.find((el) => el.name === deviceName) || radioDevice[0];
       const deviceWithRandomId = {

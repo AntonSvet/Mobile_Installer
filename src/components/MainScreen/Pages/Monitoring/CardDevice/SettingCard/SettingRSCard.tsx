@@ -1,11 +1,12 @@
 import "./settingRSCard.css";
 import { devicesActions } from "../../../../../../redux/reducers/devices/devicesReducer";
 import { useTypedDispatch } from "../../../../../../hooks/useTypedDispatch";
-import icon1 from "../../../../../../img/icon/image 52.png";
-import icon2 from "../../../../../../img/icon/image 53.png";
-import icon5 from "../../../../../../img/icon/image 51.png";
-import SaveTwoToneIcon from "@mui/icons-material/SaveTwoTone";
 import { IRadioDevices } from "../../../../../../redux/reducers/devices/devices.types";
+import { IoIosArrowBack } from "react-icons/io";
+import { FaRegSave } from "react-icons/fa";
+import { TbDeviceIpadCode } from "react-icons/tb";
+import { LiaCarBatterySolid } from "react-icons/lia";
+import IconRS485 from "./IconRS485";
 
 interface SettingRSCardProps {
   handleCloseModal: () => void;
@@ -18,27 +19,24 @@ const SettingRSCard = ({ handleCloseModal, currentDevice }: SettingRSCardProps) 
     dispatch(devicesActions.removeRSDevice(currentDevice.id));
     handleCloseModal();
   }
-
   return (
     <div className="setting-rs-card">
       <header>
         <div className="setting-rs-card-top-header">
-          <div onClick={handleCloseModal} className="setting-rs-back-arrow">
-            {"<"}
+          <div onClick={handleCloseModal} className="setting-rs-card-back-arrow">
+            <IoIosArrowBack className="setting-rs-card-top-header-icons" />
           </div>
 
-          <div className="setting-rs-card-header-position">
-            <span style={{ fontSize: "clamp(25px, 4vw, 24px)", color: "var(--header-text-color" }}>
-              {currentDevice.fullName}
-            </span>
+          <div className="setting-rs-header-position">
+            <span>{currentDevice.fullName}</span>
           </div>
 
-          <div style={{ paddingRight: "5px" }}>
-            <SaveTwoToneIcon fontSize="large" />
+          <div className="setting-rs-card-save">
+            <FaRegSave className="setting-rs-card-top-header-icons" />
           </div>
         </div>
         <div className="setting-rs-card-middle-header">
-          <div style={{ width: "50%" }}>
+          <div style={{ width: "50%", marginLeft: "8px" }}>
             <img width="60%;" src={currentDevice.image} alt="logo2084" />
           </div>
           <div className="setting-rs-card-info">
@@ -55,26 +53,25 @@ const SettingRSCard = ({ handleCloseModal, currentDevice }: SettingRSCardProps) 
 
         <div className="setting-rs-card-bottom-header">
           <div>
-            <img src={icon5} alt="logo2084" />
+            <TbDeviceIpadCode className="icons" />
             <span>Корпус - </span>
             <span>Закрыт </span>
           </div>
           <div>
-            <img src={icon1} alt="logo2084" />
+            <LiaCarBatterySolid className="icons" />
             <span>Питание -</span>
             <span>Норма </span>
           </div>
 
           <div>
-            <img src={icon2} alt="logo2084" />
+            <IconRS485 />
             <span>RS485 - </span>
             <span>Подключено </span>
           </div>
         </div>
       </header>
       <div className="setting-rs-card-content">
-        {currentDevice.zone.map((zoneId, i) => {
-          if (zoneId === null) return null;
+        {currentDevice.zone.map((_item: number | null, i: number) => {
           return (
             <div key={i} className="setting-rs-card-one">
               <div className="setting-rs-card-inside">
@@ -88,16 +85,14 @@ const SettingRSCard = ({ handleCloseModal, currentDevice }: SettingRSCardProps) 
                     <input />
                   </div>
                   <div>
-                    <input style={{ width: "160px", borderRadius: "6px" }} placeholder="Псевдоним" />
+                    <input className="setting-rs-card-block-custom-input" placeholder="Псевдоним" />
                   </div>
                 </div>
                 <div className="setting-rs-card-block">
                   <span style={{ marginRight: "8px" }}>Тип</span>
-                  <select style={{ fontSize: "17px" }} name="" id="">
-                    <option style={{ fontSize: "17px" }}>Охранная с зад.(Проходная) с контр. взлома</option>
-                    <option style={{ fontSize: "17px" }} value="Охранная">
-                      Охранная
-                    </option>
+                  <select name="" id="">
+                    <option>Охранная с зад.(Проходная) с контр. взлома</option>
+                    <option value="Охранная">Охранная</option>
                   </select>
                 </div>
                 <div className="setting-rs-card-block">
@@ -106,7 +101,7 @@ const SettingRSCard = ({ handleCloseModal, currentDevice }: SettingRSCardProps) 
                     <input width="30px" />
                   </div>
                   <div className="setting-rs-card-block-row">
-                    <span>Выход</span>
+                    <span>Задержка выход</span>
                     <input width="30px" />
                   </div>
                 </div>

@@ -12,7 +12,7 @@ const Zones = () => {
   return (
     <>
       <div className="navigation-header">
-        <div className="navigation-buttons">
+        <div className="zones-navigation-buttons">
           <button
             className={`zones-page-nav-button  ${selectedButton === "по разделам" ? "selected" : ""}`}
             onClick={() => handleButtonClick("по разделам")}
@@ -30,7 +30,7 @@ const Zones = () => {
       {Array(192)
         .fill(1)
         .map((_, i) => (
-          <div key={i} className="zone-page-one" style={{ marginLeft: "7px", marginRight: "7px" }}>
+          <div key={i} className="zone-page-one" style={{ marginLeft: "6px", marginRight: "6px", width: "98%" }}>
             <div className="zone-page-inside">
               <div
                 style={{

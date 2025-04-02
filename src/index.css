@@ -1,63 +1,63 @@
  code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+     monospace;
+ }
 
-/* styles.css */
-:root {
-  --background-color: #f8f5f5;
-  --background-header: #ffffff;
-  --background-device-card: #fff;
-  --background-drawer-menu: linear-gradient(135deg, #ffffff, #787878);
-  --background-color-setting-menu: #ebebeb;
-  --text-color: #000000;
-  --header-text-color: #5b5e5b;
-  --text-size: clamp(16px, 4.5vw, 23px);
-  --box-shadow: 0px 0px 10px rgba(39, 37, 37, 0.6);
-  --card-shadow: 0px 8px 24px rgba(0, 0, 0, 0.2);
-}
+ /* styles.css */
+ :root {
+   --background-color: #f8f5f5;
+   --background-header: #ffffff;
+   --background-device-card: #fff;
+   --background-drawer-menu: linear-gradient(135deg, #ffffff, #787878);
+   --background-color-setting-menu: #ebebeb;
+   --text-color: #000000;
+   --header-text-color: #5b5e5b;
+   --text-size: clamp(16px, 4.5vw, 23px);
+   --box-shadow: 0px 0px 10px rgba(39, 37, 37, 0.6);
+   --card-shadow: 0px 8px 24px rgba(0, 0, 0, 0.2);
+ }
 
-[data-theme="dark"] {
-  --background-color: #282c34;
-  --background-header: #505050;
-  --background-device-card: rgb(81 81 81);
-  --background-drawer-menu: linear-gradient(135deg, #adadad, #413f3f);
-  --background-color-setting-menu: #36383a;
-  --text-color: #ffffff;
-  --header-text-color: #eff7ef;
-  --box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-  --card-shadow: 0px 8px 24px rgba(208, 205, 205, 0.2);
-}
+ [data-theme="dark"] {
+   --background-color: #282c34;
+   --background-header: #505050;
+   --background-device-card: rgb(81 81 81);
+   --background-drawer-menu: linear-gradient(135deg, #adadad, #413f3f);
+   --background-color-setting-menu: #36383a;
+   --text-color: #ffffff;
+   --header-text-color: #eff7ef;
+   --box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+   --card-shadow: 0px 8px 24px rgba(208, 205, 205, 0.2);
+ }
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: var(--background-color);
-  color: var(--text-color);
-}
+ body {
+   margin: 0;
+   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+     sans-serif;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   background-color: var(--background-color);
+   color: var(--text-color);
+ }
 
-span {
-  font-size: var(--text-size);
-  color: var(--text-color);
+ span {
+   font-size: var(--text-size);
+   color: var(--text-color);
 
-}
+ }
 
-input {
-  font-size: var(--text-size);
-  color: var(--text-color);
+ input {
+   font-size: var(--text-size);
+   color: var(--text-color);
 
-}
+ }
 
-.icons {
-  margin-right: 7px;
-  font-size: clamp(17px, 4vw, 26px);
-}
+ .icons {
+   margin-right: 8px;
+   font-size: clamp(21px, 4vw, 26px);
+ }
 
-/* @media (max-width: 358px) {
+ /* @media (max-width: 358px) {
     span {
        font-size: 17px
     }

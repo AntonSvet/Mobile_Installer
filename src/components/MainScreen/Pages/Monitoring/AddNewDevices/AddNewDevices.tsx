@@ -5,7 +5,7 @@ import { devicesList } from "../../../../../const/const";
 import { BrowserMultiFormatReader } from "@zxing/library";
 import AddRadioDevice from "./AddRadioDevice/AddRadioDevice";
 
-const AddNewDevice = ({ handleCloseModal }: any) => {
+const AddNewDevice = ({ handleCloseModal }: { handleCloseModal: () => void }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalRadioDevice, setisModalRadioDevice] = useState(false);
 
@@ -14,7 +14,6 @@ const AddNewDevice = ({ handleCloseModal }: any) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [scannedData, setScannedData] = useState<string | null>(null);
   const [isScanning, setIsScanning] = useState<boolean>(false);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const codeReader = new BrowserMultiFormatReader();
   // Функция для открытия модального окна с определённым списком устройств
   const openModal = (deviceType: keyof typeof devicesList) => {
@@ -22,10 +21,10 @@ const AddNewDevice = ({ handleCloseModal }: any) => {
     setIsModalOpen(true);
   };
 
-  function openDeviceCard(_deviceName: string) {
+  function openDeviceCard() {
     setIsModalOpen(false);
     setisModalRadioDevice(false);
-    handleCloseModal(false);
+    handleCloseModal();
   }
   const closeModal = () => {
     setIsModalOpen(false);

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./cardDevice.css";
 import { IRadioDevices } from "../../../../../redux/reducers/devices/devices.types";
- 
+
 interface CardDeviceProps {
   openSettingModal: () => void;
   el: IRadioDevices;
@@ -33,7 +33,7 @@ const RScardDevice = ({ openSettingModal, el, index }: CardDeviceProps) => {
 
             <div className="device-content">
               <div className="text">
-                <span style={{ fontWeight: "700", fontSize: "17px" }}>{el.fullName}</span>
+                <span className="text-fullName">{el.fullName}</span>
               </div>
               <div>
                 {el.zone.map((item: number | null, i: number) => {

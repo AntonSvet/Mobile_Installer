@@ -8,13 +8,11 @@ import IconButton from "@mui/material/IconButton";
 
 import Tooltip from "@mui/material/Tooltip";
 
- 
-
 import { useState } from "react";
 import AboutAppModal from "./AboutAppModal";
 import Download from "@mui/icons-material/DownloadTwoTone";
 import Upload from "@mui/icons-material/UploadTwoTone";
- 
+
 import Display from "@mui/icons-material/DisplaySettingsTwoTone";
 import LogoutIcon from "@mui/icons-material/LogoutTwoTone";
 import ThemeButton from "../../../common/ThemeButton/ThemeButton";
@@ -44,7 +42,7 @@ export default function SettingsMenu() {
           >
             {IoMdSettings && (
               <IoMdSettings
-                style={{ fontSize: "clamp(25px, 4vw, 24px)", margin: "0px", color: "var(--header-text-color)" }}
+                style={{ fontSize: "clamp(26px, 4.5vw, 29px)", margin: "0px", color: "var(--header-text-color)" }}
               />
             )}
           </IconButton>

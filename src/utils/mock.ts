@@ -69,7 +69,7 @@ export const radioDevice: IRadioDevices[] = [
   {
     id: 5,
     name: "РШ Ю-3812",
-    fullName: "Расширитель шлейфов ",
+    fullName: "РАСШИРИТЕЛЬ ШЛЕЙФОВ",
     number: 1,
     zone: [9, 10, 11, 12, 13, 14, 15, 16],
     delay: [90, 90],
@@ -82,7 +82,7 @@ export const radioDevice: IRadioDevices[] = [
   {
     id: 6,
     name: "РШ Ю-3811",
-    fullName: "Расширитель шлейфов",
+    fullName: "РАСШИРИТЕЛЬ ШЛЕЙФОВ",
     number: 2,
     zone: [17, 18, 19, 20, 21, 22, 23, 24],
     delay: [90, 90],
@@ -95,7 +95,7 @@ export const radioDevice: IRadioDevices[] = [
   {
     id: 6,
     name: "РР Ю-3214",
-    fullName: "Расширитель шлейфов",
+    fullName: "РАСШИРИТЕЛЬ ШЛЕЙФОВ",
     number: 2,
     zone: [17, 18, 19, 20, 21, 22, 23, 24],
     delay: [90, 90],
