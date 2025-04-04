@@ -2,14 +2,14 @@ import device5130 from "../img/device/5130.png";
 import device5830 from "../img/device/5830.png";
 import device5230 from "../img/device/5230.png";
 import device6270 from "../img/device/6270.png";
-import device3812 from "../img/device/3812.png";
+import device3812 from "../img/device/3431.png";
 import { IRadioDevices } from "../redux/reducers/devices/devices.types";
 
 export const radioDevice: IRadioDevices[] = [
   {
     id: 0,
     name: "МК Ю-5130",
-    fullName: "МАГНИТО-КОНТАКТНЫЙ ИЗВЕЩАТЕЛЬ",//тестируем капсом
+    fullName: "МАГНИТО-КОНТАКТНЫЙ ИЗВЕЩАТЕЛЬ", //тестируем капсом
     number: 1,
     zone: [3, null],
     section: [1, 2],

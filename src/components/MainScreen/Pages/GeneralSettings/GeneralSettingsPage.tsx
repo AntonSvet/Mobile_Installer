@@ -4,14 +4,11 @@ import {
   FormControl,
   Grid,
   Input,
-  List,
   ListItem,
   MenuItem,
-  Paper,
   Select,
   SelectChangeEvent,
   Slider,
-  Typography,
 } from "@mui/material";
 
 import { VolumeUp } from "@mui/icons-material";
@@ -26,7 +23,7 @@ const GeneralSettingsPage = () => {
   };
   return (
     <div className="setting-device-card">
-      <Paper className="setting-device-card-paper" elevation={24}>
+      <div className="setting-device-card-paper">
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>
@@ -53,19 +50,17 @@ const GeneralSettingsPage = () => {
             </div>
           </div>
         </div>
-      </Paper>
-      <Paper className="setting-device-card-paper" elevation={24}>
-        <List
-          sx={{
+      </div>
+      <div className="setting-device-card-paper">
+        <span
+          style={{
             paddingBottom: "0px",
           }}
-          component="span"
-          aria-label="mailbox folders"
         >
           <Box sx={{ display: "flex", flexDirection: "column", alignContent: "flex-start", alignItems: "flex-start" }}>
-            <Typography id="input-slider" gutterBottom>
+            <span id="input-slider">
               <span>Громкость встроеного зумера</span>
-            </Typography>
+            </span>
             <Grid container spacing={2} sx={{ alignItems: "center", width: "calc(100% + -52px)" }}>
               <Grid>
                 <VolumeUp />
@@ -94,15 +89,14 @@ const GeneralSettingsPage = () => {
                   <span>Светодиодная инд. вкл. всегда</span>
                 </MenuItem>
                 <MenuItem value={2}>
-                  {" "}
                   <span>Светодиодная инд. 30 сек.</span>
                 </MenuItem>
               </Select>
             </FormControl>
           </ListItem>
           <Divider />
-        </List>
-      </Paper>
+        </span>
+      </div>
     </div>
   );
 };

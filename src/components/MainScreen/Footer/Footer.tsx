@@ -9,9 +9,6 @@ const Footer = () => {
           Элеста{" "}
         </a>
       </div>
-      {/*  <div>
-        Web-приложение "Инсталлятор" версия <span id="versionIndex">1.0.0</span>
-      </div> */}
     </footer>
   );
 };

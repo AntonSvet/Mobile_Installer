@@ -7,6 +7,8 @@
   min-height: -webkit-fill-available;
   min-height: 100vh;
   overflow: visible;
+  background: var(--background-color);
+  margin-top: 0;
 }
 
 .radio-card header {
@@ -16,9 +18,10 @@
   position: sticky;
   flex-direction: column;
   background: var(--background-header);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   top: 0;
   z-index: 11;
+  padding-top: 8px;
 }
 
 .radio-card-top-header {
@@ -42,6 +45,7 @@
   align-items: flex-start;
   width: 100%;
   margin-left: 13px;
+  margin-bottom: 6px;
 }
 
 .radio-card-bottom-header div {
@@ -55,10 +59,6 @@
   align-items: center;
 }
 
-.icons {
-  margin-right: 8px;
-  font-size: clamp(21px, 4vw, 26px);
-}
 
 .radio-card-back-arrow {
   font-weight: bold;
@@ -115,7 +115,7 @@
   align-items: center;
   position: sticky;
   flex-direction: column;
-  background: var(--background-header);
+  background: var(--background-color);
   margin: 0px 6px 6px 6px;
   top: 0;
   z-index: 10;
@@ -135,7 +135,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 }
 
 .radio-card-inside {
@@ -160,14 +160,12 @@
 }
 
 .radio-card-block-row input {
-  max-width: 26px;
+  max-width: 29px;
   border-radius: 6px;
-  /* overflow: hidden; */
   text-overflow: ellipsis;
 }
 
 .radio-card-block-custom-input {
-  /* text-align: center; */
   text-align: center;
   max-width: 120px;
   border-radius: 6px;
@@ -175,7 +173,7 @@
 
 
 .radio-card-block-row span {
-  margin-right: 6px;
+  margin-right: 2px;
 }
 
 .radio-card-block select {

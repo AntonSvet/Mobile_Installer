@@ -71,17 +71,17 @@ const CardDevice = ({ openSettingModal, el, index }: CardDeviceProps) => {
             </div>
           </div>
 
-          <div className="footer" style={{ marginLeft: "5px" }}>
+          <div className="footer">
             <div className="text">
               <span>
                 {el.name} №{el.number}
               </span>
             </div>
             <div className="signal-icon">
-              <FaSignal className="icons" />
+              <FaSignal />
             </div>
             <div className="battery-icon">
-              <GiBattery50 className="icons" />
+              <GiBattery50 />
               {el.name === "Кл Ю-6270" && <GiBattery50 className="icons" />}
             </div>
           </div>

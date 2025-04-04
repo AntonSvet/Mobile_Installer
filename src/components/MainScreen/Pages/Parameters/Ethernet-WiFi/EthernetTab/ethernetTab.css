@@ -9,6 +9,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  margin-bottom: 20px;
 }
 
 .ethernet-tab-card header {
@@ -18,6 +20,15 @@
   margin-bottom: 50px;
 
 
+}
+
+.ethernet-tab-back-arrow {
+  position: absolute;
+  top: 1;
+  left: 10px;
+  font-size: 26px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .mac-ethernet-tab {
@@ -50,14 +61,7 @@
   margin: 5px;
 }
 
-.ethernet-tab-back-arrow {
-  display: flex;
-  justify-content: flex-start;
-  font-size: 26px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-left: 15px;
-}
+
 
 .ethernet-tab-font-size {
   display: flex;

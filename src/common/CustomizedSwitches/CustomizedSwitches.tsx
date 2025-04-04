@@ -12,10 +12,11 @@ export default function CustomizedSwitches({ option, handleSettingsChange, id }:
   function switchBox() {
     setCheck((prev) => !prev);
   }
-
   useEffect(() => {
-    isMounted && handleSettingsChange(id, id !== "disabled" ? checked : !checked);
-  }, [checked]);
+    if (isMounted) {
+      handleSettingsChange(id, id !== "disabled" ? checked : !checked);
+    }
+  }, [checked, isMounted, id, handleSettingsChange]);
 
   return (
     <FormGroup>

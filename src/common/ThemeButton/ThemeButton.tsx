@@ -1,19 +1,18 @@
 import React from "react";
-import { useTheme } from  "../../hooks/useTheme"
+import { useTheme } from "../../hooks/useTheme";
 import FormControlLabel from "@mui/material/FormControlLabel";
 
 import { styled } from "@mui/material/styles";
 
-import Switch   from "@mui/material/Switch";
-
+import Switch from "@mui/material/Switch";
 
 const ThemeButton: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <div >
+    <div>
       <FormControlLabel
-        control={<MaterialUISwitch onClick={toggleTheme} sx={{ m: 1 }} checked={(theme === "light" ? false: true)} />}
+        control={<MaterialUISwitch onClick={toggleTheme} sx={{ m: 1 }} checked={theme === "light" ? false : true} />}
         label="День/Ночь"
       />
     </div>
@@ -77,9 +76,3 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     }),
   },
 }));
-
- 
- 
- 
-
- 

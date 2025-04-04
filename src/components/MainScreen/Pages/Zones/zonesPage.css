@@ -57,6 +57,7 @@
 
 .zone-page-block {
   display: flex;
+  justify-content: space-between;
   white-space: nowrap;
   margin: 6px 11px;
 }

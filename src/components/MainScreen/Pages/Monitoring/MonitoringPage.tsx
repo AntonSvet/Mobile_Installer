@@ -57,8 +57,12 @@ const MonitoringPage = () => {
             <div>
               <span>Sim 1</span>
             </div>
-            <FaSignal className="icons" />
-            <GiBattery50 className="icons" />
+            <div className="signal-icon">
+              <FaSignal />
+            </div>
+            <div className="battery-icon">
+              <GiBattery50 />
+            </div>
           </div>
           <div className="device-grid-container-image">
             <img width={"40%"} src={device2084} alt="logo" />
@@ -136,7 +140,7 @@ const MonitoringPage = () => {
           title={openModalSetting.name}
           currentDevice={openModalSetting.currentDevice}
         />
-      )}{" "}
+      )}
       {isModalNewDevice && (
         <FullScreenSettingDevice
           open={isModalNewDevice}

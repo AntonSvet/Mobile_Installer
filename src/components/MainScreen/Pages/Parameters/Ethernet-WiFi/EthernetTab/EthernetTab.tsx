@@ -25,20 +25,12 @@ export default function EthernetTab({ title, handleCloseModal }: EthernetTabProp
           </div>
           <div className="navigation-select-ethernet-tab">
             <select name="" id="">
-              <option>
-                <span>Ethernet</span>
-              </option>
-              <option>
-                <span>Wi-Fi</span>
-              </option>
+              <option>Ethernet</option>
+              <option>Wi-Fi</option>
             </select>
             <select name="" id="">
-              <option>
-                <span>Получать IP-адрес автоматически</span>
-              </option>
-              <option>
-                <span>Получать IP-адрес в ручную</span>
-              </option>
+              <option>Получать IP-адрес автоматически</option>
+              <option>Получать IP-адрес в ручную</option>
             </select>
           </div>
         </div>

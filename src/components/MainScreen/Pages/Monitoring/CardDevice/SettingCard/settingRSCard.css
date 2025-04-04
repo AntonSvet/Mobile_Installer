@@ -86,6 +86,8 @@
   min-height: -webkit-fill-available;
   min-height: 100vh;
   overflow: visible;
+
+
 }
 
 .setting-rs-card-top-header {
@@ -109,6 +111,7 @@
   align-items: flex-start;
   width: 100%;
   margin-left: 13px;
+  margin-bottom: 6px;
 }
 
 .setting-rs-card-bottom-header div {
@@ -185,7 +188,6 @@
   margin: 0px 6px 6px 6px;
   top: 0;
   z-index: 10;
-  padding-bottom: 10px;
   flex: 1;
 }
 
@@ -201,7 +203,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
 }
 
 .setting-rs-card-inside {
@@ -226,7 +228,7 @@
 }
 
 .setting-rs-card-block-row input {
-  max-width: 26px;
+  max-width: 29px;
   border-radius: 6px;
   /* overflow: hidden; */
   text-overflow: ellipsis;
@@ -241,7 +243,7 @@
 
 
 .setting-rs-card-block-row span {
-  margin-right: 6px;
+  margin-right: 2px;
 }
 
 .setting-rs-card-block select {
@@ -281,12 +283,13 @@
 }
 
 .setting-rs-card-delete {
-  padding-bottom: 30px;
+  padding: 30px;
   display: flex;
   justify-content: center;
+  background: var(--background-color);
   border: none;
   width: 100%;
-  background: inherit;
+
   cursor: pointer;
 }
 

@@ -59,6 +59,7 @@ export default function FullScreenSettingDevice({
             display: "flex",
             justifyContent: "center",
             height: "100%",
+            background: "var(--background-color )",
           }}
         >
           <DialogRoute route={title} />

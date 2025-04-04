@@ -68,7 +68,7 @@ const Zones = () => {
                     <span>{i + 28}</span>
                   </div>
                   <div className="setting-rs-card-block-row">
-                    <span>Выход</span>
+                    <span>Задержка выход</span>
                     <span>{i + 32}</span>
                   </div>
                 </div>

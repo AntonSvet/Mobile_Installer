@@ -42,7 +42,7 @@ const RScardDevice = ({ openSettingModal, el, index }: CardDeviceProps) => {
                     <div key={i} className="row">
                       <div className="text">
                         <span>
-                          Проводная. зона {item}, рзд. {el.section[i]}
+                          Проводная зона {item}, рзд. {el.section[i]}
                         </span>
                       </div>
                       <div className="status-indicator" style={{ background: el.statusZone[i] || undefined }}></div>

@@ -9,7 +9,12 @@ import ListItemButton from "@mui/material/ListItemButton";
 import MenuIcon from "@mui/icons-material/Menu";
 
 import { Tooltip } from "@mui/material";
-function DrawerMenu({ selectedMenu, callback }: { selectedMenu: string; callback: (el: string) => void }) {
+
+interface DrawerMenuProps {
+  selectedMenu: string;
+  callback: (_menuItem: string) => void;
+}
+const DrawerMenu: React.FC<DrawerMenuProps> = ({ selectedMenu, callback }) => {
   const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen: boolean) => () => {
@@ -19,7 +24,6 @@ function DrawerMenu({ selectedMenu, callback }: { selectedMenu: string; callback
   const DrawerList = (
     <Box
       sx={{
-
         height: "100vh",
         color: "var( --text-color)",
         width: "100%",
@@ -60,5 +64,5 @@ function DrawerMenu({ selectedMenu, callback }: { selectedMenu: string; callback
       </Drawer>
     </div>
   );
-}
+};
 export default DrawerMenu;

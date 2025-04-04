@@ -14,7 +14,7 @@
   color: var(--text-color);
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: var(--text-size)
+  font-size: clamp(18px, 3vw, 23px);
 }
 
 .nav-button.selected {

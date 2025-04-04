@@ -1,6 +1,5 @@
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
- 
 
 const style = {
   position: "absolute",
@@ -14,10 +13,7 @@ const style = {
   p: 4,
 };
 
- 
-export default function AboutAppModal({ open, callback }: { open: boolean;  callback: () => void; }) {
-  
-
+export default function AboutAppModal({ open, callback }: { open: boolean; callback: () => void }) {
   return (
     <div>
       <Modal

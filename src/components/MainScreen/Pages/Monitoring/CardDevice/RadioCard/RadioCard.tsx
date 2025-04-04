@@ -113,11 +113,11 @@ const RadioCard = ({ handleCloseModal, currentDevice }: RadioCardProps) => {
                   <div className="radio-card-block">
                     <div className="radio-card-block-row">
                       <span>Задержка вход</span>
-                      <input width="30px" />
+                      <input />
                     </div>
                     <div className="radio-card-block-row">
                       <span>Задержка выход</span>
-                      <input width="30px" />
+                      <input />
                     </div>
                   </div>
                 )}

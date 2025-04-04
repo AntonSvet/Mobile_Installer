@@ -22,11 +22,18 @@ export default tseslint.config(
       ...reactHooks.configs.recommended.rules,
       "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
       "react-hooks/exhaustive-deps": "off",
-      "no-unused-vars": "error",
+
       "no-console": "warn",
       "jsx-quotes": ["error", "prefer-double"],
       "no-multiple-empty-lines": ["error", { max: 1, maxEOF: 0 }],
       "prefer-const": "error",
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+        },
+      ],
     },
   }
 );

@@ -98,11 +98,11 @@ const SettingRSCard = ({ handleCloseModal, currentDevice }: SettingRSCardProps) 
                 <div className="setting-rs-card-block">
                   <div className="setting-rs-card-block-row">
                     <span>Задержка вход</span>
-                    <input width="30px" />
+                    <input />
                   </div>
                   <div className="setting-rs-card-block-row">
                     <span>Задержка выход</span>
-                    <input width="30px" />
+                    <input />
                   </div>
                 </div>
               </div>

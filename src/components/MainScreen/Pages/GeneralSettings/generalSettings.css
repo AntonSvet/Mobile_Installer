@@ -7,12 +7,24 @@
 }
 
 .setting-device-card-paper {
-  max-width: 700;
+  max-width: 500;
   min-width: 280;
   background: var(--background-device-card);
   width: 98%;
   margin-top: 6px;
   padding: 5px;
+
+
+
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  max-width: 500px;
 }
 
 .setting-device-card-main-header {
@@ -73,11 +85,9 @@
   background: var(--background-device-card);
   border-radius: 8px;
   box-shadow: var(--card-shadow);
-  /* Тень */
   transition: box-shadow 0.3s ease, transform 0.3s ease;
   cursor: pointer;
   width: 100%;
-  /* Занимает всю доступную ширину */
   max-height: 200px;
   height: 100%;
   display: flex;
