@@ -104,9 +104,30 @@ const RadioCard = ({ handleCloseModal, currentDevice }: RadioCardProps) => {
                 </div>
                 <div className="radio-card-block">
                   <span style={{ marginRight: "8px" }}>Тип</span>
-                  <select name="" id="">
-                    <option>Охранная с зад.(Проходная) с контр. взлома</option>
+                  <select style={{ width: "100%" }} name="" id="">
+                    <option>Не используется</option>
                     <option value="Охранная">Охранная</option>
+                    {!currentDevice.name.includes("5830") || i === 1 ? (
+                      <>
+                        <option>Охранная с задержкой (вход/выход)</option>
+                        <option>Охранная с задержкой (Проходная)</option>
+                        <option>Охранная с фикс. зад.(вход/выход)</option>
+                      </>
+                    ) : (
+                      ""
+                    )}
+                    {i === 1 ? (
+                      <>
+                        <option>Тревожная (КТС)</option>
+                        <option>ПАТРУЛЬ</option>
+                        <option>УПРАВЛЕНИЕ</option>
+                        <option>ГАЗ</option>
+                        <option>ВОДА</option>
+                        <option>ТЕХНОЛОГИЧЕСКАЯ</option>
+                      </>
+                    ) : (
+                      ""
+                    )}
                   </select>
                 </div>
                 {item && (
