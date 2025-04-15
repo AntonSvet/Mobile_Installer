@@ -106,7 +106,7 @@
 
 .scanning-overlay {
   position: absolute;
-  top: 34%;
+  top: 55%;
   left: 53%;
   transform: translate(-50%, -50%);
   width: 70%;
@@ -207,7 +207,7 @@
 /* Инструкция для пользователя */
 .scan-instruction {
   position: absolute;
-  bottom: -19%;
+  bottom: 100%;
   left: -17px;
   width: 100%;
   text-align: center;
