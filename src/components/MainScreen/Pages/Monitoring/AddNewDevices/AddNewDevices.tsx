@@ -48,7 +48,7 @@ const AddNewDevice = ({ handleCloseModal }: { handleCloseModal: () => void }) =>
             setScannedData(result.getText());
             console.log("scannedData", scannedData);
             stopScanning();
-            openDevice("МК Ю-5230");
+            openDevice("ИК Ю-5230");
           }
           if (err && !(err instanceof Error)) {
             console.error(err);
