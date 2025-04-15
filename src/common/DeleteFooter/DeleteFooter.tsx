@@ -10,15 +10,19 @@ interface DeleteFooterProps {
 const DeleteFooter = ({ currentDevice, handleCloseModal }: DeleteFooterProps) => {
   const dispatch = useTypedDispatch();
   function deleteDevice() {
-    dispatch(devicesActions.removeRadioDevice(currentDevice.id));
+    if (currentDevice.type) {
+      dispatch(devicesActions.removeRSDevice(currentDevice.id));
+    } else {
+      dispatch(devicesActions.removeRadioDevice(currentDevice.id));
+    }
     handleCloseModal();
   }
   return (
-    <footer >
+    <footer>
       <button className="delete-footer">
         <span onClick={deleteDevice}>Удалить устройство</span>
       </button>
     </footer>
-  )
-}
+  );
+};
 export default DeleteFooter;

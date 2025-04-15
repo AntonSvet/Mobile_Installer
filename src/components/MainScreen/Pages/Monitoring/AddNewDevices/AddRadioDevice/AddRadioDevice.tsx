@@ -26,7 +26,7 @@ const AddRadioDevice: React.FC<ModalProps> = ({ isOpen, onClose, deviceName, ope
         id: randomId,
         number: randomId,
       };
-      if (!deviceName.includes("РШ")) {
+      if (!deviceName.includes("РШ") && !deviceName.includes("РР")) {
         dispatch(devicesActions.addRadioDevice(deviceWithRandomId));
       } else {
         dispatch(devicesActions.addRSDevice(deviceWithRandomId));
