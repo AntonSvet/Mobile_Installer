@@ -3,14 +3,17 @@ import MonitoringPage from "../Monitoring/MonitoringPage";
 
 import ZonesPage from "../Zones/ZonesPage";
 import GeneralSettingsPage from "../GeneralSettings/GeneralSettingsPage";
-import ParametersPage from "../Parameters/ParametersPage";
+
 import UserCodesPage from "../UserCodes/UserCodesPage";
+import SMSnotificationPage from "../SMSnotification/SMSnotificationPage";
+import ConnectionPage from "../Connection/ConnectionPage";
 
 const GeneralSettingsPageWithErrorBoundary = WithErrorBoundary(GeneralSettingsPage);
 const MonitoringPageWithErrorBoundary = WithErrorBoundary(MonitoringPage);
 const ZonesPageWithErrorBoundary = WithErrorBoundary(ZonesPage);
-const ParametersPageWithErrorBoundary = WithErrorBoundary(ParametersPage);
+const ConnectionPageWithErrorBoundary = WithErrorBoundary(ConnectionPage);
 const UserCodesPageWithErrorBoundary = WithErrorBoundary(UserCodesPage);
+const SMSnotificationPageWithErrorBoundary = WithErrorBoundary(SMSnotificationPage);
 
 const PageRoute = ({ route }: { route: string }) => {
   switch (route) {
@@ -20,10 +23,13 @@ const PageRoute = ({ route }: { route: string }) => {
       return <MonitoringPageWithErrorBoundary />;
     case "Зоны":
       return <ZonesPageWithErrorBoundary />;
-    case "Параметры связи":
-      return <ParametersPageWithErrorBoundary />;
     case "Коды пользователя":
       return <UserCodesPageWithErrorBoundary />;
+    case "SMS оповещение":
+      return <SMSnotificationPageWithErrorBoundary />;
+    case "Подключение к ПЦО":
+      return <ConnectionPageWithErrorBoundary />;
+
     default:
       return <MonitoringPageWithErrorBoundary />;
   }

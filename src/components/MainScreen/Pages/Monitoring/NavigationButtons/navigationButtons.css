@@ -14,12 +14,11 @@
   color: var(--text-color);
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: clamp(18px, 3vw, 23px);
+  font-size: var(--text-size-main);
 }
 
 .nav-button.selected {
   background-color: #b1b1b1;
   color: white;
   border-radius: 8px;
-
 }

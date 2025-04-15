@@ -16,16 +16,23 @@ import { IRadioDevices } from "../../../../redux/reducers/devices/devices.types"
 import "./monitoringPage.css";
 import { GiBattery50 } from "react-icons/gi";
 import { FaSignal } from "react-icons/fa6";
+import { changeSelectType } from "../../../../methods/methods";
+
 const MonitoringPage = () => {
+  const dispatch = useTypedDispatch();
   const devicesStore = useTypedSelector((state) => state.devices);
   const addedDevice = useTypedSelector((state) => state.devices.addedDevice);
+  const armCondition = useTypedSelector((state) => state.devices.secured);
+  const [selectedButton, setSelectedButton] = useState<string>("Все");
+
+  const [filtredDevices, setFiltredDevices] = useState([...devicesStore.radio, ...devicesStore.rs485]);
   const [openModalSetting, setOpenModalSetting] = useState({
     open: false,
     name: "",
     currentDevice: {} as IRadioDevices,
   });
   const [isModalNewDevice, setIsModalNewDevice] = useState(false);
-  const dispatch = useTypedDispatch();
+
   const headerRef = useRef<HTMLDivElement>(null);
   const headerHeight = useResizeObserver(headerRef);
   const { progress, isLoading } = useImageLoader(document.querySelectorAll("img"));
@@ -36,7 +43,13 @@ const MonitoringPage = () => {
 
       dispatch(devicesActions.resetDevice());
     }
-  }, [addedDevice, devicesStore.radio, devicesStore.rs485, dispatch]);
+    changeSelectType(selectedButton, devicesStore, setFiltredDevices);
+  }, [addedDevice, devicesStore.radio, devicesStore.rs485, dispatch, devicesStore]);
+
+  const handleButtonClick = (buttonName: string) => {
+    setSelectedButton(buttonName);
+    changeSelectType(buttonName, devicesStore, setFiltredDevices);
+  };
 
   return (
     <>
@@ -52,64 +65,64 @@ const MonitoringPage = () => {
           visibility: isLoading ? "hidden" : "visible",
         }}
       >
-        <div className="device-grid-container">
-          <div className="device-grid-container-info">
-            <div>
-              <span>Sim 1</span>
+        <div className="device-container">
+          <div className="device-status-bar" style={{ backgroundColor: "white" }}></div>
+          <div className="device-block">
+            <div className="device-block-info">
+              <div>
+                <span>SIM 1</span>
+              </div>
+              <div className="signal-icon">
+                <FaSignal />
+              </div>
+              <div className="battery-icon">
+                <GiBattery50 />
+              </div>
             </div>
-            <div className="signal-icon">
-              <FaSignal />
-            </div>
-            <div className="battery-icon">
-              <GiBattery50 />
-            </div>
-          </div>
-          <div className="device-grid-container-image">
-            <img width={"40%"} src={device2084} alt="logo" />
-            <div className="device-grid-container-zones-block">
-              <div className="device-grid-container-zones">
-                <div>
-                  <span style={{ color: "var( --text-color)" }}>Зона 1, рзд. 1</span>
+            <div
+              onClick={() => setOpenModalSetting({ open: true, name: "Ю-2084", currentDevice: {} as IRadioDevices })}
+              className="device-block-image"
+            >
+              <img width={"40%"} src={device2084} alt="logo" />
+              <div className="device-block-zones-block">
+                <div className="device-block-zones">
+                  <div>
+                    <span style={{ color: "var( --text-color)" }}>Зона 1, рзд. 1</span>
+                  </div>
+                  <div className="device-block-zones-indicators" style={{ background: armCondition }}></div>
                 </div>
-                <div className="device-grid-container-zones-indicators" style={{ background: "green" }}></div>
-              </div>
-              <div className="device-grid-container-zones">
-                <span style={{ color: "var( --text-color)" }}>Зона 2, рзд. 1</span>
-                <div className="device-grid-container-zones-indicators" style={{ background: "red" }}></div>
+                <div className="device-block-zones">
+                  <span style={{ color: "var( --text-color)" }}>Зона 2, рзд. 1</span>
+                  <div className="device-block-zones-indicators" style={{ background: armCondition }}></div>
+                </div>
               </div>
             </div>
-          </div>
-          <div style={{ display: "flex", marginLeft: "9px" }}>
-            <span>ID: 0000-0099-6CAC</span>
+            <div style={{ display: "flex", marginLeft: "9px" }}>
+              <span>ID: 0000-0099-6CAC</span>
+            </div>
           </div>
         </div>
 
-        <NavigationButtons />
+        <NavigationButtons selectedButton={selectedButton} handleButtonClick={handleButtonClick} />
 
         <div className="form-control">
           <select className="native-select" name="Фильтры">
             <option value="10">Фильтры</option>
-            <option value="20">Все устройства</option>
-            <option value="30">Устр. содерж. Зоны</option>
+            <option value="20">Устройства содержащие зоны</option>
+            <option value="30">Устройства содержащие выходы</option>
+            <option value="30">Устройства взятия/снятия</option>
+            <option value="30">Ретрансляторы</option>
           </select>
         </div>
       </div>
       <div
+        className="sensors-list-container"
         style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          paddingBottom: "85px",
           marginTop: `${headerHeight + 10}px`,
           visibility: isLoading ? "hidden" : "visible",
-          minWidth: "260px",
-          maxWidth: "500px",
-          width: "98%",
-          marginLeft: "6px",
-          marginRight: "6px",
         }}
       >
-        {[...devicesStore.radio, ...devicesStore.rs485].map((el, index) => {
+        {filtredDevices.map((el, index) => {
           return el.type ? (
             <RScardDevice
               openSettingModal={() => setOpenModalSetting({ open: true, name: el.name, currentDevice: el })}

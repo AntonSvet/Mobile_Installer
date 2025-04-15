@@ -2,6 +2,7 @@ export interface IDevices {
   radio: IRadioDevices[];
   rs485: Irs485Devices[];
   addedDevice: Irs485Devices | IRadioDevices | null;
+  secured: string;
 }
 
 export interface IRadioDevices {
@@ -13,9 +14,10 @@ export interface IRadioDevices {
   delay: (number | null)[];
   section: (number | null)[];
   statusZone: (string | null)[];
-  stutusDevice: string;
+  statusDevice: string;
   image: string;
   type?: string;
+  temperature?: number;
 }
 export interface Irs485Devices {
   id: number;
@@ -26,7 +28,7 @@ export interface Irs485Devices {
   delay: (number | null)[];
   section: (number | null)[];
   statusZone: (string | null)[];
-  stutusDevice: string;
+  statusDevice: string;
   image: string;
   type?: string;
 }

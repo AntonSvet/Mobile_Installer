@@ -31,7 +31,7 @@ const AddRadioDevice: React.FC<ModalProps> = ({ isOpen, onClose, deviceName, ope
       } else {
         dispatch(devicesActions.addRSDevice(deviceWithRandomId));
       }
-    }, 2000);
+    }, 700);
   }
   if (!isOpen) return null;
   return (

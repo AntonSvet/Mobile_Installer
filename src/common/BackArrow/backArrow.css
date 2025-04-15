@@ -1,0 +1,14 @@
+.back-arrow-icons {
+    color: var(--header-text-color);
+    width: var(--header-icon-size);
+    height: var(--header-icon-size);
+    margin: 0;
+}
+
+.back-arrow {
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}

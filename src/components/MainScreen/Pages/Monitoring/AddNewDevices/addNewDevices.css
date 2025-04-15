@@ -8,31 +8,34 @@
 
 .new-device-card header {
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: fixed;
   flex-direction: column;
   background: var(--background-header);
-  margin-bottom: 50px;
-  position: relative;
-  height: 100px;
+  margin-bottom: 8px;
+  top: 0;
+  z-index: 11;
+  width: 100%;
+  max-width: 500px;
+  height: 80px;
 }
 
 .new-device-back-arrow {
   position: absolute;
-  top: 15px;
-  left: 15px;
-  font-size: 26px;
-  font-weight: bold;
+  top: 20px;
+  left: 13px;
   cursor: pointer;
 }
 
-.new-device-font-size {
+.new-device-title {
   display: flex;
   justify-content: center;
   margin-top: 20px;
 }
 
-.new-device-font-size span {
-
-  font-size: clamp(25px, 4vw, 24px);
+.new-device-title span {
+  font-size: var(--text-size-header);
   color: var(--header-text-color)
 }
 
@@ -59,7 +62,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-bottom: 29px;
+  margin-bottom: 30px;
   justify-content: center;
   cursor: pointer;
 
@@ -91,4 +94,124 @@
 
 .new-device-block-row span {
   margin-right: 8px;
+}
+
+.camera-container {
+  position: relative;
+  width: 100%;
+
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.scanning-overlay {
+  position: absolute;
+  top: 50%;
+  left: 52%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  max-width: 300px;
+  aspect-ratio: 1/1;
+}
+
+/* Основной квадрат с разомкнутыми углами */
+.scan-box {
+  position: absolute;
+  width: 87%;
+  height: 87%;
+  border: 2px solid transparent;
+}
+
+/* Углы квадрата */
+.scan-box::before,
+.scan-box::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-color: #00ff00;
+  border-style: solid;
+  border-width: 0;
+}
+
+/* Левый верхний угол */
+.scan-box::before {
+  top: 0;
+  left: 0;
+  border-top-width: 4px;
+  border-left-width: 4px;
+  border-top-left-radius: 8px;
+}
+
+/* Правый верхний угол */
+.scan-box::after {
+  top: 0;
+  right: 0;
+  border-top-width: 4px;
+  border-right-width: 4px;
+  border-top-right-radius: 8px;
+}
+
+/* Левый нижний угол */
+.scan-box .corner-bottom-left {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  border-bottom: 4px solid #00ff00;
+  border-left: 4px solid #00ff00;
+  border-bottom-left-radius: 8px;
+}
+
+/* Правый нижний угол */
+.scan-box .corner-bottom-right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  border-bottom: 4px solid #00ff00;
+  border-right: 4px solid #00ff00;
+  border-bottom-right-radius: 8px;
+}
+
+/* Анимированная линия сканирования */
+.scan-line {
+  position: absolute;
+  top: 0;
+  left: 8%;
+  width: 70%;
+  height: 3px;
+  background: linear-gradient(to right, transparent, #00ff00, transparent);
+  animation: scan 3s linear infinite;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+}
+
+@keyframes scan {
+  0% {
+    top: 0;
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+
+  100% {
+    top: 87%;
+    opacity: 1;
+  }
+}
+
+/* Инструкция для пользователя */
+.scan-instruction {
+  position: absolute;
+  bottom: -19%;
+  left: -17px;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 16px;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }

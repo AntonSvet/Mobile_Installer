@@ -8,55 +8,68 @@
   background: var(--background-header);
 }
 
-.device-grid-container span {
-  font-size: clamp(18px, 3vw, 23px);
+.device-container {
+  display: flex;
 }
 
-.device-grid-container {
+.device-status-bar {
+  width: 6px;
+  border-radius: 8px;
+}
+
+.device-block span {
+  font-size: var(--text-size-main);
+}
+
+.device-block {
   width: 100%;
   max-width: 500px;
-  display: grid;
   justify-content: start;
   background: var(--background-header);
-
+  padding-left: 6px;
 }
 
-.device-grid-container-info {
-  display: flex;
-  align-items: center;
-  background: var(--background-header);
-  margin: 0 0 6px 8px;
-
-}
-
-.device-grid-container-image {
+.device-block-info {
   display: flex;
   align-items: center;
   background: var(--background-header);
   margin: 0 0 6px 8px;
 }
 
-
-.device-grid-container-image img {
-  width: clamp(120px, 25vw, 140px);
-  padding-right: 20px;
+.device-block-image {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--background-header);
+  margin: 6px 0px;
+  max-width: 500px;
 }
 
-.device-grid-container-zones {
+.device-block-image img {
+  width: clamp(140px, 25vw, 160px);
+  margin-left: 4px;
+  /* padding-right: 20px; */
+}
+
+.device-block-zones-block {
+  width: 100%;
+  margin: 0 10px;
+}
+
+.device-block-zones {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
 }
 
-.device-grid-container-zones-indicators {
+.device-block-zones-indicators {
   width: clamp(14px, 3vw, 18px);
   height: clamp(14px, 3vw, 18px);
   border-radius: 20px;
-  margin-left: 10px;
-
 }
 
-.device-grid-container-device-info div {
+.device-block-device-info div {
   display: flex;
   align-items: center;
 }
@@ -67,11 +80,10 @@
   align-items: center;
   background: var(--background-color);
   justify-content: center;
-
 }
 
 .native-select {
-  font-size: clamp(18px, 3vw, 23px);
+  font-size: var(--text-size-main);
   text-align: center;
   background: var(--background-color);
   border: none;
@@ -80,14 +92,24 @@
   color: var(--text-color);
 }
 
-
 .native-select option {
   text-align: center;
-
 }
 
 .native-select:focus {
   border-bottom: 2px solid #5c8fd5;
+}
+
+.sensors-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 85px;
+  margin-top: 10px;
+  min-width: 260px;
+  max-width: 500px;
+  width: 98%;
+  margin: 0 8px;
 }
 
 .cardSettings {

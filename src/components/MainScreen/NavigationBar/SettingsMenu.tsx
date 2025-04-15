@@ -40,11 +40,7 @@ export default function SettingsMenu() {
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
-            {IoMdSettings && (
-              <IoMdSettings
-                style={{ fontSize: "clamp(26px, 4.5vw, 29px)", margin: "0px", color: "var(--header-text-color)" }}
-              />
-            )}
+            {IoMdSettings && <IoMdSettings className="settings-icon" />}
           </IconButton>
         </Tooltip>
       </Box>

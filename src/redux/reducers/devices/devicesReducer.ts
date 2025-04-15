@@ -5,6 +5,7 @@ export const initialState: IDevices = {
   radio: [],
   rs485: [],
   addedDevice: null,
+  secured: "grey",
 };
 
 const devicesSlice = createSlice({
@@ -28,6 +29,12 @@ const devicesSlice = createSlice({
     },
     resetDevice(state) {
       return { ...state, addedDevice: null };
+    },
+    getArm(state) {
+      return { ...state, secured: "green" };
+    },
+    getDisarm(state) {
+      return { ...state, secured: "grey" };
     },
   },
 });

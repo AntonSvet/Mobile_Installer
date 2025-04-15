@@ -4,11 +4,15 @@ import List from "@mui/material/List";
 import { Transition } from "./fullScreenDialog.style";
 import { dialogTitlesDevice, dialogTitlesParametrs } from "../../const/const";
 import SettingRSCard from "../../components/MainScreen/Pages/Monitoring/CardDevice/SettingCard/SettingRSCard";
-import GeneralSettingsPage from "../../components/MainScreen/Pages/GeneralSettings/GeneralSettingsPage";
+
 import AddNewDevice from "../../components/MainScreen/Pages/Monitoring/AddNewDevices/AddNewDevices";
 import RadioCard from "../../components/MainScreen/Pages/Monitoring/CardDevice/RadioCard/RadioCard";
 import { IRadioDevices } from "../../redux/reducers/devices/devices.types";
-import EthernetTab from "../../components/MainScreen/Pages/Parameters/Ethernet-WiFi/EthernetTab/EthernetTab";
+
+import Parameters from "../../components/MainScreen/Pages/Connection/Parameters";
+import EthernetTab from "../../components/MainScreen/Pages/Connection/LAN-GPRS/EthernetTab/EthernetTab";
+import GPRS from "../../components/MainScreen/Pages/Connection/LAN-GPRS/GPRS/GPRS";
+import MainDevice from "../../components/MainScreen/Pages/Monitoring/MainDevice/MainDevice";
 
 interface FullScreenSettingDeviceProps {
   open: boolean;
@@ -40,11 +44,15 @@ export default function FullScreenSettingDevice({
       case dialogTitlesDevice.RADIO_5230:
         return currentDevice && <RadioCard handleCloseModal={handleCloseModal} currentDevice={currentDevice} />;
       case dialogTitlesDevice.DEVICE_2084:
-        return <GeneralSettingsPage />;
+        return <MainDevice handleCloseModal={handleCloseModal} />;
       case dialogTitlesDevice.NEW_DEVICE:
         return <AddNewDevice handleCloseModal={handleCloseModal} />;
-      case dialogTitlesParametrs.Ethernet:
+      case dialogTitlesParametrs.LAN:
         return <EthernetTab title={route} handleCloseModal={handleCloseModal} />;
+      case dialogTitlesParametrs.GPRS:
+        return <GPRS title={route} handleCloseModal={handleCloseModal} />;
+      case "Параметры связи":
+        return <Parameters title={route} handleCloseModal={handleCloseModal} />;
 
       default:
         return currentDevice && <SettingRSCard handleCloseModal={handleCloseModal} currentDevice={currentDevice} />;

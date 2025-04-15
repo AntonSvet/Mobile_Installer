@@ -1,15 +1,16 @@
 .card {
   background: var(--background-device-card);
-  border-radius: 8px;
+  border-radius: var(--card-border-radius);
   box-shadow: var(--card-shadow);
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
   cursor: pointer;
   width: 100%;
   margin-bottom: 6px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
 }
 
 .card:hover {
@@ -35,12 +36,11 @@
   justify-content: flex-start;
   min-height: 140px;
   height: 100%;
-
+  margin: 6px 0px;
 }
 
 .status-bar {
-
-  width: 8px;
+  width: 6px;
   border-radius: 8px 0px 0px 8px;
 }
 
@@ -53,7 +53,9 @@
 
 .main-content {
   display: flex;
-  padding-top: 5px;
+  /* padding-top: 5px; */
+  margin: 6px 0px;
+  max-width: 500px;
 }
 
 .row {
@@ -65,31 +67,45 @@
 .footer {
   display: flex;
   align-items: center;
-  margin-left: 8px;
+  margin: 8px;
+  justify-content: space-between;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer .text span {
+  font-size: var(--text-size-small);
 }
 
 .status-indicator {
-  width: 15px;
-  height: 15px;
+  width: clamp(14px, 3vw, 18px);
+  height: clamp(14px, 3vw, 18px);
   border-radius: 20px;
-  margin-left: 10px;
 }
 
 .text {
   color: var(--text-color);
   text-align: start;
+  display: flex;
+  align-items: center;
 }
 
 .text span {
-  font-size: clamp(18px, 3vw, 23px);
+  font-size: var(--text-size-main);
+  /* margin-right: 4px; */
 }
 
 .device-content {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  /* align-items: flex-start; */
+  width: 100%;
+  margin-right: 10px;
 }
-
 
 .text-fullName {
   color: var(--text-color);
@@ -102,22 +118,28 @@
 }
 
 .signal-icon,
-.battery-icon {
+.battery-icon,
+.clock-icon {
   margin-left: 4px;
   display: flex;
   font-size: clamp(21px, 4vw, 26px);
   color: var(--text-color);
 }
 
-.image-device {
+.temperature {
+  display: flex;
+  justify-content: flex-end;
+  font-size: clamp(21px, 4vw, 26px);
+  color: var(--text-color);
+}
 
+.image-device {
   aspect-ratio: 1 / 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: clamp(70px, 20vw, 90px);
-  height: clamp(70px, 20vw, 90px);
-
+  width: clamp(60px, 20vw, 90px);
+  height: clamp(60px, 20vw, 90px);
 }
 
 .image-device img {

@@ -58,15 +58,23 @@ const AuthPage = () => {
     <header className="app-header">
       <div className="logo-elesta">
         {!isScanning && <LogoCube />}
-        <video
-          ref={videoRef}
+        <div
           style={{
-            width: "100%",
-            height: "auto",
-            objectFit: "cover",
             display: isScanning ? "block" : "none",
           }}
-        />
+          className="camera-container"
+        >
+          <video ref={videoRef} id="camera-preview"></video>
+
+          <div className="scanning-overlay">
+            <div className="scan-box">
+              <div className="corner-bottom-left"></div>
+              <div className="corner-bottom-right"></div>
+            </div>
+            <div className="scan-line"></div>
+            <p className="scan-instruction">Наведите камеру на QR-код</p>
+          </div>
+        </div>
       </div>
       <div className="qr-scan-view">
         <p>Введите ID6 или отсканируйте QR-Code</p>

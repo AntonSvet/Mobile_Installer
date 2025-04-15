@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./cardDevice.css";
 import { IRadioDevices } from "../../../../../redux/reducers/devices/devices.types";
+import { useTypedSelector } from "../../../../../hooks/useTypedSelector";
 
 interface CardDeviceProps {
   openSettingModal: () => void;
@@ -10,7 +11,7 @@ interface CardDeviceProps {
 
 const RScardDevice = ({ openSettingModal, el, index }: CardDeviceProps) => {
   const [selectedCard, setSelectedCard] = useState<number | null>(null);
-
+  const armCondition = useTypedSelector((state) => state.devices.secured);
   const handleClick = () => {
     setSelectedCard(index);
     openSettingModal();
@@ -24,7 +25,7 @@ const RScardDevice = ({ openSettingModal, el, index }: CardDeviceProps) => {
       onClick={handleClick}
     >
       <div className="card-content">
-        <div className="status-bar" style={{ background: el.stutusDevice, minHeight: "260px" }}></div>
+        <div className="status-bar" style={{ background: el.statusDevice, minHeight: "260px" }}></div>
         <div className="content">
           <div className="main-content">
             <div className="image-device">
@@ -45,7 +46,7 @@ const RScardDevice = ({ openSettingModal, el, index }: CardDeviceProps) => {
                           Проводная зона {item}, рзд. {el.section[i]}
                         </span>
                       </div>
-                      <div className="status-indicator" style={{ background: el.statusZone[i] || undefined }}></div>
+                      <div className="status-indicator" style={{ background: armCondition }}></div>
                     </div>
                   );
                 })}
@@ -54,7 +55,7 @@ const RScardDevice = ({ openSettingModal, el, index }: CardDeviceProps) => {
           </div>
           <div className="footer" style={{ marginLeft: "8px" }}>
             <div className="text">
-              <span style={{ fontSize: "17px" }}>
+              <span>
                 {el.name} №{el.number}
               </span>
             </div>

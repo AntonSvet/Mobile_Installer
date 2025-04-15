@@ -1,57 +1,37 @@
-import "./settingRSCard.css";
-import { devicesActions } from "../../../../../../redux/reducers/devices/devicesReducer";
-import { useTypedDispatch } from "../../../../../../hooks/useTypedDispatch";
+import "../sensorCard.css";
 import { IRadioDevices } from "../../../../../../redux/reducers/devices/devices.types";
-import { IoIosArrowBack } from "react-icons/io";
-import { FaRegSave } from "react-icons/fa";
 import { TbDeviceIpadCode } from "react-icons/tb";
 import { LiaCarBatterySolid } from "react-icons/lia";
 import IconRS485 from "./IconRS485";
-
+import { useRef } from "react";
+import useResizeObserver from "../../../../../../hooks/useResizeObserver";
+import CustomInput from "../../../../../../common/CustomInput/CustomInput";
+import BaseHeader from "../../../../../../common/BaseHeader/BaseHeader";
+import SensorInfoBlock from "../../../../../../common/SensorInfoBlock/SensorInfoBlock";
+import DeleteFooter from "../../../../../../common/DeleteFooter/DeleteFooter";
 interface SettingRSCardProps {
   handleCloseModal: () => void;
   currentDevice: IRadioDevices;
 }
-
 const SettingRSCard = ({ handleCloseModal, currentDevice }: SettingRSCardProps) => {
-  const dispatch = useTypedDispatch();
-  function deleteDevice() {
-    dispatch(devicesActions.removeRSDevice(currentDevice.id));
-    handleCloseModal();
-  }
+  const headerRef = useRef<HTMLDivElement>(null);
+  const headerHeight = useResizeObserver(headerRef);
+
   return (
-    <div className="setting-rs-card">
-      <header>
-        <div className="setting-rs-card-top-header">
-          <div onClick={handleCloseModal} className="setting-rs-card-back-arrow">
-            <IoIosArrowBack className="setting-rs-card-top-header-icons" />
-          </div>
+    <div className="sensor-card">
+      <BaseHeader handleCloseModal={handleCloseModal} currentDeviceName={currentDevice.fullName} ref={headerRef} />
+      <div className="sensor-card-middle-header-block" >
+        <SensorInfoBlock
+          headerHeight={headerHeight}
+          currentDeviceName={currentDevice.name}
+          currentDeviceNumber={currentDevice.number}
+          currentDeviceImage={currentDevice.image}
+          versionPo={"1.0а"}
+          versionAp={null}
+          sn={null}
+          imageClassName={"sensor-card-middle-header-image"} />
 
-          <div className="setting-rs-header-position">
-            <span>{currentDevice.fullName}</span>
-          </div>
-
-          <div className="setting-rs-card-save">
-            <FaRegSave className="setting-rs-card-top-header-icons" />
-          </div>
-        </div>
-        <div className="setting-rs-card-middle-header">
-          <div style={{ width: "50%", marginLeft: "8px" }}>
-            <img width="60%;" src={currentDevice.image} alt="logo2084" />
-          </div>
-          <div className="setting-rs-card-info">
-            <div>
-              <span>
-                {currentDevice.name} № {currentDevice.number}
-              </span>
-            </div>
-            <div>
-              <span>Версия ПО - 1.0а</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="setting-rs-card-bottom-header">
+        <div className="sensor-card-bottom-header">
           <div>
             <TbDeviceIpadCode className="icons" />
             <span>Корпус - </span>
@@ -69,51 +49,53 @@ const SettingRSCard = ({ handleCloseModal, currentDevice }: SettingRSCardProps) 
             <span>Подключено </span>
           </div>
         </div>
-      </header>
-      <div className="setting-rs-card-content">
+      </div>
+      <div className="sensor-card-content">
         {currentDevice.zone.map((_item: number | null, i: number) => {
           return (
-            <div key={i} className="setting-rs-card-one">
-              <div className="setting-rs-card-inside">
-                <div className="setting-rs-card-block">
-                  <div className="setting-rs-card-block-row">
-                    <span>Зона</span>
-                    <input />
+            <div key={i} className="sensor-card-one">
+              <div className="sensor-card-status-bar-container">
+                <div className="sensor-card-status-bar" style={{ backgroundColor: "red" }}></div>
+                <div className="sensor-card-inside">
+                  <div className="sensor-card-block">
+                    <div className="sensor-card-block-row">
+                      <span>Зона</span>
+                      <CustomInput />
+                    </div>
+                    <div className="sensor-card-block-row">
+                      <span>Разд.</span>
+                      <CustomInput />
+                    </div>
+                    <div>
+                      <CustomInput placeholder="Псевдоним" />
+                    </div>
                   </div>
-                  <div className="setting-rs-card-block-row">
-                    <span>Разд.</span>
-                    <input />
+                  <div className="sensor-card-block">
+                    <span style={{ marginRight: "8px" }}>Тип</span>
+                    <select name="" id="">
+                      <option>Охранная с зад.(Проходная) с контр. взлома</option>
+                      <option value="Охранная">Охранная</option>
+                    </select>
                   </div>
-                  <div>
-                    <input className="setting-rs-card-block-custom-input" placeholder="Псевдоним" />
-                  </div>
-                </div>
-                <div className="setting-rs-card-block">
-                  <span style={{ marginRight: "8px" }}>Тип</span>
-                  <select name="" id="">
-                    <option>Охранная с зад.(Проходная) с контр. взлома</option>
-                    <option value="Охранная">Охранная</option>
-                  </select>
-                </div>
-                <div className="setting-rs-card-block">
-                  <div className="setting-rs-card-block-row">
-                    <span>Задержка вход</span>
-                    <input />
-                  </div>
-                  <div className="setting-rs-card-block-row">
-                    <span>Задержка выход</span>
-                    <input />
+                  <div className="sensor-card-block">
+                    <div className="sensor-card-block-row">
+                      <span>Задержка вход</span>
+                      <CustomInput />
+                    </div>
+                    <div className="sensor-card-block-row">
+                      <span>Задержка выход</span>
+                      <CustomInput />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           );
         })}
-        <button className="setting-rs-card-delete">
-          <span onClick={deleteDevice}>Удалить устройство</span>
-        </button>
+        <DeleteFooter handleCloseModal={handleCloseModal} currentDevice={currentDevice} />
       </div>
     </div>
+
   );
 };
 

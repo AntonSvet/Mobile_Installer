@@ -1,154 +1,136 @@
-import "./radioCard.css";
-import { devicesActions } from "../../../../../../redux/reducers/devices/devicesReducer";
-import { useTypedDispatch } from "../../../../../../hooks/useTypedDispatch";
+import "../sensorCard.css";
 import { GiBattery50 } from "react-icons/gi";
 import { FaTemperatureEmpty } from "react-icons/fa6";
 import { FaSignal } from "react-icons/fa";
 import { RiRouterLine } from "react-icons/ri";
 import { TbDeviceIpadCode } from "react-icons/tb";
-import { FaRegSave } from "react-icons/fa";
-import { IoIosArrowBack } from "react-icons/io";
 import { IRadioDevices } from "../../../../../../redux/reducers/devices/devices.types";
-
+import { useRef } from "react";
+import useResizeObserver from "../../../../../../hooks/useResizeObserver";
+import CustomInput from "../../../../../../common/CustomInput/CustomInput";
+import BaseHeader from "../../../../../../common/BaseHeader/BaseHeader";
+import SensorInfoBlock from "../../../../../../common/SensorInfoBlock/SensorInfoBlock";
+import DeleteFooter from "../../../../../../common/DeleteFooter/DeleteFooter";
 interface RadioCardProps {
   handleCloseModal: () => void;
   currentDevice: IRadioDevices;
 }
 
 const RadioCard = ({ handleCloseModal, currentDevice }: RadioCardProps) => {
-  const dispatch = useTypedDispatch();
-  function deleteDevice() {
-    dispatch(devicesActions.removeRadioDevice(currentDevice.id));
-    handleCloseModal();
-  }
+  const headerRef = useRef<HTMLDivElement>(null);
+  const headerHeight = useResizeObserver(headerRef);
+
   return (
-    <div className="radio-card">
-      <header>
-        <div className="radio-card-top-header">
-          <div onClick={handleCloseModal} className="radio-card-back-arrow">
-            <IoIosArrowBack className="radio-card-top-header-icons" />
-          </div>
-
-          <div className="radio-header-position">
-            <span>{currentDevice.fullName}</span>
-          </div>
-
-          <div className="radio-card-save">
-            <FaRegSave className="radio-card-top-header-icons" />
-          </div>
-        </div>
-        <div className="radio-card-middle-header">
-          <div style={{ width: "50%" }}>
-            <img width="100%;" src={currentDevice.image} alt="logo2084" />
-          </div>
-          <div className="radio-card-info">
-            <div>
-              <span>
-                {currentDevice.name} № {currentDevice.number}
-              </span>
-              <span>S/N: 000000</span>
-            </div>
-            <div>
-              <span>Версия ПО - 1.0а</span>
-              <span>Версия АЧ - 1.1а</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="radio-card-bottom-header">
-          <div className="radio-card-indicators">
+    <div className="sensor-card">
+      <BaseHeader handleCloseModal={handleCloseModal} currentDeviceName={currentDevice.fullName} ref={headerRef} />
+      <div className="sensor-card-middle-header-block">
+        <SensorInfoBlock
+          headerHeight={headerHeight}
+          currentDeviceName={currentDevice.name}
+          currentDeviceNumber={currentDevice.number}
+          currentDeviceImage={currentDevice.image}
+          versionPo={"1.0а"}
+          versionAp={"1.1a"}
+          sn={"000000"}
+          imageClassName={"sensor-card-middle-header-image"}
+        />
+        <div className="sensor-card-bottom-header">
+          <div className="sensor-card-indicators">
             <TbDeviceIpadCode className="icons" />
             <span>Корпус - </span>
             <span>Закрыт </span>
           </div>
-          <div className="radio-card-indicators">
+          <div className="sensor-card-indicators">
             <GiBattery50 className="icons" />
             <span>Батарея - 90%</span>
             <span>Норма </span>
           </div>
 
-          <div className="radio-card-indicators">
+          <div className="sensor-card-indicators">
             <FaSignal className="icons" />
             <span>Уровень сигнала - </span>
             <span>5 (хороший) </span>
           </div>
-          <div className="radio-card-indicators">
+          <div className="sensor-card-indicators">
             <RiRouterLine className="icons" />
             <span>Ретранслятор - </span>
             <span>1-2-3 </span>
           </div>
-          <div className="radio-card-indicators">
+          <div className="sensor-card-indicators">
             <FaTemperatureEmpty className="icons" />
             <span>Температура - </span>
             <span>22°С </span>
           </div>
         </div>
-      </header>
-      <div className="radio-card-content">
+      </div>
+      <div className="sensor-card-content">
         {currentDevice.zone.map((item: number | null, i: number) => {
           return (
-            <div key={i} className="radio-card-one">
-              <div className="radio-card-inside">
-                <div className="radio-card-block">
-                  <div className="radio-card-block-row">
-                    <span>{i === 0 ? "Осн.зона" : "Доп.зона"}</span>
-                    <input />
-                  </div>
-                  <div className="radio-card-block-row">
-                    <span>Рзд.</span>
-                    <input />
-                  </div>
-                  <div>
-                    <input className="radio-card-block-custom-input" placeholder="Псевдоним" />
-                  </div>
-                </div>
-                <div className="radio-card-block">
-                  <span style={{ marginRight: "8px" }}>Тип</span>
-                  <select style={{ width: "100%" }} name="" id="">
-                    <option>Не используется</option>
-                    <option value="Охранная">Охранная</option>
-                    {!currentDevice.name.includes("5830") || i === 1 ? (
-                      <>
-                        <option>Охранная с задержкой (вход/выход)</option>
-                        <option>Охранная с задержкой (Проходная)</option>
-                        <option>Охранная с фикс. зад.(вход/выход)</option>
-                      </>
-                    ) : (
-                      ""
-                    )}
-                    {i === 1 ? (
-                      <>
-                        <option>Тревожная (КТС)</option>
-                        <option>ПАТРУЛЬ</option>
-                        <option>УПРАВЛЕНИЕ</option>
-                        <option>ГАЗ</option>
-                        <option>ВОДА</option>
-                        <option>ТЕХНОЛОГИЧЕСКАЯ</option>
-                      </>
-                    ) : (
-                      ""
-                    )}
-                  </select>
-                </div>
-                {item && (
-                  <div className="radio-card-block">
-                    <div className="radio-card-block-row">
-                      <span>Задержка вход</span>
-                      <input />
+            <div key={i} className="sensor-card-one">
+              <div className="setting-rs-card-status-bar-container">
+                <div className="setting-rs-card-status-bar" style={{ backgroundColor: "red" }}></div>
+                <div className="sensor-card-inside">
+                  <div className="sensor-card-block">
+                    <div className="sensor-card-block-row">
+                      <span>{i === 0 ? "Осн.зона" : "Доп.зона"}</span>
+                      <CustomInput />
                     </div>
-                    <div className="radio-card-block-row">
-                      <span>Задержка выход</span>
-                      <input />
+                    <div className="sensor-card-block-row">
+                      <span>Рзд.</span>
+                      <CustomInput />
+                    </div>
+                    <div>
+                      <CustomInput placeholder="Псевдоним" />
                     </div>
                   </div>
-                )}
+                  <div className="sensor-card-block">
+                    <span style={{ marginRight: "8px" }}>Тип</span>
+                    <select name="" id="">
+                      <option>Не используется</option>
+                      <option value="Охранная">Охранная</option>
+                      {!currentDevice.name.includes("5830") || i === 1 ? (
+                        <>
+                          <option>Охранная с задержкой (вход/выход)</option>
+                          <option>Охранная с задержкой (Проходная)</option>
+                          <option>Охранная с фикс. зад.(вход/выход)</option>
+                        </>
+                      ) : (
+                        ""
+                      )}
+                      {i === 1 ? (
+                        <>
+                          <option>Тревожная (КТС)</option>
+                          <option>ПАТРУЛЬ</option>
+                          <option>УПРАВЛЕНИЕ</option>
+                          <option>ГАЗ</option>
+                          <option>ВОДА</option>
+                          <option>ТЕХНОЛОГИЧЕСКАЯ</option>
+                        </>
+                      ) : (
+                        ""
+                      )}
+                    </select>
+                  </div>
+                  {item && (
+                    <div className="sensor-card-block">
+                      <div className="sensor-card-block-row">
+                        <span>Задержка вход</span>
+                        <CustomInput />
+                      </div>
+                      <div className="sensor-card-block-row">
+                        <span>Задержка выход</span>
+                        <CustomInput />
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           );
         })}
-        <div className="radio-card-one">
-          <div className="radio-card-inside">
-            <div className="radio-card-block">
+        <div className="sensor-card-one">
+          <div className="sensor-card-inside">
+            <div className="sensor-card-block">
               <div>
                 <span style={{ marginRight: "8px" }}>Элемент питания</span>
               </div>
@@ -158,12 +140,12 @@ const RadioCard = ({ handleCloseModal, currentDevice }: RadioCardProps) => {
               </select>
             </div>
 
-            <div className="radio-card-checkbox-block">
-              <div className="radio-card-checkbox-row">
+            <div className="sensor-card-checkbox-block">
+              <div className="sensor-card-checkbox-row">
                 <span>Контролировать датчик саботажа</span>
                 <input type="checkbox" />
               </div>
-              <div className="radio-card-checkbox-row">
+              <div className="sensor-card-checkbox-row">
                 <span>Контролировать датчик вскрытия</span>
                 <input type="checkbox" />
               </div>
@@ -171,9 +153,7 @@ const RadioCard = ({ handleCloseModal, currentDevice }: RadioCardProps) => {
           </div>
         </div>
       </div>
-      <button className="radio-card-delete">
-        <span onClick={deleteDevice}>Удалить устройство</span>
-      </button>
+      <DeleteFooter handleCloseModal={handleCloseModal} currentDevice={currentDevice} />
     </div>
   );
 };

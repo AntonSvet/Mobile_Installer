@@ -4,6 +4,8 @@ import ModalNewDevices from "./ModalNewDevices";
 import { devicesList } from "../../../../../const/const";
 import { BrowserMultiFormatReader } from "@zxing/library";
 import AddRadioDevice from "./AddRadioDevice/AddRadioDevice";
+import useResizeObserver from "../../../../../hooks/useResizeObserver";
+import BackArrow from "../../../../../common/BackArrow/BackArrow";
 
 const AddNewDevice = ({ handleCloseModal }: { handleCloseModal: () => void }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -15,6 +17,8 @@ const AddNewDevice = ({ handleCloseModal }: { handleCloseModal: () => void }) =>
   const [scannedData, setScannedData] = useState<string | null>(null);
   const [isScanning, setIsScanning] = useState<boolean>(false);
   const codeReader = new BrowserMultiFormatReader();
+  const headerRef = useRef<HTMLDivElement>(null);
+  const headerHeight = useResizeObserver(headerRef);
   // Функция для открытия модального окна с определённым списком устройств
   const openModal = (deviceType: keyof typeof devicesList) => {
     setCurrentDevices(devicesList[deviceType]);
@@ -44,6 +48,7 @@ const AddNewDevice = ({ handleCloseModal }: { handleCloseModal: () => void }) =>
             setScannedData(result.getText());
             console.log("scannedData", scannedData);
             stopScanning();
+            openDevice("МК Ю-5230");
           }
           if (err && !(err instanceof Error)) {
             console.error(err);
@@ -81,24 +86,33 @@ const AddNewDevice = ({ handleCloseModal }: { handleCloseModal: () => void }) =>
 
   return (
     <div className="new-device-card">
-      <header>
-        <div onClick={handleCloseModal} className="new-device-back-arrow">
-          {"<"}
+      <header ref={headerRef}>
+        <div className="new-device-back-arrow">
+          <BackArrow handleCloseModal={handleCloseModal} />
         </div>
-        <div className="new-device-font-size">
+        <div className="new-device-title">
           <span>Добавить:</span>
         </div>
       </header>
-      <div className="new-device-content">
-        <video
-          ref={videoRef}
+      <div className="new-device-content" style={{ marginTop: `${headerHeight + 30}px` }}>
+        <div
           style={{
-            width: "100%",
-            height: "auto",
-            objectFit: "cover",
             display: isScanning ? "block" : "none",
           }}
-        />
+          className="camera-container"
+        >
+          <video ref={videoRef} id="camera-preview"></video>
+
+          <div className="scanning-overlay">
+            <div className="scan-box">
+              <div className="corner-bottom-left"></div>
+              <div className="corner-bottom-right"></div>
+            </div>
+            <div className="scan-line"></div>
+            <p className="scan-instruction">Наведите камеру на QR-код</p>
+          </div>
+        </div>
+
         <button onClick={isScanning ? stopScanning : startScanning} className="new-device-one">
           <div className="new-device-inside">
             <span>Сканировать QR-Код(Штрих-код)</span>

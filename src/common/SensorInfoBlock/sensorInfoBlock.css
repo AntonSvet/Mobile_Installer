@@ -1,0 +1,28 @@
+.sensor-info-block {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0px;
+    width: 100%;
+    max-width: 500px;
+    background: var(--background-header);
+}
+
+.sensor-info-block-image {
+    margin-left: -20px;
+    width: var(--card-icon-size);
+}
+
+.sensor-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
+    align-items: flex-end;
+    margin-right: 16px;
+}
+
+.sensor-info div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}

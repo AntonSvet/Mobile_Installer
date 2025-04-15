@@ -33,18 +33,20 @@ const DrawerMenu: React.FC<DrawerMenuProps> = ({ selectedMenu, callback }) => {
       onClick={toggleDrawer(false)}
     >
       <List>
-        {["Общие", "Устройства", "Зоны", "Параметры связи", "Коды пользователя"].map((text, index) => (
-          <div key={index}>
-            <ListItem disablePadding>
-              <ListItemButton style={{ background: text === selectedMenu ? "#babcc3" : "" }}>
-                <span style={{ fontSize: "clamp(26px, 4vw, 30px)" }} onClick={() => callback(text)}>
-                  {text}
-                </span>
-              </ListItemButton>
-            </ListItem>
-            <Divider />
-          </div>
-        ))}
+        {["Общие", "Устройства", "Зоны", "Коды пользователя", "SMS оповещение", "Подключение к ПЦО"].map(
+          (text, index) => (
+            <div key={index}>
+              <ListItem disablePadding>
+                <ListItemButton style={{ background: text === selectedMenu ? "#babcc3" : "" }}>
+                  <span style={{ fontSize: "clamp(26px, 4vw, 30px)" }} onClick={() => callback(text)}>
+                    {text}
+                  </span>
+                </ListItemButton>
+              </ListItem>
+              <Divider />
+            </div>
+          )
+        )}
       </List>
     </Box>
   );

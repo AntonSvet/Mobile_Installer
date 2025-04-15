@@ -1,0 +1,14 @@
+.delete-footer {
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    border: none;
+    width: 100%;
+    background: inherit;
+    cursor: pointer;
+}
+
+.delete-footer span {
+    font-size: clamp(19px, 5vw, 28px);
+    color: red;
+}

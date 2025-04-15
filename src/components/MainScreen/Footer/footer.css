@@ -4,3 +4,45 @@
   align-items: center;
   padding: 10px 20px;
 }
+
+.footer-device {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--background-drawer-menu);
+}
+
+.footer-device-buttons-block {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0px;
+  align-items: center;
+  height: var(--footer-icon-size);
+  background-color: #dcdada;
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.footer-device-buttons-block button {
+  border: none;
+  background-color: var(--background-drawer-menu);
+}
+
+.footer-device-buttons-block button:hover {
+  box-shadow: 0px 12px 32px rgba(0, 0, 0, 0.3);
+  transform: translateX(-2px);
+  border-radius: var(--form-border-radius);
+}
+
+.footer-device-buttons-block button:active {
+  transform: scale(0.9);
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.footer-device-button-icon {
+  font-size: var(--footer-icon-size);
+  color: grey;
+}
+
+footer-device-buttons-block {}

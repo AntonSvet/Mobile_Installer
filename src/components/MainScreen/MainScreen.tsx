@@ -1,17 +1,18 @@
 import { useState } from "react";
-import Footer from "./Footer/Footer";
 import HeaderBar from "./NavigationBar/HeaderBar";
 import MainPage from "./Pages/MainPage";
+import FooterDevice from "./Footer/FooterDevice";
+import Footer from "./Footer/Footer";
 
 const MainScreen = () => {
-  const [selectedMenu, setSelectedMenu] = useState("Мониторинг");
+  const [selectedMenu, setSelectedMenu] = useState("Устройства");
   const handleMenu = (el: string) => setSelectedMenu(el);
 
   return (
     <div className="main_screen">
       <HeaderBar selectedMenu={selectedMenu} callback={handleMenu} />
       <MainPage selectedMenu={selectedMenu} />
-      <Footer />
+      {selectedMenu === "Устройства" ? <FooterDevice /> : <Footer />}
     </div>
   );
 };

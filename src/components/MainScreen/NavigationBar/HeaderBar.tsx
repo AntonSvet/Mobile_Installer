@@ -9,9 +9,7 @@ const HeaderBar = ({ selectedMenu, callback }: { selectedMenu: string; callback:
         <div className="drawer-menu">
           <DrawerMenu selectedMenu={selectedMenu} callback={callback} />
         </div>
-        <div className="logo">
-          Юпитер-2084
-        </div>
+        <div className="logo">Юпитер-2084</div>
         <SettingsMenu />
       </header>
     </div>

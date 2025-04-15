@@ -1,16 +1,17 @@
 /* Основной контейнер для кнопки */
 .floating-button {
+  opacity: 0.75;
   position: fixed;
   /* Фиксированное позиционирование */
-  bottom: 5%;
+  bottom: 80px;
   /* Отступ от нижнего края */
   right: 10%;
   /* Отступ от правого края */
   width: clamp(50px, 16vw, 70px);
-  height: clamp(50px, 16vw, 70px);
+  aspect-ratio: 1/1;
   border-radius: 24%;
   /* Делаем кнопку круглой */
-  background-color: #5c8fd5;
+  background-color: #0751b8;
   /* Цвет фона */
   border: none;
   /* Убираем границу */

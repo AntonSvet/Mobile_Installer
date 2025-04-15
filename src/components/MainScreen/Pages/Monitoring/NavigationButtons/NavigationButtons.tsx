@@ -1,31 +1,29 @@
-import React, { useState } from "react";
-import "./navigationButtons.css";  
+import "./navigationButtons.css";
 
-const NavigationButtons: React.FC = () => {
-  const [selectedButton, setSelectedButton] = useState<string>("Устройство");
+interface Props {
+  selectedButton: string;
+  handleButtonClick: (button: string) => void;
+}
 
-  const handleButtonClick = (buttonName: string) => {
-    setSelectedButton(buttonName);
-  };
-
+const NavigationButtons: React.FC<Props> = ({ selectedButton, handleButtonClick }) => {
   return (
     <div className="navigation-buttons">
       <button
-        className={`nav-button ${selectedButton === "Устройство" ? "selected" : ""}`}
-        onClick={() => handleButtonClick("Устройство")}
+        className={`nav-button ${selectedButton === "Все" ? "selected" : ""}`}
+        onClick={() => handleButtonClick("Все")}
       >
         Все
       </button>
       <button
-        className={`nav-button ${selectedButton === "Раздел" ? "selected" : ""}`}
-        onClick={() => handleButtonClick("Раздел")}
+        className={`nav-button ${selectedButton === "Радиоканал" ? "selected" : ""}`}
+        onClick={() => handleButtonClick("Радиоканал")}
       >
         Радиоканал
       </button>
 
       <button
-        className={`nav-button ${selectedButton === "Состояние" ? "selected" : ""}`}
-        onClick={() => handleButtonClick("Состояние")}
+        className={`nav-button ${selectedButton === "RS-485" ? "selected" : ""}`}
+        onClick={() => handleButtonClick("RS-485")}
       >
         RS-485
       </button>
