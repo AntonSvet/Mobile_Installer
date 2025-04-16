@@ -43,13 +43,8 @@ const QrScannerWithCameraSelect = () => {
         const videoInputDevices = await codeReader.listVideoInputDevices();
         setDevices(videoInputDevices);
 
-        // По умолчанию выбираем не широкоугольную камеру (если есть)
-        const nonWideAngleCamera = videoInputDevices.find((device) => !device.label.toLowerCase().includes("wide"));
-
-        if (nonWideAngleCamera) {
-          setSelectedDeviceId(nonWideAngleCamera.deviceId);
-        } else if (videoInputDevices.length > 0) {
-          setSelectedDeviceId(videoInputDevices[0].deviceId);
+        if (videoInputDevices.length > 0) {
+          setSelectedDeviceId(videoInputDevices[devices.length - 1].deviceId);
         }
       } catch (err) {
         setError("Не удалось получить доступ к камерам");
@@ -134,6 +129,7 @@ const QrScannerWithCameraSelect = () => {
         <div style={{ marginTop: "20px", padding: "10px", background: "#f0f0f0" }}>
           <p>
             Результат: <strong>{qrResult}</strong>
+            Камера: <strong>{selectedDeviceId}</strong>
           </p>
         </div>
       )}
