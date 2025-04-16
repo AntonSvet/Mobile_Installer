@@ -43,8 +43,10 @@ const QrScannerWithCameraSelect = () => {
         const videoInputDevices = await codeReader.listVideoInputDevices();
         setDevices(videoInputDevices);
 
-        if (videoInputDevices.length > 0) {
-          setSelectedDeviceId(videoInputDevices[devices.length - 1].deviceId);
+        if (videoInputDevices.length > 1) {
+          setSelectedDeviceId(videoInputDevices[videoInputDevices.length - 1].deviceId);
+        } else if (videoInputDevices.length === 1) {
+          setSelectedDeviceId(videoInputDevices[0].deviceId);
         }
       } catch (err) {
         setError("Не удалось получить доступ к камерам");
@@ -106,9 +108,16 @@ const QrScannerWithCameraSelect = () => {
           onChange={handleDeviceChange}
           disabled={devices.length === 0}
         >
-          {devices.map((device) => (
-            <option key={device.deviceId} value={device.deviceId}>
+          {devices.map((device, index) => (
+            <option
+              key={device.deviceId}
+              value={device.deviceId}
+              style={{
+                fontWeight: index === devices.length - 1 ? "bold" : "normal",
+              }}
+            >
               {device.label || `Камера ${device.deviceId.slice(0, 5)}`}
+              {index === devices.length - 1 && " (по умолчанию)"}
             </option>
           ))}
         </select>
