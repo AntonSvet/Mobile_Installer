@@ -60,6 +60,8 @@ const QrScannerWithCameraSelect = () => {
 
     return () => {
       controlsRef.current?.stop();
+      setQrResult("");
+      setError("");
     };
   }, []);
 
@@ -77,7 +79,7 @@ const QrScannerWithCameraSelect = () => {
         }
 
         if (err && !(err instanceof Error && err.message.includes("NotFoundError"))) {
-          setError(err.message);
+          // setError(err.message);
         }
       })
       .then((controls) => {
@@ -89,6 +91,9 @@ const QrScannerWithCameraSelect = () => {
 
     return () => {
       controlsRef.current?.stop();
+      controlsRef.current?.stop();
+      setQrResult("");
+      setError("");
     };
   }, [selectedDeviceId]);
 
@@ -162,14 +167,20 @@ const QrScannerWithCameraSelect = () => {
           borderRadius: "8px",
         }}
       />
-
+      <div className="scanning-overlay">
+        <div className="scan-box">
+          <div className="corner-bottom-left"></div>
+          <div className="corner-bottom-right"></div>
+        </div>
+        <div className="scan-line"></div>
+        <p className="scan-instruction">Наведите камеру на QR-код</p>
+      </div>
       {/* Результат сканирования */}
       {qrResult && (
         <div style={{ marginTop: "20px", padding: "10px", background: "#f0f0f0" }}>
-          <p>
+          <span>
             Результат: <strong>{qrResult}</strong>
-            Камера: <strong>{selectedDeviceId}</strong>
-          </p>
+          </span>
         </div>
       )}
 

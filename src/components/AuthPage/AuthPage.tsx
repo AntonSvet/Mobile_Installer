@@ -66,15 +66,7 @@ const AuthPage = () => {
           className="camera-container"
         >
           {/* <video ref={videoRef} id="camera-preview"></video> */}
-          <QRScanner />
-          {/*   <div className="scanning-overlay">
-            <div className="scan-box">
-              <div className="corner-bottom-left"></div>
-              <div className="corner-bottom-right"></div>
-            </div>
-            <div className="scan-line"></div>
-            <p className="scan-instruction">Наведите камеру на QR-код</p>
-          </div> */}
+          {isScanning && <QRScanner />}
         </div>
       </div>
       <div className="qr-scan-view">
