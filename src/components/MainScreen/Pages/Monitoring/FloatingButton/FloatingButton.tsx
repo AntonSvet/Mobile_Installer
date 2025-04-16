@@ -1,4 +1,4 @@
-import "./floatingButton.css";  
+import "./floatingButton.css";
 interface MyComponentProps {
   openNewDevice: () => void;
 }

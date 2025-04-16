@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import LogoCube from "../../common/LogoCube/LogoCube";
 import MainScreen from "../MainScreen/MainScreen";
 import "./authPage.css";
+import QRScanner from "./QRScanner";
 const AuthPage = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [scannedData, setScannedData] = useState<string | null>(null);
@@ -64,16 +65,16 @@ const AuthPage = () => {
           }}
           className="camera-container"
         >
-          <video ref={videoRef} id="camera-preview"></video>
-
-          <div className="scanning-overlay">
+          {/* <video ref={videoRef} id="camera-preview"></video> */}
+          <QRScanner />
+          {/*   <div className="scanning-overlay">
             <div className="scan-box">
               <div className="corner-bottom-left"></div>
               <div className="corner-bottom-right"></div>
             </div>
             <div className="scan-line"></div>
             <p className="scan-instruction">Наведите камеру на QR-код</p>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="qr-scan-view">
