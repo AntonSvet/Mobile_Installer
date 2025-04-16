@@ -162,7 +162,7 @@ const QrScannerWithCameraSelect = () => {
       setError("Автофокус активирован");
       console.log("Автофокус активирован");
     } catch (err) {
-      setError("Ошибка фокусировки:", err);
+      setError("Ошибка фокусировки:");
       console.error("Ошибка фокусировки:", err);
     }
   };
