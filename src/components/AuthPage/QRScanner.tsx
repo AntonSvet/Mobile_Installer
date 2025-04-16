@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* import { useState } from "react";
 
 import { IDetectedBarcode, Scanner } from "@yudiel/react-qr-scanner";
@@ -118,6 +119,54 @@ const QrScannerWithCameraSelect = () => {
       console.error("Ошибка переключения подсветки:", err);
     }
   };
+  const handleVideoClick = async (event: React.MouseEvent<HTMLVideoElement>) => {
+    if (!videoRef.current || !videoRef.current.srcObject) return;
+    const stream = videoRef.current.srcObject as MediaStream;
+    const videoTrack = stream.getVideoTracks()[0];
+
+    try {
+      // Пытаемся использовать точечную фокусировку (если поддерживается)
+      const capabilities = videoTrack.getCapabilities();
+
+      if (
+        "focusMode" in capabilities &&
+        Array.isArray(capabilities.focusMode) &&
+        capabilities.focusMode.includes("manual")
+      ) {
+        // Рассчитываем координаты касания относительно видео
+        const rect = videoRef.current.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width;
+        const y = (event.clientY - rect.top) / rect.height;
+
+        // Для камер с поддержкой точечной фокусировки
+        await videoTrack.applyConstraints({
+          advanced: [
+            {
+              focusMode: "manual",
+              pointsOfInterest: [{ x, y }],
+              exposureMode: "continuous",
+            } as any,
+          ],
+        });
+
+        // Альтернативно - просто триггерим автофокус
+        await videoTrack.applyConstraints({
+          advanced: [{ focusMode: "auto" } as any],
+        });
+      } else {
+        // Стандартный автофокус
+        await videoTrack.applyConstraints({
+          advanced: [{ focusMode: "continuous" } as any],
+        });
+      }
+      setError("Автофокус активирован");
+      console.log("Автофокус активирован");
+    } catch (err) {
+      setError("Ошибка фокусировки:", err);
+      console.error("Ошибка фокусировки:", err);
+    }
+  };
+
   return (
     <div style={{ maxWidth: "600px", margin: "0 auto" }}>
       <h2>Наведите камеру на QR-код</h2>
@@ -161,20 +210,21 @@ const QrScannerWithCameraSelect = () => {
       {/* Видео поток */}
       <video
         ref={videoRef}
+        onClick={handleVideoClick}
         style={{
           width: "100%",
           border: "2px solid #333",
           borderRadius: "8px",
         }}
       />
-      <div className="scanning-overlay">
+      {/*  <div className="scanning-overlay">
         <div className="scan-box">
           <div className="corner-bottom-left"></div>
           <div className="corner-bottom-right"></div>
         </div>
         <div className="scan-line"></div>
         <p className="scan-instruction">Наведите камеру на QR-код</p>
-      </div>
+      </div> */}
       {/* Результат сканирования */}
       {qrResult && (
         <div style={{ marginTop: "20px", padding: "10px", background: "#f0f0f0" }}>
