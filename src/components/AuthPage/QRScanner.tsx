@@ -22,6 +22,7 @@ const QRScanner = () => {
 };
 
 export default QRScanner; */
+import { FlashlightOff, FlashlightOn } from "@mui/icons-material";
 import { BrowserMultiFormatReader } from "@zxing/library";
 import { useEffect, useRef, useState } from "react";
 
@@ -33,6 +34,7 @@ const QrScannerWithCameraSelect = () => {
   const [selectedDeviceId, setSelectedDeviceId] = useState<string>("");
   const [qrResult, setQrResult] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const [torchEnabled, setTorchEnabled] = useState(false);
 
   // Инициализация и получение списка камер
   useEffect(() => {
@@ -94,10 +96,26 @@ const QrScannerWithCameraSelect = () => {
     setSelectedDeviceId(event.target.value);
     setQrResult(""); // Сбрасываем предыдущий результат
   };
+  const toggleTorch = async () => {
+    if (!selectedDeviceId || !videoRef.current?.srcObject) return;
 
+    const stream = videoRef.current.srcObject as MediaStream;
+    const track = stream.getVideoTracks()[0];
+
+    try {
+      await track.applyConstraints({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        advanced: [{ torch: !torchEnabled } as any],
+      });
+      setTorchEnabled(!torchEnabled);
+    } catch (err) {
+      setError("Подсветка не поддерживается");
+      console.error("Ошибка переключения подсветки:", err);
+    }
+  };
   return (
     <div style={{ maxWidth: "600px", margin: "0 auto" }}>
-      <h2>QR Code Scanner</h2>
+      <h2>Наведите камеру на QR-код</h2>
 
       {/* Выбор камеры */}
       <div style={{ marginBottom: "20px" }}>
@@ -121,6 +139,18 @@ const QrScannerWithCameraSelect = () => {
             </option>
           ))}
         </select>
+        <button
+          onClick={toggleTorch}
+          style={{
+            padding: "8px 12px",
+            background: torchEnabled ? "#ffeb3b" : "#f0f0f0",
+            border: "1px solid #ccc",
+            borderRadius: "4px",
+            cursor: "pointer",
+          }}
+        >
+          {torchEnabled ? <FlashlightOn /> : <FlashlightOff />}
+        </button>
       </div>
 
       {/* Видео поток */}
