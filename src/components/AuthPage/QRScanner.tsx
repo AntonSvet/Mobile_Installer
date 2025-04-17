@@ -245,7 +245,7 @@ const QrScannerWithCameraSelect = () => {
 
 //export default QrScannerWithCameraSelect;
 
-import { CameraDevice, Html5Qrcode, Html5QrcodeSupportedFormats } from "html5-qrcode";
+/* import { CameraDevice, Html5Qrcode, Html5QrcodeSupportedFormats } from "html5-qrcode";
 import { useEffect, useRef, useState } from "react";
 
 const OptimalQrScanner = () => {
@@ -371,4 +371,4 @@ const OptimalQrScanner = () => {
   );
 };
 
-export default OptimalQrScanner;
+export default OptimalQrScanner; */
