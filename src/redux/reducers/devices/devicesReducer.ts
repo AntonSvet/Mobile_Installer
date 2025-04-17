@@ -6,6 +6,7 @@ export const initialState: IDevices = {
   rs485: [],
   addedDevice: null,
   secured: "grey",
+  phoneCamera: "",
 };
 
 const devicesSlice = createSlice({
@@ -35,6 +36,9 @@ const devicesSlice = createSlice({
     },
     getDisarm(state) {
       return { ...state, secured: "grey" };
+    },
+    setPhoneCamera(state, action: PayloadAction<string>) {
+      return { ...state, phoneCamera: action.payload };
     },
   },
 });

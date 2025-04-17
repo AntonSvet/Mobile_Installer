@@ -3,8 +3,15 @@ import { Html5Qrcode, Html5QrcodeSupportedFormats, CameraDevice } from "html5-qr
 import { useEffect, useRef, useState } from "react";
 import FlashlightOnIcon from "@mui/icons-material/FlashlightOn";
 import FlashlightOffIcon from "@mui/icons-material/FlashlightOff";
-import ZoomInIcon from "@mui/icons-material/ZoomIn";
-import ZoomOutIcon from "@mui/icons-material/ZoomOut";
+import { MdFlashlightOn } from "react-icons/md";
+import { MdFlashlightOff } from "react-icons/md";
+import { PiCameraRotateFill } from "react-icons/pi";
+import { devicesActions } from "../../redux/reducers/devices/devicesReducer";
+import { useTypedDispatch } from "../../hooks/useTypedDispatch";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { LuZoomIn } from "react-icons/lu";
+import { LuZoomOut } from "react-icons/lu";
+
 // Все поддерживаемые форматы
 const supportedFormats = [
   Html5QrcodeSupportedFormats.QR_CODE,
@@ -26,7 +33,10 @@ const supportedFormats = [
   Html5QrcodeSupportedFormats.UPC_EAN_EXTENSION,
 ];
 const Html5QrCodeScanner = () => {
+  const dispatch = useTypedDispatch();
   const scannerRef = useRef<Html5Qrcode | null>(null);
+  const phoneCamera = useTypedSelector((state) => state.devices.phoneCamera);
+  const fileInputRef = useRef<HTMLSelectElement>(null);
   const [qrResult, setQrResult] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [cameras, setCameras] = useState<CameraDevice[]>([]);
@@ -68,7 +78,18 @@ const Html5QrCodeScanner = () => {
       const bScore = getCameraPriorityScore(b.label);
       return bScore - aScore;
     });
-
+    if (phoneCamera) {
+      return phoneCamera;
+    }
+    if (sortedCameras.length >= 2) {
+      dispatch(
+        devicesActions.setPhoneCamera(
+          sortedCameras[sortedCameras.length - 1]?.id || sortedCameras[0]?.id || devices[0]?.id
+        )
+      );
+      return sortedCameras[sortedCameras.length - 1]?.id || sortedCameras[0]?.id || devices[0]?.id;
+    }
+    dispatch(devicesActions.setPhoneCamera(sortedCameras[0]?.id || devices[0]?.id));
     return sortedCameras[0]?.id || devices[0]?.id;
   };
 
@@ -108,6 +129,9 @@ const Html5QrCodeScanner = () => {
       scannerRef.current = new Html5Qrcode(scannerContainerId, {
         formatsToSupport: supportedFormats,
         verbose: false,
+        experimentalFeatures: {
+          useBarCodeDetectorIfSupported: true,
+        },
       });
 
       // 3. Запускаем сканирование
@@ -224,6 +248,7 @@ const Html5QrCodeScanner = () => {
   const handleCameraChange = async (deviceId: string) => {
     await stopScan();
     setSelectedCamera(deviceId);
+    dispatch(devicesActions.setPhoneCamera(deviceId));
     await startScan(deviceId);
   };
 
@@ -242,41 +267,93 @@ const Html5QrCodeScanner = () => {
       stopScan();
     };
   }, []);
+  const handleCameraClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
   return (
     <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px" }}>
       <h2>Наведите камеру на QR-код</h2>
 
       <div style={{ marginBottom: "20px", display: "flex", gap: "10px", flexWrap: "wrap" }}>
         {/* Выбор камеры */}
-        <select
-          value={selectedCamera}
-          onChange={(e) => handleCameraChange(e.target.value)}
-          disabled={cameras.length === 0}
+        <div
+          style={{
+            display: "inline-block",
+            position: "absolute",
+            right: "23px",
+            bottom: "35px",
+            zIndex: 1000,
+          }}
         >
-          {cameras.map((camera) => (
-            <option key={camera.id} value={camera.id}>
-              {camera.label || `Camera ${cameras.indexOf(camera) + 1}`}
-            </option>
-          ))}
-        </select>
+          <select
+            ref={fileInputRef}
+            value={selectedCamera}
+            onChange={(e) => handleCameraChange(e.target.value)}
+            disabled={cameras.length === 0}
+            style={{
+              position: "absolute",
+              opacity: 0,
+              width: "100%",
+              height: "100%",
+              cursor: "pointer",
+            }}
+          >
+            {cameras.map((camera) => (
+              <option key={camera.id} value={camera.id}>
+                {camera.label || `Camera ${cameras.indexOf(camera) + 1}`}
+              </option>
+            ))}
+          </select>
+          <div
+            onClick={handleCameraClick}
+            style={{
+              cursor: "pointer",
+              padding: "8px",
+              display: "inline-block",
+              fontSize: "24px",
+            }}
+          >
+            <PiCameraRotateFill color="white" />
+          </div>
+        </div>
 
         {/* Подсветка */}
-        {torchSupported && (
-          <button onClick={toggleTorch} style={{ padding: "8px 12px" }}>
-            {torchEnabled ? <FlashlightOffIcon /> : <FlashlightOnIcon />}
-            {/*  {torchEnabled ? " Выключить" : " Включить"} подсветку */}
-          </button>
-        )}
+        <div
+          style={{
+            position: "absolute",
+            right: "23px",
+            top: "185px",
+            zIndex: 1000,
+          }}
+        >
+          {!torchEnabled ? (
+            <MdFlashlightOff color="white" onClick={toggleTorch} />
+          ) : (
+            <MdFlashlightOn color="white" onClick={toggleTorch} />
+          )}
+        </div>
+
+        {/*  {torchEnabled ? " Выключить" : " Включить"} подсветку */}
 
         {/* Зум */}
-        <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-          <button onClick={() => handleZoomChange(zoomLevel - 0.5)} disabled={zoomLevel <= 1}>
-            <ZoomOutIcon />
-          </button>
-          <span> {zoomLevel.toFixed(1)}x</span>
-          <button onClick={() => handleZoomChange(zoomLevel + 0.5)} disabled={zoomLevel >= 4}>
-            <ZoomInIcon />
-          </button>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "5px",
+            position: "absolute",
+            right: "23px",
+            bottom: "105px",
+            zIndex: 1000,
+          }}
+        >
+          <LuZoomIn color="white" onClick={() => handleZoomChange(zoomLevel + 0.5)} />
+
+          <span style={{ color: "white" }}> {zoomLevel.toFixed(1)}x</span>
+          <LuZoomOut color="white" onClick={() => handleZoomChange(zoomLevel - 0.5)} />
         </div>
       </div>
 

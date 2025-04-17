@@ -3,6 +3,7 @@ export interface IDevices {
   rs485: Irs485Devices[];
   addedDevice: Irs485Devices | IRadioDevices | null;
   secured: string;
+  phoneCamera: string;
 }
 
 export interface IRadioDevices {

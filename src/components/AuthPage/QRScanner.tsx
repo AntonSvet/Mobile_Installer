@@ -372,3 +372,189 @@ const OptimalQrScanner = () => {
 };
 
 export default OptimalQrScanner; */
+import { Html5Qrcode, Html5QrcodeSupportedFormats } from "html5-qrcode";
+import { useEffect, useRef, useState } from "react";
+
+const AutoSelectRearCameraScanner = () => {
+  const scannerRef = useRef<Html5Qrcode | null>(null);
+  const [qrResult, setQrResult] = useState("");
+  const [error, setError] = useState("");
+  const [availableCameras, setAvailableCameras] = useState<MediaDeviceInfo[]>([]);
+  const [selectedCamera, setSelectedCamera] = useState("");
+  const scannerContainerId = "qr-scanner-container";
+
+  // Фильтруем камеры, исключая фронтальные
+  const getRearCameras = (devices: MediaDeviceInfo[]) => {
+    return devices.filter((device) => {
+      const lowerLabel = device.label.toLowerCase();
+      return (
+        !lowerLabel.includes("front") &&
+        !lowerLabel.includes("selfie") &&
+        !lowerLabel.includes("wide") &&
+        !lowerLabel.includes("ultra")
+      );
+    });
+  };
+
+  // Выбираем последнюю камеру из списка (если камер 2+)
+  const selectDefaultCamera = (cameras: MediaDeviceInfo[]) => {
+    if (cameras.length >= 2) {
+      return cameras[cameras.length - 1].deviceId;
+    }
+    return cameras[0]?.deviceId || "";
+  };
+
+  // Инициализация сканера
+  const initScanner = async () => {
+    try {
+      const devices = await Html5Qrcode.getCameras();
+      if (!devices.length) throw new Error("Камеры не найдены");
+
+      const rearCameras = getRearCameras(devices);
+      if (!rearCameras.length) throw new Error("Тыловые камеры не найдены");
+
+      const defaultCameraId = selectDefaultCamera(rearCameras);
+      if (!defaultCameraId) throw new Error("Не удалось выбрать камеру");
+
+      setAvailableCameras(rearCameras);
+      setSelectedCamera(defaultCameraId);
+
+      scannerRef.current = new Html5Qrcode(scannerContainerId, {
+        formatsToSupport: [
+          Html5QrcodeSupportedFormats.QR_CODE,
+          Html5QrcodeSupportedFormats.CODE_128,
+          Html5QrcodeSupportedFormats.EAN_13,
+          // Другие нужные форматы...
+        ],
+      });
+
+      await startScan(defaultCameraId);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Ошибка инициализации");
+    }
+  };
+
+  const startScan = async (cameraId: string) => {
+    if (!scannerRef.current) return;
+
+    try {
+      await scannerRef.current.start(
+        cameraId,
+        {
+          fps: 10,
+          qrbox: { width: 250, height: 250 },
+          videoConstraints: {
+            deviceId: { exact: cameraId },
+            width: { min: 1280, ideal: 1920 },
+            height: { min: 720, ideal: 1080 },
+          },
+        },
+        (decodedText) => setQrResult(decodedText),
+        (errorMessage) => console.warn(errorMessage)
+      );
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Ошибка сканирования");
+    }
+  };
+
+  const stopScan = async () => {
+    try {
+      if (scannerRef.current?.isScanning()) {
+        await scannerRef.current.stop();
+      }
+    } catch (err) {
+      console.error("Ошибка остановки:", err);
+    }
+  };
+
+  const handleCameraChange = async (deviceId: string) => {
+    await stopScan();
+    setSelectedCamera(deviceId);
+    await startScan(deviceId);
+  };
+
+  useEffect(() => {
+    initScanner();
+    return () => {
+      stopScan();
+    };
+  }, []);
+
+  return (
+    <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px" }}>
+      <h2>QR Сканер</h2>
+
+      {/* Селектор камер */}
+      {availableCameras.length > 1 && (
+        <div style={{ margin: "10px 0" }}>
+          <select value={selectedCamera} onChange={(e) => handleCameraChange(e.target.value)}>
+            {availableCameras.map((camera, index) => (
+              <option
+                key={camera.deviceId}
+                value={camera.deviceId}
+                // Помечаем последнюю камеру как выбранную по умолчанию
+                selected={index === availableCameras.length - 1}
+              >
+                {camera.label || `Камера ${index + 1}`}
+                {index === availableCameras.length - 1 && " (по умолчанию)"}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+
+      <div
+        id={scannerContainerId}
+        style={{
+          width: "100%",
+          height: "400px",
+          border: "2px solid #333",
+          borderRadius: "8px",
+        }}
+      />
+
+      {qrResult && (
+        <div
+          style={{
+            marginTop: "20px",
+            padding: "15px",
+            background: "#f0f0f0",
+            borderRadius: "4px",
+          }}
+        >
+          <p>
+            Результат: <strong>{qrResult}</strong>
+          </p>
+          <button
+            onClick={() => {
+              setQrResult("");
+              initScanner();
+            }}
+            style={{ marginTop: "10px" }}
+          >
+            Сканировать еще
+          </button>
+        </div>
+      )}
+
+      {error && (
+        <div
+          style={{
+            color: "red",
+            marginTop: "20px",
+            padding: "10px",
+            background: "#ffeeee",
+            borderRadius: "4px",
+          }}
+        >
+          <p>{error}</p>
+          <button onClick={initScanner} style={{ marginTop: "5px" }}>
+            Попробовать снова
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default AutoSelectRearCameraScanner;
