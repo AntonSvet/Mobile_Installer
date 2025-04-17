@@ -5,6 +5,26 @@ import FlashlightOnIcon from "@mui/icons-material/FlashlightOn";
 import FlashlightOffIcon from "@mui/icons-material/FlashlightOff";
 import ZoomInIcon from "@mui/icons-material/ZoomIn";
 import ZoomOutIcon from "@mui/icons-material/ZoomOut";
+// Все поддерживаемые форматы
+const supportedFormats = [
+  Html5QrcodeSupportedFormats.QR_CODE,
+  Html5QrcodeSupportedFormats.AZTEC,
+  Html5QrcodeSupportedFormats.CODABAR,
+  Html5QrcodeSupportedFormats.CODE_39,
+  Html5QrcodeSupportedFormats.CODE_93,
+  Html5QrcodeSupportedFormats.CODE_128,
+  Html5QrcodeSupportedFormats.DATA_MATRIX,
+  Html5QrcodeSupportedFormats.MAXICODE,
+  Html5QrcodeSupportedFormats.ITF,
+  Html5QrcodeSupportedFormats.EAN_13,
+  Html5QrcodeSupportedFormats.EAN_8,
+  Html5QrcodeSupportedFormats.PDF_417,
+  Html5QrcodeSupportedFormats.RSS_14,
+  Html5QrcodeSupportedFormats.RSS_EXPANDED,
+  Html5QrcodeSupportedFormats.UPC_A,
+  Html5QrcodeSupportedFormats.UPC_E,
+  Html5QrcodeSupportedFormats.UPC_EAN_EXTENSION,
+];
 const Html5QrCodeScanner = () => {
   const scannerRef = useRef<Html5Qrcode | null>(null);
   const [qrResult, setQrResult] = useState<string>("");
@@ -15,7 +35,17 @@ const Html5QrCodeScanner = () => {
   const [torchSupported, setTorchSupported] = useState(false);
   const [zoomLevel, setZoomLevel] = useState(1);
   const scannerContainerId = "html5qr-code-scanner-container";
-
+  // Находим тыловую камеру
+  const findRearCamera = (devices: CameraDevice[]) => {
+    return (
+      devices.find(
+        (device) =>
+          device.label.toLowerCase().includes("back") ||
+          device.label.toLowerCase().includes("rear") ||
+          device.label.toLowerCase().includes("environment")
+      ) || devices[0]
+    );
+  };
   // Инициализация сканера
   const initScanner = async () => {
     try {
@@ -23,14 +53,15 @@ const Html5QrCodeScanner = () => {
       const devices = await Html5Qrcode.getCameras();
       if (devices && devices.length) {
         setCameras(devices);
-        setSelectedCamera(devices[0].id);
+        const rearCamera = findRearCamera(devices);
+        setSelectedCamera(rearCamera.id);
       } else {
         throw new Error("Камеры не найдены");
       }
 
       // 2. Создаем экземпляр сканера
       scannerRef.current = new Html5Qrcode(scannerContainerId, {
-        formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE],
+        formatsToSupport: supportedFormats,
         verbose: false,
       });
 
@@ -53,6 +84,7 @@ const Html5QrCodeScanner = () => {
 
           zoom: zoomLevel,
           focusMode: "continuous",
+          facingMode: { ideal: "environment" },
         },
       };
       await scannerRef.current.start(
@@ -167,7 +199,7 @@ const Html5QrCodeScanner = () => {
   }, []);
   return (
     <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px" }}>
-      <h2>Advanced QR Scanner</h2>
+      <h2>Наведите камеру на QR-код</h2>
 
       <div style={{ marginBottom: "20px", display: "flex", gap: "10px", flexWrap: "wrap" }}>
         {/* Выбор камеры */}
@@ -187,7 +219,7 @@ const Html5QrCodeScanner = () => {
         {torchSupported && (
           <button onClick={toggleTorch} style={{ padding: "8px 12px" }}>
             {torchEnabled ? <FlashlightOffIcon /> : <FlashlightOnIcon />}
-            {torchEnabled ? " Выключить" : " Включить"} подсветку
+            {/*  {torchEnabled ? " Выключить" : " Включить"} подсветку */}
           </button>
         )}
 
@@ -196,7 +228,7 @@ const Html5QrCodeScanner = () => {
           <button onClick={() => handleZoomChange(zoomLevel - 0.5)} disabled={zoomLevel <= 1}>
             <ZoomOutIcon />
           </button>
-          <span>Zoom: {zoomLevel.toFixed(1)}x</span>
+          <span> {zoomLevel.toFixed(1)}x</span>
           <button onClick={() => handleZoomChange(zoomLevel + 0.5)} disabled={zoomLevel >= 4}>
             <ZoomInIcon />
           </button>
