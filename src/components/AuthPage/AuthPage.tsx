@@ -1,6 +1,6 @@
 import { useTheme } from "./../../hooks/useTheme";
 import { BrowserMultiFormatReader } from "@zxing/library";
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import LogoCube from "../../common/LogoCube/LogoCube";
 import MainScreen from "../MainScreen/MainScreen";
 import "./authPage.css";
