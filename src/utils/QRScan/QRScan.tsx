@@ -272,8 +272,34 @@ const Html5QrCodeScanner = () => {
     }
   };
   return (
-    <div style={{ maxWidth: "600px", margin: "0 auto", padding: "20px" }}>
-      <h2>Наведите камеру на QR-код</h2>
+    <div style={{ minWidth: "300px", maxWidth: "600px", maxHeight: "500px", margin: "0 auto", padding: "20px" }}>
+      <h2 style={{ margin: "0px", color: "#f8f5f5" }}>Наведите камеру на QR-код</h2>
+
+      {/* Контейнер сканера */}
+      <div
+        id={scannerContainerId}
+        onClick={handleFocusClick}
+        style={{
+          width: "100%",
+          height: "400px",
+          border: "2px solid #333",
+          borderRadius: "8px",
+          overflow: "hidden",
+          cursor: "pointer",
+        }}
+      />
+      <span
+        style={{
+          display: "inline-block",
+          position: "absolute",
+          right: "5.2em",
+          top: "3.5em",
+          zIndex: 1000,
+          color: "white",
+        }}
+      >
+        Наведите камеру на QR-код
+      </span>
 
       <div style={{ marginBottom: "20px", display: "flex", gap: "10px", flexWrap: "wrap" }}>
         {/* Выбор камеры */}
@@ -281,9 +307,10 @@ const Html5QrCodeScanner = () => {
           style={{
             display: "inline-block",
             position: "absolute",
-            right: "15px",
-            bottom: "35px",
+            right: "35px",
+            bottom: "2em",
             zIndex: 1000,
+            height: "50px",
           }}
         >
           <select
@@ -323,15 +350,16 @@ const Html5QrCodeScanner = () => {
           <div
             style={{
               position: "absolute",
-              right: "23px",
-              top: "185px",
+              bottom: "2em",
+              left: "35px",
               zIndex: 1000,
+              height: "45px",
             }}
           >
             {!torchEnabled ? (
               <MdFlashlightOff size="40px" color="white" onClick={toggleTorch} />
             ) : (
-              <MdFlashlightOn color="white" onClick={toggleTorch} />
+              <MdFlashlightOn size="40px" color="white" onClick={toggleTorch} />
             )}
           </div>
         )}
@@ -342,12 +370,12 @@ const Html5QrCodeScanner = () => {
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
+
             alignItems: "center",
             gap: "20px",
             position: "absolute",
-            right: "23px",
-            bottom: "105px",
+            right: "35%",
+            bottom: "2em",
             zIndex: 1000,
           }}
         >
@@ -357,21 +385,6 @@ const Html5QrCodeScanner = () => {
           <LuZoomOut size="40px" color="white" onClick={() => handleZoomChange(zoomLevel - 0.5)} />
         </div>
       </div>
-
-      {/* Контейнер сканера */}
-      <div
-        id={scannerContainerId}
-        onClick={handleFocusClick}
-        style={{
-          width: "100%",
-          height: "400px",
-          border: "2px solid #333",
-          borderRadius: "8px",
-          overflow: "hidden",
-          cursor: "pointer",
-        }}
-      />
-
       {/* Результат */}
       {qrResult && (
         <div style={{ marginTop: "20px", padding: "15px", background: "#f0f0f0", borderRadius: "4px" }}>

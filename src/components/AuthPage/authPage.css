@@ -26,7 +26,7 @@
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   position: absolute;
-  bottom: 17%;
+  bottom: 22%;
   max-width: 300px;
 }
 
@@ -211,35 +211,4 @@
   top: 15%;
   width: 100%;
   padding-bottom: 105px;
-}
-
-
-
-
-
-
-.camera-select-wrapper {
-  position: relative;
-  display: inline-block;
-  min-width: 120px;
-}
-
-.camera-select {
-  appearance: none;
-  padding: 8px 30px 8px 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background-color: white;
-  cursor: pointer;
-  font-size: 14px;
-
-}
-
-.camera-icon {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
-  color: #555;
 }

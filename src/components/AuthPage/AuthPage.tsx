@@ -5,7 +5,7 @@ import LogoCube from "../../common/LogoCube/LogoCube";
 import MainScreen from "../MainScreen/MainScreen";
 import "./authPage.css";
 
-import Html5QrScanner from "./QRScan";
+import Html5QrScanner from "../../utils/QRScan/QRScan";
 const AuthPage = () => {
   /* const videoRef = useRef<HTMLVideoElement | null>(null); */
   const [scannedData, setScannedData] = useState<string | null>(null);
