@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Html5Qrcode, Html5QrcodeSupportedFormats, CameraDevice } from "html5-qrcode";
 import { useEffect, useRef, useState } from "react";
-import FlashlightOnIcon from "@mui/icons-material/FlashlightOn";
-import FlashlightOffIcon from "@mui/icons-material/FlashlightOff";
+
 import { MdFlashlightOn } from "react-icons/md";
 import { MdFlashlightOff } from "react-icons/md";
 import { PiCameraRotateFill } from "react-icons/pi";
