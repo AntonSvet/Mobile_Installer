@@ -20,7 +20,7 @@ const AuthPage = () => {
   const startScanning = async () => {
     setIsScanning(true);
 
-    if (videoRef.current) {
+    /* if (videoRef.current) {
       try {
         await codeReader.decodeFromVideoDevice(null, videoRef.current, (result, err) => {
           if (result) {
@@ -37,13 +37,13 @@ const AuthPage = () => {
         alert(`Error in QR code scanning: ${error}`);
         stopScanning();
       }
-    }
+    } */
   };
 
   const stopScanning = () => {
-    codeReader.reset();
     setIsScanning(false);
-    videoRef.current = null;
+    /* codeReader.reset();
+    videoRef.current = null; */
   };
   useEffect(() => {
     return () => {
@@ -72,13 +72,17 @@ const AuthPage = () => {
         </div>
       </div>
       <div className="qr-scan-view">
-        <p>Введите ID6 или отсканируйте QR-Code</p>
-        <div className="input-with-button">
-          <input type="text" pattern="[0-9A-Fa-f]" placeholder="Введите ID6 " className="input-field" />
-          <button onClick={() => setScannedData("текст")} type="submit" className="submit-button">
-            Отправить
-          </button>
-        </div>
+        {!isScanning && (
+          <>
+            <p>Введите ID6 или отсканируйте QR-Code</p>
+            <div className="input-with-button">
+              <input type="text" pattern="[0-9A-Fa-f]" placeholder="Введите ID6 " className="input-field" />
+              <button onClick={() => setScannedData("текст")} type="submit" className="submit-button">
+                Отправить
+              </button>
+            </div>
+          </>
+        )}
 
         <button onClick={isScanning ? stopScanning : startScanning} className="qr-scan-button">
           <div className="qr-icon">&#x1F4F7;</div>

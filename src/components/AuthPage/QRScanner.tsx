@@ -23,7 +23,7 @@ const QRScanner = () => {
 };
 
 export default QRScanner; */
-import { FlashlightOff, FlashlightOn } from "@mui/icons-material";
+/* import { FlashlightOff, FlashlightOn } from "@mui/icons-material";
 import { BrowserMultiFormatReader } from "@zxing/library";
 import { useEffect, useRef, useState } from "react";
 
@@ -241,6 +241,134 @@ const QrScannerWithCameraSelect = () => {
       {devices.length === 0 && !error && <p>Загрузка списка камер...</p>}
     </div>
   );
+//};
+
+//export default QrScannerWithCameraSelect;
+
+import { CameraDevice, Html5Qrcode, Html5QrcodeSupportedFormats } from "html5-qrcode";
+import { useEffect, useRef, useState } from "react";
+
+const OptimalQrScanner = () => {
+  const scannerRef = useRef<Html5Qrcode | null>(null);
+  const [qrResult, setQrResult] = useState("");
+  const [error, setError] = useState("");
+  const [cameras, setCameras] = useState<CameraDevice[]>([]);
+  const [selectedCamera, setSelectedCamera] = useState("");
+  const scannerContainerId = "qr-scanner-container";
+
+  // Фильтрация камер: исключаем фронтальные и широкоугольные
+  const filterOptimalCameras = (devices: CameraDevice[]) => {
+    return devices.filter(device => {
+      const lowerLabel = device.label.toLowerCase();
+      return (
+        !lowerLabel.includes('front') &&
+        !lowerLabel.includes('selfie') &&
+        !lowerLabel.includes('wide') &&
+        !lowerLabel.includes('ultra') &&
+        (lowerLabel.includes('back') ||
+         lowerLabel.includes('rear') ||
+         lowerLabel.includes('environment'))
+      );
+    });
+  };
+
+  // Выбор оптимальной камеры по приоритетам
+  const selectOptimalCamera = (devices: CameraDevice[]) => {
+    const optimalCameras = filterOptimalCameras(devices);
+
+    // Приоритеты выбора:
+    // 1. Камеры с самым высоким разрешением
+    // 2. Камеры с пометкой "main" или "default"
+    // 3. Первая доступная тыловая камера
+
+    // Сортируем по предполагаемому качеству (по наличию ключевых слов в названии)
+    const sortedCameras = optimalCameras.sort((a, b) => {
+      const aScore = getCameraPriorityScore(a.label);
+      const bScore = getCameraPriorityScore(b.label);
+      return bScore - aScore;
+    });
+
+    return sortedCameras[0]?.id || devices[0]?.id || "";
+  };
+
+  // Система оценки приоритета камеры
+  const getCameraPriorityScore = (label: string) => {
+    const lowerLabel = label.toLowerCase();
+    let score = 0;
+
+    if (lowerLabel.includes('main')) score += 3;
+    if (lowerLabel.includes('default')) score += 2;
+    if (lowerLabel.includes('primary')) score += 2;
+    if (lowerLabel.includes('high')) score += 1;
+    if (lowerLabel.includes('resolution')) score += 1;
+
+    return score;
+  };
+
+  // Инициализация сканера
+  const initScanner = async () => {
+    try {
+      const devices = await Html5Qrcode.getCameras();
+      if (!devices.length) throw new Error("Камеры не найдены");
+
+      const optimalCameraId = selectOptimalCamera(devices);
+      if (!optimalCameraId) throw new Error("Не найдена подходящая камера");
+
+      setCameras(devices);
+      setSelectedCamera(optimalCameraId);
+
+      scannerRef.current = new Html5Qrcode(
+        scannerContainerId,
+
+        }
+      );
+
+      await startScan(optimalCameraId);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Ошибка инициализации");
+    }
+  };
+
+  // Запуск сканирования с оптимальными настройками
+  const startScan = async (cameraId: string) => {
+    if (!scannerRef.current) return;
+
+    try {
+      await scannerRef.current.start(
+        cameraId,
+        {
+          fps: 10,
+          qrbox: { width: 250, height: 250 },
+          videoConstraints: {
+            deviceId: { exact: cameraId },
+            facingMode: { ideal: "environment" },
+            width: { min: 1280, ideal: 1920 },
+            height: { min: 720, ideal: 1080 },
+            focusMode: "continuous"
+          }
+        },
+        (decodedText) => setQrResult(decodedText),
+        (errorMessage) => console.warn(errorMessage)
+      );
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Ошибка сканирования");
+    }
+  };
+
+  useEffect(() => {
+    initScanner();
+    return () => {
+      scannerRef.current?.stop().catch(() => {});
+    };
+  }, []);
+
+  return (
+    <div style={{ maxWidth: "600px", margin: "0 auto" }}>
+      <div id={scannerContainerId} style={{ width: "100%", height: "400px" }} />
+      {qrResult && <div>Результат: {qrResult}</div>}
+      {error && <div style={{ color: "red" }}>{error}</div>}
+    </div>
+  );
 };
 
-export default QrScannerWithCameraSelect;
+export default OptimalQrScanner;

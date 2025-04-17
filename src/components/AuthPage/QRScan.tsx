@@ -36,25 +36,70 @@ const Html5QrCodeScanner = () => {
   const [zoomLevel, setZoomLevel] = useState(1);
   const scannerContainerId = "html5qr-code-scanner-container";
   // Находим тыловую камеру
-  const findRearCamera = (devices: CameraDevice[]) => {
-    return (
-      devices.find(
-        (device) =>
-          device.label.toLowerCase().includes("back") ||
-          device.label.toLowerCase().includes("rear") ||
-          device.label.toLowerCase().includes("environment")
-      ) || devices[0]
-    );
+  const filterOptimalCameras = (devices: CameraDevice[]) => {
+    // Приоритеты:
+    // 1. Задняя камера без wide/ultra-wide в названии
+    // 2. Первая задняя камера
+    // 3. Первая доступная камера
+
+    return devices.filter((device) => {
+      const lowerLabel = device.label.toLowerCase();
+      return (
+        !lowerLabel.includes("front") &&
+        !lowerLabel.includes("selfie") &&
+        !lowerLabel.includes("wide") &&
+        !lowerLabel.includes("ultra") &&
+        (lowerLabel.includes("back") || lowerLabel.includes("rear") || lowerLabel.includes("environment"))
+      );
+    });
+  };
+  // Выбор оптимальной камеры по приоритетам
+  const selectOptimalCamera = (devices: CameraDevice[]) => {
+    const optimalCameras = filterOptimalCameras(devices);
+
+    // Приоритеты выбора:
+    // 1. Камеры с самым высоким разрешением
+    // 2. Камеры с пометкой "main" или "default"
+    // 3. Первая доступная тыловая камера
+
+    // Сортируем по предполагаемому качеству (по наличию ключевых слов в названии)
+    const sortedCameras = optimalCameras.sort((a, b) => {
+      const aScore = getCameraPriorityScore(a.label);
+      const bScore = getCameraPriorityScore(b.label);
+      return bScore - aScore;
+    });
+
+    return sortedCameras[0]?.id || devices[0]?.id;
+  };
+
+  // Система оценки приоритета камеры
+  const getCameraPriorityScore = (label: string) => {
+    const lowerLabel = label.toLowerCase();
+    let score = 0;
+
+    if (lowerLabel.includes("main")) score += 3;
+    if (lowerLabel.includes("default")) score += 2;
+    if (lowerLabel.includes("primary")) score += 2;
+    if (lowerLabel.includes("high")) score += 1;
+    if (lowerLabel.includes("resolution")) score += 1;
+
+    return score;
   };
   // Инициализация сканера
   const initScanner = async () => {
     try {
       // 1. Получаем список камер
       const devices = await Html5Qrcode.getCameras();
+      if (!devices.length) throw new Error("Камеры не найдены");
+
+      const optimalCameraId = selectOptimalCamera(devices);
+      if (!optimalCameraId) throw new Error("Не найдена подходящая камера");
       if (devices && devices.length) {
-        setCameras(devices);
-        const rearCamera = findRearCamera(devices);
-        setSelectedCamera(rearCamera.id);
+        const optimalCameras = filterOptimalCameras(devices);
+
+        setCameras(optimalCameras.length ? optimalCameras : devices);
+        // rearCamera = filterOptimalCameras(devices);
+        setSelectedCamera(optimalCameraId);
       } else {
         throw new Error("Камеры не найдены");
       }
@@ -66,7 +111,7 @@ const Html5QrCodeScanner = () => {
       });
 
       // 3. Запускаем сканирование
-      await startScan(devices[0].id);
+      await startScan(optimalCameraId);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Ошибка инициализации сканера");
     }
@@ -94,8 +139,8 @@ const Html5QrCodeScanner = () => {
           setQrResult(decodedText);
           stopScan();
         },
-        (errorMessage) => {
-          console.warn(`QR ошибка: ${errorMessage}`);
+        () => {
+          //console.warn(`QR ошибка: ${errorMessage}`);
         }
       );
       // Проверяем поддержку подсветки
