@@ -58,7 +58,12 @@ const AuthPage = () => {
 
   return (
     <header className="app-header">
-      <div className="logo-elesta">
+      <div
+        style={{
+          top: isScanning ? "0px" : "15%",
+        }}
+        className="logo-elesta"
+      >
         {!isScanning && <LogoCube />}
         <div
           style={{
@@ -66,8 +71,6 @@ const AuthPage = () => {
           }}
           className="camera-container"
         >
-          {/* <video ref={videoRef} id="camera-preview"></video> */}
-          {/*     {isScanning && <QRScanner />} */}
           {isScanning && <Html5QrScanner />}
         </div>
       </div>

@@ -281,7 +281,7 @@ const Html5QrCodeScanner = () => {
           style={{
             display: "inline-block",
             position: "absolute",
-            right: "23px",
+            right: "15px",
             bottom: "35px",
             zIndex: 1000,
           }}
@@ -314,12 +314,12 @@ const Html5QrCodeScanner = () => {
               fontSize: "24px",
             }}
           >
-            <PiCameraRotateFill color="white" />
+            <PiCameraRotateFill size="40px" color="white" />
           </div>
         </div>
 
         {/* Подсветка */}
-        {torchSupported && (
+        {!torchSupported && (
           <div
             style={{
               position: "absolute",
@@ -329,7 +329,7 @@ const Html5QrCodeScanner = () => {
             }}
           >
             {!torchEnabled ? (
-              <MdFlashlightOff color="white" onClick={toggleTorch} />
+              <MdFlashlightOff size="40px" color="white" onClick={toggleTorch} />
             ) : (
               <MdFlashlightOn color="white" onClick={toggleTorch} />
             )}
@@ -344,17 +344,17 @@ const Html5QrCodeScanner = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: "5px",
+            gap: "20px",
             position: "absolute",
             right: "23px",
             bottom: "105px",
             zIndex: 1000,
           }}
         >
-          <LuZoomIn color="white" onClick={() => handleZoomChange(zoomLevel + 0.5)} />
+          <LuZoomIn size="40px" color="white" onClick={() => handleZoomChange(zoomLevel + 0.5)} />
 
           <span style={{ color: "white" }}> {zoomLevel.toFixed(1)}x</span>
-          <LuZoomOut color="white" onClick={() => handleZoomChange(zoomLevel - 0.5)} />
+          <LuZoomOut size="40px" color="white" onClick={() => handleZoomChange(zoomLevel - 0.5)} />
         </div>
       </div>
 
