@@ -320,20 +320,22 @@ const Html5QrCodeScanner = () => {
         </div>
 
         {/* Подсветка */}
-        <div
-          style={{
-            position: "absolute",
-            right: "23px",
-            top: "185px",
-            zIndex: 1000,
-          }}
-        >
-          {!torchEnabled ? (
-            <MdFlashlightOff color="white" onClick={toggleTorch} />
-          ) : (
-            <MdFlashlightOn color="white" onClick={toggleTorch} />
-          )}
-        </div>
+        {torchSupported && (
+          <div
+            style={{
+              position: "absolute",
+              right: "23px",
+              top: "185px",
+              zIndex: 1000,
+            }}
+          >
+            {!torchEnabled ? (
+              <MdFlashlightOff color="white" onClick={toggleTorch} />
+            ) : (
+              <MdFlashlightOn color="white" onClick={toggleTorch} />
+            )}
+          </div>
+        )}
 
         {/*  {torchEnabled ? " Выключить" : " Включить"} подсветку */}
 
