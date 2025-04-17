@@ -7,7 +7,7 @@ import "./authPage.css";
 
 import Html5QrScanner from "./QRScan";
 const AuthPage = () => {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
+  /* const videoRef = useRef<HTMLVideoElement | null>(null); */
   const [scannedData, setScannedData] = useState<string | null>(null);
   const [isScanning, setIsScanning] = useState<boolean>(false);
   const { theme } = useTheme();
