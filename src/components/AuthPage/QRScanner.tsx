@@ -171,7 +171,6 @@ const QrScannerWithCameraSelect = () => {
     <div style={{ maxWidth: "600px", margin: "0 auto" }}>
       <h2>Наведите камеру на QR-код</h2>
 
-      {/* Выбор камеры */}
       <div style={{ marginBottom: "20px" }}>
         <label htmlFor="camera-select">Выберите камеру: </label>
         <select
@@ -207,7 +206,7 @@ const QrScannerWithCameraSelect = () => {
         </button>
       </div>
 
-      {/* Видео поток */}
+
       <video
         ref={videoRef}
         onClick={handleVideoClick}
@@ -224,8 +223,8 @@ const QrScannerWithCameraSelect = () => {
         </div>
         <div className="scan-line"></div>
         <p className="scan-instruction">Наведите камеру на QR-код</p>
-      </div> */}
-      {/* Результат сканирования */}
+      </div>
+
       {qrResult && (
         <div style={{ marginTop: "20px", padding: "10px", background: "#f0f0f0" }}>
           <span>
@@ -234,14 +233,15 @@ const QrScannerWithCameraSelect = () => {
         </div>
       )}
 
-      {/* Ошибки */}
+
       {error && <div style={{ color: "red", marginTop: "20px" }}>Ошибка: {error}</div>}
 
-      {/* Подсказка если камеры не найдены */}
+
       {devices.length === 0 && !error && <p>Загрузка списка камер...</p>}
     </div>
   );
-//};
+ };
+ */
 
 //export default QrScannerWithCameraSelect;
 
