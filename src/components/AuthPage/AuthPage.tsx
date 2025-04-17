@@ -16,7 +16,6 @@ const AuthPage = () => {
   useEffect(() => {
     document.body.setAttribute("data-theme", theme);
   }, [theme]);
-
   const startScanning = async () => {
     setIsScanning(true);
 
@@ -55,7 +54,9 @@ const AuthPage = () => {
   if (scannedData) {
     return <MainScreen />;
   }
-
+  function callback(data: string) {
+    setScannedData(data);
+  }
   return (
     <header className="app-header">
       <div
@@ -71,7 +72,7 @@ const AuthPage = () => {
           }}
           className="camera-container"
         >
-          {isScanning && <Html5QrScanner />}
+          {isScanning && <Html5QrScanner callback={callback} />}
         </div>
       </div>
       <div className="qr-scan-view">

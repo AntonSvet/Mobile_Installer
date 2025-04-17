@@ -31,12 +31,12 @@ const supportedFormats = [
   Html5QrcodeSupportedFormats.UPC_E,
   Html5QrcodeSupportedFormats.UPC_EAN_EXTENSION,
 ];
-const Html5QrCodeScanner = () => {
+const Html5QrCodeScanner: React.FC<{ callback: (data: string) => void }> = ({ callback }) => {
   const dispatch = useTypedDispatch();
   const scannerRef = useRef<Html5Qrcode | null>(null);
   const phoneCamera = useTypedSelector((state) => state.devices.phoneCamera);
   const fileInputRef = useRef<HTMLSelectElement>(null);
-  const [qrResult, setQrResult] = useState<string>("");
+
   const [error, setError] = useState<string>("");
   const [cameras, setCameras] = useState<CameraDevice[]>([]);
   const [selectedCamera, setSelectedCamera] = useState<string>("");
@@ -159,7 +159,7 @@ const Html5QrCodeScanner = () => {
         cameraId,
         config,
         (decodedText) => {
-          setQrResult(decodedText);
+          callback(decodedText);
           stopScan();
         },
         () => {
@@ -254,7 +254,7 @@ const Html5QrCodeScanner = () => {
   // Перезапуск сканирования
   const restartScan = async () => {
     await stopScan();
-    setQrResult("");
+    callback("");
     setError("");
     await startScan(selectedCamera);
   };
@@ -385,18 +385,7 @@ const Html5QrCodeScanner = () => {
           <LuZoomOut size="40px" color="white" onClick={() => handleZoomChange(zoomLevel - 0.5)} />
         </div>
       </div>
-      {/* Результат */}
-      {qrResult && (
-        <div style={{ marginTop: "20px", padding: "15px", background: "#f0f0f0", borderRadius: "4px" }}>
-          <h3>Результат:</h3>
-          <p style={{ wordBreak: "break-all" }}>{qrResult}</p>
-          <button onClick={restartScan} style={{ marginTop: "10px" }}>
-            Сканировать еще
-          </button>
-        </div>
-      )}
 
-      {/* Ошибка */}
       {error && (
         <div style={{ color: "red", marginTop: "20px" }}>
           <p>{error}</p>
