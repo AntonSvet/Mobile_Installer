@@ -292,7 +292,7 @@ const Html5QrCodeScanner = () => {
         style={{
           display: "inline-block",
           position: "absolute",
-          right: "5.2em",
+          right: "5.5em",
           top: "3.5em",
           zIndex: 1000,
           color: "white",
@@ -308,7 +308,7 @@ const Html5QrCodeScanner = () => {
             display: "inline-block",
             position: "absolute",
             right: "35px",
-            bottom: "2em",
+            bottom: "2.5em",
             zIndex: 1000,
             height: "50px",
           }}
@@ -346,11 +346,11 @@ const Html5QrCodeScanner = () => {
         </div>
 
         {/* Подсветка */}
-        {!torchSupported && (
+        {torchSupported && (
           <div
             style={{
               position: "absolute",
-              bottom: "2em",
+              bottom: "2.5em",
               left: "35px",
               zIndex: 1000,
               height: "45px",
@@ -375,7 +375,7 @@ const Html5QrCodeScanner = () => {
             gap: "20px",
             position: "absolute",
             right: "35%",
-            bottom: "2em",
+            bottom: "2.5em",
             zIndex: 1000,
           }}
         >
