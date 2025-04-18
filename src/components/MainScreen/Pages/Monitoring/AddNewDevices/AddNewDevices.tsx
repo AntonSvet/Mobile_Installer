@@ -14,8 +14,7 @@ const AddNewDevice = ({ handleCloseModal }: { handleCloseModal: () => void }) =>
 
   const [currentDevices, setCurrentDevices] = useState<string[]>([]);
   const [currentDevice, setCurrentDevice] = useState<string>("");
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [scannedData, setScannedData] = useState<string | null>(null);
+
   const [isScanning, setIsScanning] = useState<boolean>(false);
   const codeReader = new BrowserMultiFormatReader();
   const headerRef = useRef<HTMLDivElement>(null);
@@ -76,7 +75,6 @@ const AddNewDevice = ({ handleCloseModal }: { handleCloseModal: () => void }) =>
   }, [codeReader]);
 
   function callback(data: string) {
-    setScannedData(data);
     stopScanning();
     const typeDevice = {
       "5130": "МК Ю-5130",
