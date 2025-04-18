@@ -66,14 +66,14 @@ const AuthPage = () => {
         className="logo-elesta"
       >
         {!isScanning && <LogoCube />}
-        <div
-          style={{
-            display: isScanning ? "block" : "none",
-          }}
-          className="camera-container"
-        >
-          {isScanning && <Html5QrScanner callback={callback} />}
-        </div>
+      </div>
+      <div
+        style={{
+          display: isScanning ? "block" : "none",
+        }}
+        className="camera-container"
+      >
+        {isScanning && <Html5QrScanner callback={callback} />}
       </div>
       <div className="qr-scan-view">
         {!isScanning && (

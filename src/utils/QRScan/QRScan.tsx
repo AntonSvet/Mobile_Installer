@@ -292,8 +292,8 @@ const Html5QrCodeScanner: React.FC<{ callback: (data: string) => void }> = ({ ca
         style={{
           display: "inline-block",
           position: "absolute",
-          right: "5.5em",
-          top: "3.5em",
+          right: "20%",
+          top: 0,
           zIndex: 1000,
           color: "white",
         }}
