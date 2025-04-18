@@ -301,89 +301,87 @@ const Html5QrCodeScanner: React.FC<{ callback: (data: string) => void }> = ({ ca
         Наведите камеру на QR-код
       </span>
 
-      <div style={{ marginBottom: "20px", display: "flex", gap: "10px", flexWrap: "wrap" }}>
-        {/* Выбор камеры */}
-        <div
+      {/* Выбор камеры */}
+      <div
+        style={{
+          display: "inline-block",
+          position: "absolute",
+          right: "35px",
+          bottom: "2.5em",
+          zIndex: 1000,
+          height: "50px",
+        }}
+      >
+        <select
+          ref={fileInputRef}
+          value={selectedCamera}
+          onChange={(e) => handleCameraChange(e.target.value)}
+          disabled={cameras.length === 0}
           style={{
+            position: "absolute",
+            opacity: 0,
+            width: "100%",
+            height: "100%",
+            cursor: "pointer",
+          }}
+        >
+          {cameras.map((camera) => (
+            <option key={camera.id} value={camera.id}>
+              {camera.label || `Camera ${cameras.indexOf(camera) + 1}`}
+            </option>
+          ))}
+        </select>
+        <div
+          onClick={handleCameraClick}
+          style={{
+            cursor: "pointer",
+            padding: "8px",
             display: "inline-block",
-            position: "absolute",
-            right: "35px",
-            bottom: "2.5em",
-            zIndex: 1000,
-            height: "50px",
+            fontSize: "24px",
           }}
         >
-          <select
-            ref={fileInputRef}
-            value={selectedCamera}
-            onChange={(e) => handleCameraChange(e.target.value)}
-            disabled={cameras.length === 0}
-            style={{
-              position: "absolute",
-              opacity: 0,
-              width: "100%",
-              height: "100%",
-              cursor: "pointer",
-            }}
-          >
-            {cameras.map((camera) => (
-              <option key={camera.id} value={camera.id}>
-                {camera.label || `Camera ${cameras.indexOf(camera) + 1}`}
-              </option>
-            ))}
-          </select>
-          <div
-            onClick={handleCameraClick}
-            style={{
-              cursor: "pointer",
-              padding: "8px",
-              display: "inline-block",
-              fontSize: "24px",
-            }}
-          >
-            <PiCameraRotateFill size="40px" color="white" />
-          </div>
+          <PiCameraRotateFill size="40px" color="white" />
         </div>
+      </div>
 
-        {/* Подсветка */}
-        {torchSupported && (
-          <div
-            style={{
-              position: "absolute",
-              bottom: "2.5em",
-              left: "35px",
-              zIndex: 1000,
-              height: "45px",
-            }}
-          >
-            {!torchEnabled ? (
-              <MdFlashlightOff size="40px" color="white" onClick={toggleTorch} />
-            ) : (
-              <MdFlashlightOn size="40px" color="white" onClick={toggleTorch} />
-            )}
-          </div>
-        )}
-
-        {/*  {torchEnabled ? " Выключить" : " Включить"} подсветку */}
-
-        {/* Зум */}
+      {/* Подсветка */}
+      {torchSupported && (
         <div
           style={{
-            display: "flex",
-
-            alignItems: "center",
-            gap: "20px",
             position: "absolute",
-            right: "35%",
             bottom: "2.5em",
+            left: "35px",
             zIndex: 1000,
+            height: "45px",
           }}
         >
-          <LuZoomIn size="40px" color="white" onClick={() => handleZoomChange(zoomLevel + 0.5)} />
-
-          <span style={{ color: "white" }}> {zoomLevel.toFixed(1)}x</span>
-          <LuZoomOut size="40px" color="white" onClick={() => handleZoomChange(zoomLevel - 0.5)} />
+          {!torchEnabled ? (
+            <MdFlashlightOff size="40px" color="white" onClick={toggleTorch} />
+          ) : (
+            <MdFlashlightOn size="40px" color="white" onClick={toggleTorch} />
+          )}
         </div>
+      )}
+
+      {/*  {torchEnabled ? " Выключить" : " Включить"} подсветку */}
+
+      {/* Зум */}
+      <div
+        style={{
+          display: "flex",
+
+          alignItems: "center",
+          gap: "20px",
+          position: "absolute",
+          right: "35%",
+          bottom: "2.5em",
+          zIndex: 1000,
+        }}
+      >
+        <LuZoomIn size="40px" color="white" onClick={() => handleZoomChange(zoomLevel + 0.5)} />
+
+        <span style={{ color: "white" }}> {zoomLevel.toFixed(1)}x</span>
+        <LuZoomOut size="40px" color="white" onClick={() => handleZoomChange(zoomLevel - 0.5)} />
       </div>
 
       {error && (

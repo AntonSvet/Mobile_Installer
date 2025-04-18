@@ -81,8 +81,11 @@ const AddNewDevice = ({ handleCloseModal }: { handleCloseModal: () => void }) =>
       "5830": "АК Ю-5830",
       "5230": "ИК Ю-5230",
     };
+    alert(data);
     const key = data.slice(-5, -1) as keyof typeof typeDevice;
+    alert(key);
     const currentType = typeDevice[key] || "ИК Ю-5230";
+    alert(typeDevice[key]);
     openDevice(currentType);
   }
 
