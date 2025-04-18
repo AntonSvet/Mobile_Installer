@@ -272,9 +272,9 @@ const Html5QrCodeScanner: React.FC<{ callback: (data: string) => void }> = ({ ca
     }
   };
   return (
-    <div style={{ minWidth: "300px", maxWidth: "600px", maxHeight: "500px", margin: "0 auto", padding: "20px" }}>
-      <h2 style={{ margin: "0px", color: "#f8f5f5" }}>Наведите камеру на QR-код</h2>
-
+    <div style={{ minWidth: "300px", maxWidth: "600px", maxHeight: "500px", margin: "0 auto" }}>
+      {/* <h2 style={{ margin: "0px", color: "#f8f5f5" }}>Наведите камеру на QR-код</h2>
+       */}
       {/* Контейнер сканера */}
       <div
         id={scannerContainerId}

@@ -26,7 +26,7 @@
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   position: absolute;
-  bottom: 17%;
+  bottom: 27%;
   max-width: 300px;
 }
 
