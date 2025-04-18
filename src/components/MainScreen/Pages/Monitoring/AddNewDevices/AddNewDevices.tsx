@@ -6,6 +6,7 @@ import { BrowserMultiFormatReader } from "@zxing/library";
 import AddRadioDevice from "./AddRadioDevice/AddRadioDevice";
 import useResizeObserver from "../../../../../hooks/useResizeObserver";
 import BackArrow from "../../../../../common/BackArrow/BackArrow";
+import Html5QrScanner from "../../../../../utils/QRScan/QRScan";
 
 const AddNewDevice = ({ handleCloseModal }: { handleCloseModal: () => void }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,7 +41,7 @@ const AddNewDevice = ({ handleCloseModal }: { handleCloseModal: () => void }) =>
   };
   const startScanning = async () => {
     setIsScanning(true);
-
+    /*
     if (videoRef.current) {
       try {
         await codeReader.decodeFromVideoDevice(null, videoRef.current, (result, err) => {
@@ -59,12 +60,12 @@ const AddNewDevice = ({ handleCloseModal }: { handleCloseModal: () => void }) =>
         alert(`Error in QR code scanning: ${error}`);
         stopScanning();
       }
-    }
+    } */
   };
   const stopScanning = () => {
-    codeReader.reset();
     setIsScanning(false);
-    videoRef.current = null;
+    /*  codeReader.reset();
+    videoRef.current = null; */
   };
   useEffect(() => {
     return () => {
@@ -73,6 +74,20 @@ const AddNewDevice = ({ handleCloseModal }: { handleCloseModal: () => void }) =>
       }
     };
   }, [codeReader]);
+
+  function callback(data: string) {
+    setScannedData(data);
+    stopScanning();
+    const typeDevice = {
+      "5130": "МК Ю-5130",
+      "5830": "АК Ю-5830",
+      "5230": "ИК Ю-5230",
+    };
+    const key = data.slice(-5, -1) as keyof typeof typeDevice;
+    const currentType = typeDevice[key] || "ИК Ю-5230";
+    openDevice(currentType);
+  }
+
   if (isModalRadioDevice) {
     return (
       <AddRadioDevice
@@ -101,16 +116,16 @@ const AddNewDevice = ({ handleCloseModal }: { handleCloseModal: () => void }) =>
           }}
           className="camera-container"
         >
-          <video ref={videoRef} id="camera-preview"></video>
-
-          <div className="scanning-overlay">
+          {/* <video ref={videoRef} id="camera-preview"></video> */}
+          {isScanning && <Html5QrScanner callback={callback} />}
+          {/*  <div className="scanning-overlay">
             <div className="scan-box">
               <div className="corner-bottom-left"></div>
               <div className="corner-bottom-right"></div>
             </div>
             <div className="scan-line"></div>
             <p className="scan-instruction">Наведите камеру на QR-код</p>
-          </div>
+          </div> */}
         </div>
 
         <button onClick={isScanning ? stopScanning : startScanning} className="new-device-one">
