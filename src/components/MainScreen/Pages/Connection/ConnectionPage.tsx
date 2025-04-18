@@ -5,7 +5,7 @@ import "./parametersPage.css";
 const ConnectionPage = () => {
   const [tab, setTab] = useState("");
   return (
-    <div style={{ display: "flex", marginTop: "25px", flexDirection: "column", alignItems: "center" }}>
+    <div className="connection-page-container">
       <button disabled onClick={() => setTab("el")} className="parameters-page-button">
         <span style={{ color: "grey" }}>Использовать автоматическое подключение к ПЦО</span>
       </button>

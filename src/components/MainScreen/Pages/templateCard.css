@@ -1,0 +1,164 @@
+.template-card {
+  max-width: 500px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  min-height: -webkit-fill-available;
+  min-height: 100vh;
+  overflow: visible;
+  background: var(--background-color);
+}
+
+.template-card-middle-header-block {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  background: var(--background-header);
+  width: 100%;
+  max-width: 500px;
+}
+
+
+
+.template-card-bottom-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding: 0px 0px 6px 13px;
+  background: var(--background-header);
+}
+
+.template-card-bottom-header div {
+  display: flex;
+  align-items: center;
+}
+
+.template-card-indicators {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.template-card-back-arrow {
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.template-card-content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: sticky;
+  flex-direction: column;
+  background: var(--background-color);
+  margin: 6px 4px;
+  top: 0;
+  z-index: 10;
+  flex: 1;
+}
+
+.template-card-middle-header-image {
+  margin-left: -20px;
+  width: var(--card-icon-size);
+}
+
+.template-card-middle-header-device-image {
+  width: var(--card-icon-device-size);
+  margin-left: 10px;
+}
+
+.template-card-one {
+  background: var(--background-device-card);
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--card-shadow);
+  /* Тень */
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+  cursor: pointer;
+  width: 100%;
+  /* Занимает всю доступную ширину */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.template-card-status-bar-container {
+  display: flex;
+}
+
+.template-card-status-bar {
+  width: 4px;
+  border-radius: 8px 0px 0px 8px;
+}
+
+.template-card-inside {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 96%;
+}
+
+.template-card-block {
+  display: flex;
+  margin: 6px 4px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.template-card-block-row {
+  display: flex;
+  align-items: center;
+}
+
+.template-card-block-title {
+  margin-bottom: 4px;
+}
+
+.template-card-block-row span {
+  margin-right: 2px;
+}
+
+.template-card-block select {
+  min-width: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: var(--text-size-secondary);
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  border-radius: var(--form-border-radius);
+  white-space: nowrap;
+}
+
+.template-card-checkbox-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.template-card-checkbox-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.template-card-checkbox-row input {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--form-border-radius);
+  margin: 0;
+}
+
+.template-card-checkbox-row span {
+  margin-right: 8px;
+}

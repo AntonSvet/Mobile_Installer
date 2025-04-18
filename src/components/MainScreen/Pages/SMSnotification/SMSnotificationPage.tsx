@@ -1,58 +1,51 @@
+
+import CustomInput from "../../../../common/CustomInput/CustomInput";
+import "./smsNotification.css";
 export default function SMSnotificationPage() {
+
   return (
-    <>
-      <div className="navigation-header-param">
-        <div className="navigation-select">
-          <select style={{ width: "270px" }} name="" id="">
-            <option>Использовать Транслит</option>
-            <option>Использовать Кириллица</option>
-          </select>
-          <select style={{ width: "270px" }} name="" id="">
-            <option>SMS резервирует канал связи</option>
-            <option>SMS дублирует канал связи</option>
-          </select>
-        </div>
-      </div>
-      <div
-        style={{
-          marginTop: "43px",
-        }}
-      >
+    <div className="template-card">
+      <div className="template-card-content" style={{ marginTop: `16px` }}>
         {Array(9)
           .fill(1)
           .map((_, i) => (
-            <div key={i} className="user-code-page-one">
-              <div style={{ display: "flex", alignItems: "center", borderRight: "2px solid black" }}>
-                <span className="vertical-text">{i + 1}</span>
-              </div>
-
-              <div className="user-code-page-inside">
-                <div
-                  style={{
-                    justifyContent: "space-between",
-                  }}
-                  className="user-code-page-block "
-                >
-                  <div className="user-code-page-block-row">
-                    <span>Номер телефона</span> <input style={{ width: "150px" }} type="text" />
-                  </div>
-                </div>
-                <div className="user-code-page-block">
-                  <button style={{ width: "270px" }} name="" id="">
-                    Набор сообщений для отправки
-                  </button>
+            <div className="template-card-one">
+              <div key={i} className="template-card-inside" style={{ flexDirection: "row", width: "100%" }}>
+                <div className="sms-number" >
+                  <span className="sms-number-vertical-text">{i + 1}</span>
                 </div>
 
-                <div className="user-code-page-block">
-                  <div className="user-code-page-block-row">
-                    <span>Привязка к разделам</span>
-                    <button className="user-code-page-block-row" style={{ width: "120px", height: "22px" }}></button>
+                <div className="template-card-block" style={{ width: "100%" }}>
+                  <div
+                    className="template-card-inside "
+                  >
+                    <div
+                      className="template-card-block "
+                    >
+                      <div className="template-card-block-row">
+                        <span>Номер телефона</span>
+                      </div>
+                      <div className="template-card-block-row">
+                        <CustomInput placeholder="" size="big" type="number" />
+                      </div>
+                    </div>
+                    <div className="template-card-block">
+                      <button className="sms-delete-button" style={{ width: "100%" }} name="" id="">
+                        <span>Набор сообщений для отправки</span>
+                      </button>
+                    </div>
+                    <div className="template-card-block">
+                      <button className="sms-delete-button" style={{ width: "100%" }} >
+                        <span>Привязка к разделам</span>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           ))}
       </div>
-    </>
+    </div >
   );
 }
+

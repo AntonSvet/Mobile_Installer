@@ -2,6 +2,7 @@
 import { RiServerLine } from "react-icons/ri";
 import { GiBatteryMinus } from "react-icons/gi";
 import { FaSignal } from "react-icons/fa";
+import "../../templateCard.css";
 import { RiRouterLine } from "react-icons/ri";
 import { TbDeviceIpadCode } from "react-icons/tb";
 import device2084 from "../../../../../img/device/s_fonom_2084.png";
@@ -12,19 +13,47 @@ import { FaWifi } from "react-icons/fa";
 import { LiaCarBatterySolid } from "react-icons/lia";
 import SensorHeader from "../../../../../common/BaseHeader/BaseHeader";
 import SensorInfoBlock from "../../../../../common/SensorInfoBlock/SensorInfoBlock";
+import CustomSelect from "../../../../../common/CustomSelector/CustomSelector";
 
 interface RadioCardProps {
   handleCloseModal: () => void;
 }
+const typeOptions = [
+  { value: '1', label: 'Не используется' },
+  { value: '2', label: 'Охранная' },
+];
+const typeOptionsVar1 = [
+  { value: '1', label: 'Не используется' },
+  { value: '2', label: 'Охранная' },
+  { value: '3', label: 'Охранная с задержкой (вход/выход)' },
+  { value: '4', label: 'Охранная с задержкой (Проходная)' },
+  { value: '5', label: 'Охранная с фикс. зад.(вход/выход)' },
+];
+const typeOptionsVar2 = [
+  { value: '1', label: 'Не используется' },
+  { value: '2', label: 'Охранная' },
+  { value: '3', label: 'Тревожная (КТС)' },
+  { value: '4', label: 'ПАТРУЛЬ' },
+  { value: '5', label: 'УПРАВЛЕНИЕ' },
+  { value: '6', label: 'ГАЗ' },
+  { value: '7', label: 'ВОДА' },
+  { value: '8', label: 'ТЕХНОЛОГИЧЕСКАЯ' },
+];
+const optionsArray = Array(6).fill(5).map((_, i) => {
+  return { value: (i + 1) * 5, label: `Гашение через ${(i + 1) * 5} сек` };
+});
+const modeOptions = [{ value: '1', label: 'Включен всегда' }, ...optionsArray];
+
+
 
 const MainDevice = ({ handleCloseModal }: RadioCardProps) => {
   const headerRef = useRef<HTMLDivElement>(null);
   const headerHeight = useResizeObserver(headerRef);
 
   return (
-    <div className="sensor-card">
+    <div className="template-card">
       <SensorHeader handleCloseModal={handleCloseModal} currentDeviceName="Юпитер-2084" ref={headerRef} />
-      <div className="sensor-card-middle-header-block">
+      <div className="template-card-middle-header-block">
         <SensorInfoBlock
           headerHeight={headerHeight}
           currentDeviceName={"УОО Ю"}
@@ -33,107 +62,84 @@ const MainDevice = ({ handleCloseModal }: RadioCardProps) => {
           versionPo={"1.0а"}
           versionAp={null}
           sn={null}
-          imageClassName={"sensor-card-middle-header-device-image"}
+          imageClassName={"template-card-middle-header-device-image"}
+          imageWidth={"50%"}
         />
       </div>
 
-      <div className="sensor-card-bottom-header">
-        <span className="sensor-card-bottom-header-title">ID: 0000-0099-6CAC</span>
-        <div className="sensor-card-indicators">
+      <div className="template-card-bottom-header">
+        <span className="template-card-bottom-header-title">ID: 0000-0099-6CAC</span>
+        <div className="template-card-indicators">
           <RiServerLine className="icons" />
           <span>Связь с сервером - </span>
           <span>Ethernet(осн) </span>
         </div>
-        <span className="sensor-card-bottom-header-title">IP: 005.017.161.234:10620</span>
-        <div className="sensor-card-indicators">
+        <span className="template-card-bottom-header-title">IP: 005.017.161.234:10620</span>
+        <div className="template-card-indicators">
           <TbDeviceIpadCode className="icons" />
           <span>Корпус - </span>
           <span>Закрыт </span>
         </div>
-        <div className="sensor-card-indicators">
+        <div className="template-card-indicators">
           <LiaCarBatterySolid className="icons" />
           <span>Питание - основное</span>
         </div>
-        <div className="sensor-card-indicators">
+        <div className="template-card-indicators">
           {/* <GiBattery50 className="icons" /> */}
           <GiBatteryMinus className="icons" />
           <span>Акк. - неиспр</span>
         </div>
 
-        <div className="sensor-card-indicators">
+        <div className="template-card-indicators">
           <FaSignal className="icons" />
           <span>Уровень сигнала SIM 1 - </span>
           <span>5 (хороший) </span>
         </div>
-        <div className="sensor-card-indicators">
+        <div className="template-card-indicators">
           <RiRouterLine className="icons" />
           <span>Ethernet - </span>
           <span>подключено</span>
         </div>
-        <div className="sensor-card-indicators">
+        <div className="template-card-indicators">
           <FaWifi className="icons" />
           <span>Сеть Wi-Fi - </span>
           <span>PO2 </span>
         </div>
       </div>
-      <div className="sensor-card-content">
+      <div className="template-card-content">
         <span className="sensor-block-title">Зоны</span>
         {[1, 2].map((item: number | null, i: number) => {
           return (
-            <div key={i} className="sensor-card-one">
-              <div className="sensor-card-status-bar-container">
-                <div className="sensor-card-status-bar" style={{ backgroundColor: "red" }}></div>
-                <div className="sensor-card-inside">
-                  <div className="sensor-card-block">
-                    <div className="sensor-card-block-row">
+            <div key={i} className="template-card-one">
+              <div className="template-card-status-bar-container">
+                <div className="template-card-status-bar" style={{ backgroundColor: "red" }}></div>
+                <div className="template-card-inside">
+                  <div className="template-card-block">
+                    <div className="template-card-block-row">
                       <span>Зона</span>
-                      <CustomInput />
+                      <CustomInput size="small" type="number" />
                     </div>
-                    <div className="sensor-card-block-row">
+                    <div className="template-card-block-row">
                       <span>Рзд.</span>
-                      <CustomInput />
+                      <CustomInput size="small" type="number" />
                     </div>
                     <div>
-                      <CustomInput placeholder="Псевдоним" />
+                      <CustomInput placeholder="Псевдоним" size="medium" type="text" />
                     </div>
                   </div>
-                  <div className="sensor-card-block">
+                  <div className="template-card-block">
                     <span style={{ marginRight: "8px" }}>Тип</span>
-                    <select name="" id="">
-                      <option>Не используется</option>
-                      <option value="Охранная">Охранная</option>
-                      {i === 0 ? (
-                        <>
-                          <option>Охранная с задержкой (вход/выход)</option>
-                          <option>Охранная с задержкой (Проходная)</option>
-                          <option>Охранная с фикс. зад.(вход/выход)</option>
-                        </>
-                      ) : (
-                        ""
-                      )}
-                      {i === 1 ? (
-                        <>
-                          <option>Тревожная (КТС)</option>
-                          <option>ПАТРУЛЬ</option>
-                          <option>УПРАВЛЕНИЕ</option>
-                          <option>ГАЗ</option>
-                          <option>ВОДА</option>
-                          <option>ТЕХНОЛОГИЧЕСКАЯ</option>
-                        </>
-                      ) : (
-                        ""
-                      )}
-                    </select>
+                    <CustomSelect options={i === 0 ? typeOptionsVar1 : i === 1 ? typeOptionsVar2 : typeOptions} />
                   </div>
                   {item && (
-                    <div className="sensor-card-block">
-                      <div className="sensor-card-block-row">
+                    <div className="template-card-block">
+                      <div className="template-card-block-row">
                         <span>Задержка вход</span>
-                        <CustomInput />
+                        <CustomInput size="small" type="number" />
                       </div>
-                      <div className="sensor-card-block-row">
+                      <div className="template-card-block-row">
                         <span>Задержка выход</span>
-                        <CustomInput />
+                        <CustomInput size="small" type="number" />
                       </div>
                     </div>
                   )}
@@ -142,89 +148,58 @@ const MainDevice = ({ handleCloseModal }: RadioCardProps) => {
             </div>
           );
         })}
-        <span className="sensor-block-title">Выходы управления</span>
-        <div className="sensor-card-one">
-          <div className="sensor-card-inside">
-            <div className="sensor-card-block">
-              <div>
-                <span style={{ marginRight: "8px" }}>Выход инд. Рзд.</span>
+        <span className="template-card-block-title">Выходы управления</span>
+        <div className="template-card-one">
+          <div className="template-card-inside">
+            <div className="template-card-block">
+              <div className="template-card-block-row">
+                <span >Выход инд. Рзд.</span>
               </div>
-              <select name="" id="">
-                {Array(32)
-                  .fill(1)
-                  .map((_, i) => {
-                    return <option>{i + 1} раздел</option>;
-                  })}
-              </select>
+              <CustomSelect options={Array(32)
+                .fill(1)
+                .map((_, i) => {
+                  return { value: i + 1, label: `${i + 1} раздел` };
+                })} width="55%" />
             </div>
 
-            <div className="sensor-card-block">
+            <div className="template-card-block">
               <div>
                 <span style={{ marginRight: "8px" }}>Режим</span>
               </div>
-              <select name="" id="">
-                <option>Включен всегда</option>;
-                {Array(6)
-                  .fill(5)
-                  .map((_, i) => {
-                    return <option>Гашение через {(i + 1) * 5} сек</option>;
-                  })}
-              </select>
+              <CustomSelect options={modeOptions} />
             </div>
           </div>
         </div>
         {[1, 2].map((item: number | null, i: number) => {
           return (
-            <div key={i} className="sensor-card-one">
-              <div className="sensor-card-status-bar-container">
-                <div className="sensor-card-inside">
-                  <div className="sensor-card-block">
-                    <div className="sensor-card-block-row">
+            <div key={i} className="template-card-one">
+              <div className="template-card-status-bar-container">
+                <div className="template-card-inside">
+                  <div className="template-card-block">
+                    <div className="template-card-block-row">
                       <span>Выход ОК-{i + 1} </span>
-                      <CustomInput />
+                      <CustomInput size="small" type="number" />
                     </div>
-                    <div className="sensor-card-block-row">
+                    <div className="template-card-block-row">
                       <span>Рзд.</span>
                       <button>1,3,5-7,10</button>
                     </div>
                   </div>
-                  <div className="sensor-card-block">
+                  <div className="template-card-block">
                     <span style={{ marginRight: "8px" }}>Режим</span>
-                    <select name="" id="">
-                      <option>Не используется</option>
-                      <option value="Охранная">Охранная</option>
-                      {i === 0 ? (
-                        <>
-                          <option>Охранная с задержкой (вход/выход)</option>
-                          <option>Охранная с задержкой (Проходная)</option>
-                          <option>Охранная с фикс. зад.(вход/выход)</option>
-                        </>
-                      ) : (
-                        ""
-                      )}
-                      {i === 1 ? (
-                        <>
-                          <option>Тревожная (КТС)</option>
-                          <option>ПАТРУЛЬ</option>
-                          <option>УПРАВЛЕНИЕ</option>
-                          <option>ГАЗ</option>
-                          <option>ВОДА</option>
-                          <option>ТЕХНОЛОГИЧЕСКАЯ</option>
-                        </>
-                      ) : (
-                        ""
-                      )}
-                    </select>
+                    <CustomSelect options={[
+                      { value: '1', label: 'Не используется' },
+                      { value: '2', label: 'Охранная' }]} />
                   </div>
                   {item && (
-                    <div className="sensor-card-block">
-                      <div className="sensor-card-block-row">
+                    <div className="template-card-block">
+                      <div className="template-card-block-row">
                         <span>Время работы</span>
-                        <CustomInput />
+                        <CustomInput size="small" type="number" />
                       </div>
-                      <div className="sensor-card-block-row">
+                      <div className="template-card-block-row">
                         <span>Инд. вз/сн</span>
-                        <input type="checkbox" />
+                        <CustomInput size="small" type="checkbox" />
                       </div>
                     </div>
                   )}

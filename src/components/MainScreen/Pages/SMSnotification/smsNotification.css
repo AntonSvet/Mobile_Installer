@@ -1,0 +1,41 @@
+input {
+    height: 26px;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 0px;
+}
+
+select {
+
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+
+.sms-number {
+    display: flex;
+    align-items: center;
+    border-right: 2px solid black;
+    margin-right: 2px;
+}
+
+.sms-number-vertical-text {
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    letter-spacing: 5px;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.sms-delete-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--medium-input-width);
+    height: var(--input-height);
+    border-radius: var(--form-border-radius);
+    border: var(--border);
+    background: white;
+    padding-bottom: 4px;
+
+}

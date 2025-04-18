@@ -1,7 +1,8 @@
 :root {
     --small-input-width: clamp(28px, 8vw, 40px);
-    --medium-input-width: clamp(120px, 40vw, 150px);
-    --input-height: clamp(22px, 6vw, 26px);
+    --medium-input-width: clamp(110px, 30vw, 150px);
+    --big-input-width: clamp(150px, 40vw, 200px);
+    --input-height: clamp(23px, 6vw, 26px);
     --input-margin-left: clamp(2px, 0.7vw, 6px);
 
 }
@@ -11,7 +12,7 @@
     display: flex;
     align-items: center;
     width: var(--small-input-width);
-    border: 1px solid var(--text-color);
+    border: var(--border);
     border-radius: var(--form-border-radius);
     transition: border-color 0.3s;
     height: var(--input-height);
@@ -21,6 +22,13 @@
 .custom-medium-input {
     text-align: center;
     width: var(--medium-input-width);
+    border-radius: var(--form-border-radius);
+    height: var(--input-height);
+}
+
+.custom-big-input {
+    text-align: center;
+    width: var(--big-input-width);
     border-radius: var(--form-border-radius);
     height: var(--input-height);
 }

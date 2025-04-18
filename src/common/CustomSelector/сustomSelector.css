@@ -1,0 +1,23 @@
+.template-card-block-select {
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    border-radius: var(--form-border-radius);
+    white-space: nowrap;
+    text-align: center;
+}
+
+.template-card-block-row-span {
+    margin-right: 2px;
+}
+
+.template-card-block-select-options {
+    font-size: var(--text-size-options);
+    width: 80%;
+}

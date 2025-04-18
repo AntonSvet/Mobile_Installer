@@ -1,4 +1,4 @@
-import "../sensorCard.css";
+import "../../../templateCard.css";
 import { IRadioDevices } from "../../../../../../redux/reducers/devices/devices.types";
 import { TbDeviceIpadCode } from "react-icons/tb";
 import { LiaCarBatterySolid } from "react-icons/lia";
@@ -18,9 +18,9 @@ const SettingRSCard = ({ handleCloseModal, currentDevice }: SettingRSCardProps) 
   const headerHeight = useResizeObserver(headerRef);
 
   return (
-    <div className="sensor-card">
+    <div className="template-card">
       <BaseHeader handleCloseModal={handleCloseModal} currentDeviceName={currentDevice.fullName} ref={headerRef} />
-      <div className="sensor-card-middle-header-block" >
+      <div className="template-card-middle-header-block" >
         <SensorInfoBlock
           headerHeight={headerHeight}
           currentDeviceName={currentDevice.name}
@@ -29,9 +29,10 @@ const SettingRSCard = ({ handleCloseModal, currentDevice }: SettingRSCardProps) 
           versionPo={"1.0а"}
           versionAp={null}
           sn={null}
-          imageClassName={"sensor-card-middle-header-image"} />
+          imageClassName={"template-card-middle-header-image"}
+          imageWidth={"50%"} />
 
-        <div className="sensor-card-bottom-header">
+        <div className="template-card-bottom-header">
           <div>
             <TbDeviceIpadCode className="icons" />
             <span>Корпус - </span>
@@ -50,41 +51,41 @@ const SettingRSCard = ({ handleCloseModal, currentDevice }: SettingRSCardProps) 
           </div>
         </div>
       </div>
-      <div className="sensor-card-content">
+      <div className="template-card-content">
         {currentDevice.zone.map((_item: number | null, i: number) => {
           return (
-            <div key={i} className="sensor-card-one">
-              <div className="sensor-card-status-bar-container">
-                <div className="sensor-card-status-bar" style={{ backgroundColor: "red" }}></div>
-                <div className="sensor-card-inside">
-                  <div className="sensor-card-block">
-                    <div className="sensor-card-block-row">
+            <div key={i} className="template-card-one">
+              <div className="template-card-status-bar-container">
+                <div className="template-card-status-bar" style={{ backgroundColor: "red" }}></div>
+                <div className="template-card-inside">
+                  <div className="template-card-block">
+                    <div className="template-card-block-row">
                       <span>Зона</span>
-                      <CustomInput />
+                      <CustomInput size="small" type="number" />
                     </div>
-                    <div className="sensor-card-block-row">
+                    <div className="template-card-block-row">
                       <span>Разд.</span>
-                      <CustomInput />
+                      <CustomInput size="small" type="number" />
                     </div>
                     <div>
-                      <CustomInput placeholder="Псевдоним" />
+                      <CustomInput placeholder="Псевдоним" size="medium" type="text" />
                     </div>
                   </div>
-                  <div className="sensor-card-block">
+                  <div className="template-card-block">
                     <span style={{ marginRight: "8px" }}>Тип</span>
                     <select name="" id="">
                       <option>Охранная с зад.(Проходная) с контр. взлома</option>
                       <option value="Охранная">Охранная</option>
                     </select>
                   </div>
-                  <div className="sensor-card-block">
-                    <div className="sensor-card-block-row">
+                  <div className="template-card-block">
+                    <div className="template-card-block-row">
                       <span>Задержка вход</span>
-                      <CustomInput />
+                      <CustomInput size="small" type="number" />
                     </div>
-                    <div className="sensor-card-block-row">
+                    <div className="template-card-block-row">
                       <span>Задержка выход</span>
-                      <CustomInput />
+                      <CustomInput size="small" type="number" />
                     </div>
                   </div>
                 </div>

@@ -8,12 +8,13 @@ interface SensorInfoBlockProps {
     versionAp: string | null;
     sn: string | null;
     imageClassName: string | undefined;
+    imageWidth: string;
 }
 
-const SensorInfoBlock = ({ headerHeight, currentDeviceName, currentDeviceNumber, currentDeviceImage, versionPo, versionAp, sn, imageClassName }: SensorInfoBlockProps) => {
+const SensorInfoBlock = ({ headerHeight, currentDeviceName, currentDeviceNumber, currentDeviceImage, versionPo, versionAp, sn, imageClassName, imageWidth }: SensorInfoBlockProps) => {
     return (
         <div className="sensor-info-block" style={{ marginTop: `${headerHeight}px` }}>
-            <div>
+            <div style={{ width: imageWidth }}>
                 <img className={imageClassName} src={currentDeviceImage} alt="logo2084" />
             </div>
             <div className="sensor-info">

@@ -1,4 +1,4 @@
-import "../sensorCard.css";
+import "../../../templateCard.css";
 import { GiBattery50 } from "react-icons/gi";
 import { FaTemperatureEmpty } from "react-icons/fa6";
 import { FaSignal } from "react-icons/fa";
@@ -21,9 +21,9 @@ const RadioCard = ({ handleCloseModal, currentDevice }: RadioCardProps) => {
   const headerHeight = useResizeObserver(headerRef);
 
   return (
-    <div className="sensor-card">
+    <div className="template-card">
       <BaseHeader handleCloseModal={handleCloseModal} currentDeviceName={currentDevice.fullName} ref={headerRef} />
-      <div className="sensor-card-middle-header-block">
+      <div className="template-card-middle-header-block">
         <SensorInfoBlock
           headerHeight={headerHeight}
           currentDeviceName={currentDevice.name}
@@ -32,58 +32,59 @@ const RadioCard = ({ handleCloseModal, currentDevice }: RadioCardProps) => {
           versionPo={"1.0а"}
           versionAp={"1.1a"}
           sn={"000000"}
-          imageClassName={"sensor-card-middle-header-image"}
+          imageClassName={"template-card-middle-header-image"}
+          imageWidth={"50%"}
         />
-        <div className="sensor-card-bottom-header">
-          <div className="sensor-card-indicators">
+        <div className="template-card-bottom-header">
+          <div className="template-card-indicators">
             <TbDeviceIpadCode className="icons" />
             <span>Корпус - </span>
             <span>Закрыт </span>
           </div>
-          <div className="sensor-card-indicators">
+          <div className="template-card-indicators">
             <GiBattery50 className="icons" />
             <span>Батарея - 90%</span>
             <span>Норма </span>
           </div>
 
-          <div className="sensor-card-indicators">
+          <div className="template-card-indicators">
             <FaSignal className="icons" />
             <span>Уровень сигнала - </span>
             <span>5 (хороший) </span>
           </div>
-          <div className="sensor-card-indicators">
+          <div className="template-card-indicators">
             <RiRouterLine className="icons" />
             <span>Ретранслятор - </span>
             <span>1-2-3 </span>
           </div>
-          <div className="sensor-card-indicators">
+          <div className="template-card-indicators">
             <FaTemperatureEmpty className="icons" />
             <span>Температура - </span>
             <span>22°С </span>
           </div>
         </div>
       </div>
-      <div className="sensor-card-content">
+      <div className="template-card-content">
         {currentDevice.zone.map((item: number | null, i: number) => {
           return (
-            <div key={i} className="sensor-card-one">
-              <div className="setting-rs-card-status-bar-container">
-                <div className="setting-rs-card-status-bar" style={{ backgroundColor: "red" }}></div>
-                <div className="sensor-card-inside">
-                  <div className="sensor-card-block">
-                    <div className="sensor-card-block-row">
+            <div key={i} className="template-card-one">
+              <div className="template-card-status-bar-container">
+                <div className="template-card-status-bar" style={{ backgroundColor: "red" }}></div>
+                <div className="template-card-inside">
+                  <div className="template-card-block">
+                    <div className="template-card-block-row">
                       <span>{i === 0 ? "Осн.зона" : "Доп.зона"}</span>
-                      <CustomInput />
+                      <CustomInput size="small" />
                     </div>
-                    <div className="sensor-card-block-row">
+                    <div className="template-card-block-row">
                       <span>Рзд.</span>
-                      <CustomInput />
+                      <CustomInput size="small" />
                     </div>
                     <div>
-                      <CustomInput placeholder="Псевдоним" />
+                      <CustomInput placeholder="Псевдоним" size="medium" />
                     </div>
                   </div>
-                  <div className="sensor-card-block">
+                  <div className="template-card-block">
                     <span style={{ marginRight: "8px" }}>Тип</span>
                     <select name="" id="">
                       <option>Не используется</option>
@@ -112,14 +113,14 @@ const RadioCard = ({ handleCloseModal, currentDevice }: RadioCardProps) => {
                     </select>
                   </div>
                   {item && (
-                    <div className="sensor-card-block">
-                      <div className="sensor-card-block-row">
+                    <div className="template-card-block">
+                      <div className="template-card-block-row">
                         <span>Задержка вход</span>
-                        <CustomInput />
+                        <CustomInput size="small" />
                       </div>
-                      <div className="sensor-card-block-row">
+                      <div className="template-card-block-row">
                         <span>Задержка выход</span>
-                        <CustomInput />
+                        <CustomInput size="small" />
                       </div>
                     </div>
                   )}
@@ -128,9 +129,9 @@ const RadioCard = ({ handleCloseModal, currentDevice }: RadioCardProps) => {
             </div>
           );
         })}
-        <div className="sensor-card-one">
-          <div className="sensor-card-inside">
-            <div className="sensor-card-block">
+        <div className="template-card-one">
+          <div className="template-card-inside">
+            <div className="template-card-block">
               <div>
                 <span style={{ marginRight: "8px" }}>Элемент питания</span>
               </div>
@@ -140,14 +141,14 @@ const RadioCard = ({ handleCloseModal, currentDevice }: RadioCardProps) => {
               </select>
             </div>
 
-            <div className="sensor-card-checkbox-block">
-              <div className="sensor-card-checkbox-row">
+            <div className="template-card-checkbox-block">
+              <div className="template-card-checkbox-row">
                 <span>Контролировать датчик саботажа</span>
-                <input type="checkbox" />
+                <CustomInput size="small" type="checkbox" />
               </div>
-              <div className="sensor-card-checkbox-row">
+              <div className="template-card-checkbox-row">
                 <span>Контролировать датчик вскрытия</span>
-                <input type="checkbox" />
+                <CustomInput size="small" type="checkbox" />
               </div>
             </div>
           </div>
