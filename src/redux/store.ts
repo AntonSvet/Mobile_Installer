@@ -5,6 +5,7 @@ import storage from "redux-persist/lib/storage";
 import { createAPI } from "./http/http";
 import { AxiosInstance } from "axios";
 import { devicesReducer } from "./reducers/devices/devicesReducer";
+import { snackbarReducer } from "./reducers/snackbar/snackbarReducer";
 
 const persistConfig = {
   key: "root",
@@ -40,6 +41,7 @@ const extraArg: ThunkExtraArg = {
 };
 const rootReducer = combineReducers({
   devices: devicesReducer,
+  snackbar: snackbarReducer,
 });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 const store = createReduxStore();

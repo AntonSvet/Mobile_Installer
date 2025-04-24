@@ -160,7 +160,7 @@ const Html5QrCodeScanner: React.FC<{ callback: (data: string) => void }> = ({ ca
         config,
         (decodedText) => {
           callback(decodedText);
-          stopScan();
+          //stopScan();
         },
         () => {
           //console.warn(`QR ошибка: ${errorMessage}`);

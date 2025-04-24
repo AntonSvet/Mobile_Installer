@@ -1,58 +1,22 @@
 import { useTheme } from "./../../hooks/useTheme";
-import { BrowserMultiFormatReader } from "@zxing/library";
 import { useState, useEffect } from "react";
 import LogoCube from "../../common/LogoCube/LogoCube";
 import MainScreen from "../MainScreen/MainScreen";
 import "./authPage.css";
 
 import Html5QrScanner from "../../utils/QRScan/QRScan";
+
 const AuthPage = () => {
-  /* const videoRef = useRef<HTMLVideoElement | null>(null); */
   const [scannedData, setScannedData] = useState<string | null>(null);
   const [isScanning, setIsScanning] = useState<boolean>(false);
   const { theme } = useTheme();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const codeReader = new BrowserMultiFormatReader();
+
   useEffect(() => {
     document.body.setAttribute("data-theme", theme);
   }, [theme]);
-  const startScanning = async () => {
-    setIsScanning(true);
 
-    /* if (videoRef.current) {
-      try {
-        await codeReader.decodeFromVideoDevice(null, videoRef.current, (result, err) => {
-          if (result) {
-            setScannedData(result.getText());
-
-            stopScanning();
-          }
-          if (err && !(err instanceof Error)) {
-            console.error(err);
-          }
-        });
-      } catch (error) {
-        console.error("Error in QR code scanning:", error);
-        alert(`Error in QR code scanning: ${error}`);
-        stopScanning();
-      }
-    } */
-  };
-
-  const stopScanning = () => {
-    setIsScanning(false);
-    /* codeReader.reset();
-    videoRef.current = null; */
-  };
-  useEffect(() => {
-    return () => {
-      if (codeReader) {
-        codeReader.reset();
-      }
-    };
-  }, [codeReader]);
   if (scannedData) {
-    return <MainScreen />;
+    return <MainScreen scannedData={scannedData} />;
   }
   function callback(data: string) {
     setScannedData(data);
@@ -88,7 +52,7 @@ const AuthPage = () => {
           </>
         )}
 
-        <button onClick={isScanning ? stopScanning : startScanning} className="qr-scan-button">
+        <button onClick={() => setIsScanning((prev) => !prev)} className="qr-scan-button">
           <div className="qr-icon">&#x1F4F7;</div>
           <div className="qr-text">{isScanning ? "Отмена" : "Сканировать QR-код"}</div>
         </button>

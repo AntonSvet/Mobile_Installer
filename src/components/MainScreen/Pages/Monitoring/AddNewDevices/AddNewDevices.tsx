@@ -1,22 +1,24 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import "./addNewDevices.css";
 import ModalNewDevices from "./ModalNewDevices";
 import { devicesList } from "../../../../../const/const";
-import { BrowserMultiFormatReader } from "@zxing/library";
+
 import AddRadioDevice from "./AddRadioDevice/AddRadioDevice";
 
 import BackArrow from "../../../../../common/BackArrow/BackArrow";
 import Html5QrScanner from "../../../../../utils/QRScan/QRScan";
+import { showSuccessSnackbar, showWarningSnackbar } from "../../../../../redux/reducers/snackbar/snackbarThunk";
+import { useTypedDispatch } from "../../../../../hooks/useTypedDispatch";
 
 const AddNewDevice = ({ handleCloseModal }: { handleCloseModal: () => void }) => {
+  const dispatch = useTypedDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalRadioDevice, setisModalRadioDevice] = useState(false);
-
   const [currentDevices, setCurrentDevices] = useState<string[]>([]);
   const [currentDevice, setCurrentDevice] = useState<string>("");
 
   const [isScanning, setIsScanning] = useState<boolean>(false);
-  const codeReader = new BrowserMultiFormatReader();
+
   const headerRef = useRef<HTMLDivElement>(null);
 
   // Функция для открытия модального окна с определённым списком устройств
@@ -38,44 +40,12 @@ const AddNewDevice = ({ handleCloseModal }: { handleCloseModal: () => void }) =>
     setisModalRadioDevice(true);
     closeModal();
   };
-  const startScanning = async () => {
-    setIsScanning(true);
-    /*
-    if (videoRef.current) {
-      try {
-        await codeReader.decodeFromVideoDevice(null, videoRef.current, (result, err) => {
-          if (result) {
-            setScannedData(result.getText());
-            console.log("scannedData", scannedData);
-            stopScanning();
-            openDevice("ИК Ю-5230");
-          }
-          if (err && !(err instanceof Error)) {
-            console.error(err);
-          }
-        });
-      } catch (error) {
-        console.error("Error in QR code scanning:", error);
-        alert(`Error in QR code scanning: ${error}`);
-        stopScanning();
-      }
-    } */
-  };
+
   const stopScanning = () => {
     setIsScanning(false);
-    /*  codeReader.reset();
-    videoRef.current = null; */
   };
-  useEffect(() => {
-    return () => {
-      if (codeReader) {
-        codeReader.reset();
-      }
-    };
-  }, [codeReader]);
 
   function callback(data: string) {
-    stopScanning();
     const typeDevice = {
       "5130": "МК Ю-5130",
       "5830": "АК Ю-5830",
@@ -86,9 +56,15 @@ const AddNewDevice = ({ handleCloseModal }: { handleCloseModal: () => void }) =>
     //alert(data);
     const key = data.slice(-5, -1) as keyof typeof typeDevice;
     //alert(key);
-    const currentType = typeDevice[key] || "ИК Ю-5230";
+    const currentType = typeDevice[key] || "";
     //alert(typeDevice[key]);
-    openDevice(currentType);
+    if (currentType) {
+      stopScanning();
+      openDevice(currentType);
+      dispatch(showSuccessSnackbar(`Код:${data}, уст:${currentType} `));
+    } else {
+      dispatch(showWarningSnackbar(`Код:${data} не корректный`));
+    }
   }
 
   if (isModalRadioDevice) {
@@ -135,7 +111,7 @@ const AddNewDevice = ({ handleCloseModal }: { handleCloseModal: () => void }) =>
 
         {!isScanning && (
           <div style={{ marginTop: "50%" }}>
-            <button onClick={isScanning ? stopScanning : startScanning} className="new-device-one">
+            <button onClick={() => setIsScanning((prev) => !prev)} className="new-device-one">
               <div className="new-device-inside">
                 <span>Сканировать QR-Код(Штрих-код)</span>
               </div>
