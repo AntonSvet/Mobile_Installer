@@ -21,7 +21,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
 }) => {
 
     return (
-        <select className='template-card-block-select' style={{ width: width }}>
+        <select className='template-card-select' style={{ width: width }}>
             <div className='template-card-block-select-options'>
                 {options.map((option) => (
                     <option

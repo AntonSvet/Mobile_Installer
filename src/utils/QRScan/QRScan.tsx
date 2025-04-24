@@ -42,7 +42,7 @@ const Html5QrCodeScanner: React.FC<{ callback: (data: string) => void }> = ({ ca
   const [selectedCamera, setSelectedCamera] = useState<string>("");
   const [torchEnabled, setTorchEnabled] = useState(false);
   const [torchSupported, setTorchSupported] = useState(false);
-  const [zoomLevel, setZoomLevel] = useState(1);
+  const [zoomLevel, setZoomLevel] = useState(1.5);
   const scannerContainerId = "html5qr-code-scanner-container";
   // Находим тыловую камеру
   const filterOptimalCameras = (devices: CameraDevice[]) => {
@@ -298,7 +298,7 @@ const Html5QrCodeScanner: React.FC<{ callback: (data: string) => void }> = ({ ca
           color: "white",
         }}
       >
-        Наведите камеру на QR-код
+        Разместите код внутри окошка.
       </span>
 
       {/* Выбор камеры */}

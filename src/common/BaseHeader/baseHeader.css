@@ -17,7 +17,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin: 10px 13px;
+    margin: 10px 0px 10px 13px;
 }
 
 .base-header-title {
@@ -43,5 +43,5 @@
     color: var(--header-text-color);
     width: var(--header-icon-size);
     height: var(--header-icon-size);
-    margin: 0;
+    margin-right: 13px;
 }

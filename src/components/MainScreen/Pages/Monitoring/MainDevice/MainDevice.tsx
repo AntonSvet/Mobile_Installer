@@ -6,7 +6,7 @@ import "../../templateCard.css";
 import { RiRouterLine } from "react-icons/ri";
 import { TbDeviceIpadCode } from "react-icons/tb";
 import device2084 from "../../../../../img/device/s_fonom_2084.png";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import useResizeObserver from "../../../../../hooks/useResizeObserver";
 import CustomInput from "../../../../../common/CustomInput/CustomInput";
 import { FaWifi } from "react-icons/fa";
@@ -14,6 +14,7 @@ import { LiaCarBatterySolid } from "react-icons/lia";
 import SensorHeader from "../../../../../common/BaseHeader/BaseHeader";
 import SensorInfoBlock from "../../../../../common/SensorInfoBlock/SensorInfoBlock";
 import CustomSelect from "../../../../../common/CustomSelector/CustomSelector";
+import MultiCheckbox from "../../../../../common/MultiCheckbox/MultiCheckbox";
 
 interface RadioCardProps {
   handleCloseModal: () => void;
@@ -49,6 +50,8 @@ const modeOptions = [{ value: '1', label: 'Включен всегда' }, ...op
 const MainDevice = ({ handleCloseModal }: RadioCardProps) => {
   const headerRef = useRef<HTMLDivElement>(null);
   const headerHeight = useResizeObserver(headerRef);
+  const [selectedVal1, setSelectedVal1] = useState<string[]>([]);
+  const [selectedVal2, setSelectedVal2] = useState<string[]>([]);
 
   return (
     <div className="template-card">
@@ -182,7 +185,12 @@ const MainDevice = ({ handleCloseModal }: RadioCardProps) => {
                     </div>
                     <div className="template-card-block-row">
                       <span>Рзд.</span>
-                      <button>1,3,5-7,10</button>
+                      <MultiCheckbox
+                        // options={options}
+                        selectedValues={i === 1 ? selectedVal1 : selectedVal2}
+                        onChange={i === 1 ? setSelectedVal1 : setSelectedVal2}
+                        name="sections"
+                      />
                     </div>
                   </div>
                   <div className="template-card-block">

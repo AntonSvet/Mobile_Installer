@@ -1,6 +1,6 @@
 const IconRS485 = () => {
   return (
-    <div style={{ marginRight: "7px", color: "var(--text-color)" }}>
+    <div style={{ marginRight: "7px", paddingLeft: "0px", color: "var(--text-color)" }}>
       <svg
         width="clamp(24px, 4vw, 26px)"
         height="clamp(24px, 4vw, 26px)"

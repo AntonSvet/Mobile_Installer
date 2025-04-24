@@ -4,7 +4,7 @@ import ModalNewDevices from "./ModalNewDevices";
 import { devicesList } from "../../../../../const/const";
 import { BrowserMultiFormatReader } from "@zxing/library";
 import AddRadioDevice from "./AddRadioDevice/AddRadioDevice";
-
+import useResizeObserver from "../../../../../hooks/useResizeObserver";
 import BackArrow from "../../../../../common/BackArrow/BackArrow";
 import Html5QrScanner from "../../../../../utils/QRScan/QRScan";
 
@@ -18,7 +18,7 @@ const AddNewDevice = ({ handleCloseModal }: { handleCloseModal: () => void }) =>
   const [isScanning, setIsScanning] = useState<boolean>(false);
   const codeReader = new BrowserMultiFormatReader();
   const headerRef = useRef<HTMLDivElement>(null);
-
+  const headerHeight = useResizeObserver(headerRef);
   // Функция для открытия модального окна с определённым списком устройств
   const openModal = (deviceType: keyof typeof devicesList) => {
     setCurrentDevices(devicesList[deviceType]);
@@ -104,17 +104,15 @@ const AddNewDevice = ({ handleCloseModal }: { handleCloseModal: () => void }) =>
 
   return (
     <div className="new-device-card">
-      {!isScanning && (
-        <header ref={headerRef}>
-          <div className="new-device-back-arrow">
-            <BackArrow handleCloseModal={handleCloseModal} />
-          </div>
-          <div className="new-device-title">
-            <span>Добавить:</span>
-          </div>
-        </header>
-      )}
-      <div className="new-device-content">
+      <header ref={headerRef}>
+        <div className="new-device-back-arrow">
+          <BackArrow handleCloseModal={handleCloseModal} />
+        </div>
+        <div className="new-device-title">
+          <span>Добавить:</span>
+        </div>
+      </header>
+      <div className="new-device-content" style={{ marginTop: `${headerHeight + 30}px` }}>
         <div
           style={{
             display: isScanning ? "block" : "none",
@@ -133,31 +131,21 @@ const AddNewDevice = ({ handleCloseModal }: { handleCloseModal: () => void }) =>
           </div> */}
         </div>
 
-        {!isScanning && (
-          <div style={{ marginTop: "50%" }}>
-            <button onClick={isScanning ? stopScanning : startScanning} className="new-device-one">
-              <div className="new-device-inside">
-                <span>Сканировать QR-Код(Штрих-код)</span>
-              </div>
-            </button>
-            <button onClick={() => openModal("radio")} className="new-device-one">
-              <div className="new-device-inside">
-                <span>Радио устройство</span>
-              </div>
-            </button>
-            <button onClick={() => openModal("rs485")} className="new-device-one">
-              <div className="new-device-inside">
-                <span>RS-485 устройство</span>
-              </div>
-            </button>
+        <button onClick={isScanning ? stopScanning : startScanning} className="new-device-one">
+          <div className="new-device-inside">
+            <span>Сканировать QR-Код(Штрих-код)</span>
           </div>
-        )}
-        {isScanning && (
-          <button style={{ right: "33%" }} onClick={stopScanning} className="qr-scan-button">
-            <div className="qr-icon">&#x1F4F7;</div>
-            <div className="qr-text"> Отмена </div>
-          </button>
-        )}
+        </button>
+        <button onClick={() => openModal("radio")} className="new-device-one">
+          <div className="new-device-inside">
+            <span>Радио устройство</span>
+          </div>
+        </button>
+        <button onClick={() => openModal("rs485")} className="new-device-one">
+          <div className="new-device-inside">
+            <span>RS-485 устройство</span>
+          </div>
+        </button>
       </div>
       {isModalOpen && (
         <ModalNewDevices isOpen={isModalOpen} onClose={closeModal} devices={currentDevices} openDevice={openDevice} />

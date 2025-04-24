@@ -10,7 +10,7 @@ const MainScreen = () => {
 
   return (
     <div className="main_screen">
-      <HeaderBar selectedMenu={selectedMenu} callback={handleMenu} />
+      <HeaderBar selectedMenu={selectedMenu} callback={handleMenu} handleCloseModal={() => { }} />
       <MainPage selectedMenu={selectedMenu} />
       {selectedMenu === "Устройства" ? <FooterDevice /> : <Footer />}
     </div>
