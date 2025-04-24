@@ -7,7 +7,7 @@ import AddRadioDevice from "./AddRadioDevice/AddRadioDevice";
 
 import BackArrow from "../../../../../common/BackArrow/BackArrow";
 import Html5QrScanner from "../../../../../utils/QRScan/QRScan";
-import { showSuccessSnackbar, showWarningSnackbar } from "../../../../../redux/reducers/snackbar/snackbarThunk";
+import { showErrorSnackbar, showSuccessSnackbar } from "../../../../../redux/reducers/snackbar/snackbarThunk";
 import { useTypedDispatch } from "../../../../../hooks/useTypedDispatch";
 
 const AddNewDevice = ({ handleCloseModal }: { handleCloseModal: () => void }) => {
@@ -63,7 +63,7 @@ const AddNewDevice = ({ handleCloseModal }: { handleCloseModal: () => void }) =>
       openDevice(currentType);
       dispatch(showSuccessSnackbar(`Код:${data}, уст:${currentType} `));
     } else {
-      dispatch(showWarningSnackbar(`Код:${data} не корректный`));
+      dispatch(showErrorSnackbar(`Код:${data} не корректный`));
     }
   }
 
@@ -97,16 +97,7 @@ const AddNewDevice = ({ handleCloseModal }: { handleCloseModal: () => void }) =>
           }}
           className="camera-container"
         >
-          {/* <video ref={videoRef} id="camera-preview"></video> */}
           {isScanning && <Html5QrScanner callback={callback} />}
-          {/*  <div className="scanning-overlay">
-            <div className="scan-box">
-              <div className="corner-bottom-left"></div>
-              <div className="corner-bottom-right"></div>
-            </div>
-            <div className="scan-line"></div>
-            <p className="scan-instruction">Наведите камеру на QR-код</p>
-          </div> */}
         </div>
 
         {!isScanning && (

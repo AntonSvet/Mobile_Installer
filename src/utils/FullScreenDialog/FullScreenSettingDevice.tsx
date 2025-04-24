@@ -30,7 +30,7 @@ export default function FullScreenSettingDevice({
   const handleCloseModal = () => {
     handleClose?.();
   };
-  console.log("title", title);
+
   const DialogRoute = ({ route }: { route: string }) => {
     switch (route) {
       case dialogTitlesDevice.EXPANDER_3812:
@@ -68,6 +68,7 @@ export default function FullScreenSettingDevice({
             justifyContent: "center",
             height: "100%",
             background: "var(--background-color )",
+            paddingTop: 0,
           }}
         >
           <DialogRoute route={title} />

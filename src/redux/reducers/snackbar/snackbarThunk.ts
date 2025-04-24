@@ -2,7 +2,7 @@ import { AppDispatch } from "../../store";
 import { snackbarActions } from "./snackbarReducer";
 
 export const showErrorSnackbar =
-  (text: string, time = 1500) =>
+  (text: string, time = 2500) =>
   (dispatch: AppDispatch) => {
     dispatch(
       snackbarActions.snackbarUpdate({
@@ -14,7 +14,7 @@ export const showErrorSnackbar =
   };
 
 export const showSuccessSnackbar =
-  (text: string, time = 1500) =>
+  (text: string, time = 2500) =>
   (dispatch: AppDispatch) => {
     dispatch(
       snackbarActions.snackbarUpdate({
@@ -26,7 +26,7 @@ export const showSuccessSnackbar =
   };
 
 export const showWarningSnackbar =
-  (text: string, time = 1500) =>
+  (text: string, time = 2500) =>
   (dispatch: AppDispatch) => {
     dispatch(
       snackbarActions.snackbarUpdate({
@@ -38,7 +38,7 @@ export const showWarningSnackbar =
   };
 
 export const showInfoSnackbar =
-  (text: string, time = 1500) =>
+  (text: string, time = 2500) =>
   (dispatch: AppDispatch) => {
     dispatch(
       snackbarActions.snackbarUpdate({

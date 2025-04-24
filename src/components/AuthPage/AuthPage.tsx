@@ -45,7 +45,7 @@ const AuthPage = () => {
             <p>Введите ID6 или отсканируйте QR-Code</p>
             <div className="input-with-button">
               <input type="text" pattern="[0-9A-Fa-f]" placeholder="Введите ID6 " className="input-field" />
-              <button onClick={() => setScannedData("текст")} type="submit" className="submit-button">
+              <button onClick={() => setScannedData("Юпитер-2084")} type="submit" className="submit-button">
                 Отправить
               </button>
             </div>

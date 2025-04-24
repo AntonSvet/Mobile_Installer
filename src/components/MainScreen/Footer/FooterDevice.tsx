@@ -9,7 +9,6 @@ import { showSuccessSnackbar } from "../../../redux/reducers/snackbar/snackbarTh
 
 const FooterDevice = () => {
   const dispatch = useTypedDispatch();
-
   const armCondition = useTypedSelector((state) => state.devices.secured);
   return (
     <footer className="footer-device">
@@ -17,10 +16,20 @@ const FooterDevice = () => {
         <button onClick={() => dispatch(showSuccessSnackbar("Устройство на связи"))}>
           <RiLockStarLine className="footer-device-button-icon" />
         </button>
-        <button onClick={() => dispatch(devicesActions.getDisarm())}>
+        <button
+          onClick={() => {
+            dispatch(devicesActions.getDisarm());
+            dispatch(showSuccessSnackbar("Снят с охраны"));
+          }}
+        >
           <MdLockOpen className="footer-device-button-icon" />
         </button>
-        <button onClick={() => dispatch(devicesActions.getArm())}>
+        <button
+          onClick={() => {
+            dispatch(devicesActions.getArm());
+            dispatch(showSuccessSnackbar("Взят под охрану"));
+          }}
+        >
           <MdLockOutline style={{ color: armCondition }} className="footer-device-button-icon" />
         </button>
       </div>
