@@ -14,7 +14,7 @@ const CustomizedSnackbars: React.FC = () => {
     setIsVisible(snackbar.open || false);
   }, [snackbar.open]);
 
-  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+  const handleClose = (reason?: string) => {
     if (reason === "clickaway") {
       return;
     }
