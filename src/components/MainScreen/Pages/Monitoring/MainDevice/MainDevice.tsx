@@ -20,32 +20,32 @@ interface RadioCardProps {
   handleCloseModal: () => void;
 }
 const typeOptions = [
-  { value: "1", label: "Не используется" },
-  { value: "2", label: "Охранная" },
+  { value: '1', label: 'Не используется' },
+  { value: '2', label: 'Охранная' },
 ];
 const typeOptionsVar1 = [
-  { value: "1", label: "Не используется" },
-  { value: "2", label: "Охранная" },
-  { value: "3", label: "Охранная с задержкой (вход/выход)" },
-  { value: "4", label: "Охранная с задержкой (Проходная)" },
-  { value: "5", label: "Охранная с фикс. зад.(вход/выход)" },
+  { value: '1', label: 'Не используется' },
+  { value: '2', label: 'Охранная' },
+  { value: '3', label: 'Охранная с задержкой (вход/выход)' },
+  { value: '4', label: 'Охранная с задержкой (Проходная)' },
+  { value: '5', label: 'Охранная с фикс. зад.(вход/выход)' },
 ];
 const typeOptionsVar2 = [
-  { value: "1", label: "Не используется" },
-  { value: "2", label: "Охранная" },
-  { value: "3", label: "Тревожная (КТС)" },
-  { value: "4", label: "ПАТРУЛЬ" },
-  { value: "5", label: "УПРАВЛЕНИЕ" },
-  { value: "6", label: "ГАЗ" },
-  { value: "7", label: "ВОДА" },
-  { value: "8", label: "ТЕХНОЛОГИЧЕСКАЯ" },
+  { value: '1', label: 'Не используется' },
+  { value: '2', label: 'Охранная' },
+  { value: '3', label: 'Тревожная (КТС)' },
+  { value: '4', label: 'ПАТРУЛЬ' },
+  { value: '5', label: 'УПРАВЛЕНИЕ' },
+  { value: '6', label: 'ГАЗ' },
+  { value: '7', label: 'ВОДА' },
+  { value: '8', label: 'ТЕХНОЛОГИЧЕСКАЯ' },
 ];
-const optionsArray = Array(6)
-  .fill(5)
-  .map((_, i) => {
-    return { value: (i + 1) * 5, label: `Гашение через ${(i + 1) * 5} сек` };
-  });
-const modeOptions = [{ value: "1", label: "Включен всегда" }, ...optionsArray];
+const optionsArray = Array(6).fill(5).map((_, i) => {
+  return { value: (i + 1) * 5, label: `Гашение через ${(i + 1) * 5} сек` };
+});
+const modeOptions = [{ value: '1', label: 'Включен всегда' }, ...optionsArray];
+
+
 
 const MainDevice = ({ handleCloseModal }: RadioCardProps) => {
   const headerRef = useRef<HTMLDivElement>(null);
@@ -132,7 +132,7 @@ const MainDevice = ({ handleCloseModal }: RadioCardProps) => {
                   </div>
                   <div className="template-card-block">
                     <span style={{ marginRight: "8px" }}>Тип</span>
-                    <CustomSelect options={i === 0 ? typeOptionsVar1 : i === 1 ? typeOptionsVar2 : typeOptions} />
+                    <CustomSelect options={i === 0 ? typeOptionsVar1 : i === 1 ? typeOptionsVar2 : typeOptions}  />
                   </div>
                   {item && (
                     <div className="template-card-block">
@@ -156,16 +156,13 @@ const MainDevice = ({ handleCloseModal }: RadioCardProps) => {
           <div className="template-card-inside">
             <div className="template-card-block">
               <div className="template-card-block-row">
-                <span>Выход инд. Рзд.</span>
+                <span >Выход инд. Рзд.</span>
               </div>
-              <CustomSelect
-                options={Array(32)
-                  .fill(1)
-                  .map((_, i) => {
-                    return { value: i + 1, label: `${i + 1} раздел` };
-                  })}
-                width="55%"
-              />
+              <CustomSelect options={Array(32)
+                .fill(1)
+                .map((_, i) => {
+                  return { value: i + 1, label: `${i + 1} раздел` };
+                })} width="55%" />
             </div>
 
             <div className="template-card-block">
@@ -193,17 +190,16 @@ const MainDevice = ({ handleCloseModal }: RadioCardProps) => {
                         selectedValues={i === 1 ? selectedVal1 : selectedVal2}
                         onChange={i === 1 ? setSelectedVal1 : setSelectedVal2}
                         name="sections"
+                        elementId={`section-${i + 1}`}
+                        placeholder="Разделы"
                       />
                     </div>
                   </div>
                   <div className="template-card-block">
                     <span style={{ marginRight: "8px" }}>Режим</span>
-                    <CustomSelect
-                      options={[
-                        { value: "1", label: "Не используется" },
-                        { value: "2", label: "Охранная" },
-                      ]}
-                    />
+                    <CustomSelect options={[
+                      { value: '1', label: 'Не используется' },
+                      { value: '2', label: 'Охранная' }]} />
                   </div>
                   {item && (
                     <div className="template-card-block">

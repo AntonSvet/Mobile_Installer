@@ -42,7 +42,18 @@ export const radioDevice: IRadioDevices[] = [
     statusDevice: "white",
     image: device5230,
   },
-
+  {
+    id: 3,
+    name: "АК Ю-5830",
+    fullName: "Аккустический  извещатель",
+    number: 4,
+    zone: [7, 8],
+    delay: [90, 90],
+    section: [2, 2],
+    statusZone: ["grey", "grey"],
+    statusDevice: "white",
+    image: device5830,
+  },
   {
     id: 4,
     name: "Кл Ю-6270",

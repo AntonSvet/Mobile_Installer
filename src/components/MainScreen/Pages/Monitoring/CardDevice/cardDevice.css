@@ -138,7 +138,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: clamp(60px, 22vw, 110px);
+  width: clamp(60px, 21vw, 110px);
   height: clamp(60px, 24vw, 110px);
 }
 

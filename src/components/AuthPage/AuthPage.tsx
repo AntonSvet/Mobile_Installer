@@ -5,7 +5,6 @@ import MainScreen from "../MainScreen/MainScreen";
 import "./authPage.css";
 
 import Html5QrScanner from "../../utils/QRScan/QRScan";
-
 const AuthPage = () => {
   const [scannedData, setScannedData] = useState<string | null>(null);
   const [isScanning, setIsScanning] = useState<boolean>(false);

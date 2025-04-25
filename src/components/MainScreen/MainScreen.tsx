@@ -3,8 +3,8 @@ import HeaderBar from "./NavigationBar/HeaderBar";
 import MainPage from "./Pages/MainPage";
 import FooterDevice from "./Footer/FooterDevice";
 import Footer from "./Footer/Footer";
-import { showSuccessSnackbar } from "../../redux/reducers/snackbar/snackbarThunk";
 import { useTypedDispatch } from "../../hooks/useTypedDispatch";
+import { showSuccessSnackbar } from "../../redux/reducers/snackbar/snackbarThunk";
 
 const MainScreen = ({ scannedData }: { scannedData: string }) => {
   const dispatch = useTypedDispatch();
@@ -13,7 +13,6 @@ const MainScreen = ({ scannedData }: { scannedData: string }) => {
   useEffect(() => {
     dispatch(showSuccessSnackbar(`Устройство на связи - ${scannedData}`));
   }, []);
-
   return (
     <div className="main_screen">
       <HeaderBar selectedMenu={selectedMenu} callback={handleMenu} handleCloseModal={() => {}} />

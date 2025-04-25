@@ -31,3 +31,47 @@ export function changeSelectType(
       break;
   }
 }
+function withoutComma(str: string) {
+  return str[str.length - 1] === "," ? str.slice(0, -1) : str;
+}
+export function sortedSection(str: string[]) {
+  if (!str) return "";
+  const arr = str.map((el) => Number(el)).sort((a, b) => a - b);
+  let result = "";
+  let firstEL = "";
+  let count = 0;
+  for (let i = 0; i < arr.length; i++) {
+    const el = arr[i];
+    if (el - 1 === arr[i - 1]) {
+      count++;
+      if (i === arr.length - 1) {
+        if (count !== 1) {
+          result += firstEL + "-" + arr[i];
+        } else {
+          result += firstEL + "," + arr[i];
+        }
+        return result.length > 23 ? withoutComma(result.slice(0, 21)) + "..." : result;
+      }
+    } else {
+      if (firstEL) {
+        if (+firstEL !== arr[i - 1]) {
+          if (count !== 1) {
+            result += firstEL + "-" + arr[i - 1] + ",";
+          } else {
+            result += firstEL + "," + arr[i - 1] + ",";
+          }
+          count = 0;
+        } else {
+          count = 0;
+          result += firstEL.toString() + ",";
+        }
+        firstEL = el.toString();
+      } else {
+        firstEL = el.toString();
+      }
+    }
+  }
+  const sortStr = result + firstEL;
+  const tmp = sortStr.length > 23 ? sortStr.slice(0, 21) + "..." : sortStr;
+  return tmp;
+}

@@ -1,19 +1,9 @@
-import {
-  Box,
-  Divider,
-  FormControl,
-  Grid,
-  Input,
-  ListItem,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-  Slider,
-} from "@mui/material";
+import { Box, Divider, FormControl, Grid, ListItem, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 
 import { VolumeUp } from "@mui/icons-material";
 import { useState } from "react";
 import "./generalSettings.css";
+import CustomSlider from "../../../../common/CustomSlider/CustomSlider";
 
 const GeneralSettingsPage = () => {
   const [isSuccess, setSuccess] = useState("1");
@@ -66,19 +56,7 @@ const GeneralSettingsPage = () => {
                 <VolumeUp />
               </Grid>
               <Grid>
-                <Slider aria-labelledby="input-slider" />
-              </Grid>
-              <Grid>
-                <Input
-                  size="medium"
-                  inputProps={{
-                    step: 1,
-                    min: 0,
-                    max: 5,
-                    type: "number",
-                    "aria-labelledby": "input-slider",
-                  }}
-                />
+                <CustomSlider defaultValue={3} min={0} max={4} />
               </Grid>
             </Grid>
           </Box>
@@ -96,6 +74,18 @@ const GeneralSettingsPage = () => {
           </ListItem>
           <Divider />
         </span>
+        <ListItem sx={{ padding: "0px" }}>
+          <FormControl sx={{ minWidth: "100%" }} size="small">
+            <Select value={isSuccess} onChange={handleSuccessChange}>
+              <MenuItem value={1}>
+                <span>GSM-антенна встроенная</span>
+              </MenuItem>
+              <MenuItem value={2}>
+                <span>GSM-антенна внешняя</span>
+              </MenuItem>
+            </Select>
+          </FormControl>
+        </ListItem>
       </div>
     </div>
   );

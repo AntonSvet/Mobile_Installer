@@ -32,10 +32,6 @@ const Parameters = ({ title, handleCloseModal }: ParametersProps) => {
               <option>Основной канал LAN</option>
               <option>Основной канал LAN</option>
             </select>
-            <select style={{ width: "270px" }} name="" id="">
-              <option>GSM-антенна встроенная</option>
-              <option>GSM-антенна встроенная</option>
-            </select>
           </div>
         </div>
       </header>

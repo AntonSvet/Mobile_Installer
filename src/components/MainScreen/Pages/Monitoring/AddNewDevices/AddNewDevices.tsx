@@ -14,6 +14,7 @@ const AddNewDevice = ({ handleCloseModal }: { handleCloseModal: () => void }) =>
   const dispatch = useTypedDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalRadioDevice, setisModalRadioDevice] = useState(false);
+
   const [currentDevices, setCurrentDevices] = useState<string[]>([]);
   const [currentDevice, setCurrentDevice] = useState<string>("");
 

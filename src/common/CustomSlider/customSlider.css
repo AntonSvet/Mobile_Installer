@@ -1,0 +1,20 @@
+/* Стили для контейнера */
+.custom-slider-container {
+  width: 210px;
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  outline: none;
+  margin: 10px 0;
+}
+
+.custom-slider-container input {
+  width: 100%;
+}
+
+.slider-value {
+  margin-left: 8px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+}
